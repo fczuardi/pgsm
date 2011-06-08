@@ -1,0 +1,3 @@
+[submodule "projeto"]
+	path = projeto
+	url = git@github.com:fczuardi/pgsm-projeto.git
