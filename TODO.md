@@ -1,0 +1,1 @@
+* Atualizar https://github.com/fczuardi/pgsm/wiki/Instalacao-em-Mac-OSX com instruções de como baixar.
