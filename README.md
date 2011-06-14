@@ -27,6 +27,13 @@ Wireframes e docs providenciados pela faculdade estão debaixo de ```conteudo-re
 
 Esta pasta ***não é necessária*** para a implantação / instalação deste sistema, ela existe apenas para fins de documentação do processo. Por este motivo seu conteúdo é mantido em um [repositório separado](http://github.com/fczuardi/pgsm-projeto) e é apenas linkado aqui como um git submodule.
 
+## Plugins
+
+Lista parcial dos plugins de Wordpress usados neste site:
+
+* [iframe](http://wordpress.org/extend/plugins/iframe/) versão 1.2.0.
+  * [site do autor](http://web-profile.com.ua/wordpress/plugins/iframe/)
+
 ## Copyright / Licença
 
 TBD (ainda não foi definida, provavelmente será AGPL + CC-by para as imagens do tema, mas não temos o sinal verde da faculdade para isso ainda). Por enquanto, todos os direitos reservados.
