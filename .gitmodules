@@ -4,9 +4,6 @@
 [submodule "wiki"]
 	path = wiki
 	url = git@github.com:fczuardi/pgsm.wiki.git
-[submodule "www/wp-content/themes/pgsm-bones"]
-	path = www/wp-content/themes/pgsm-bones
-	url = git@github.com:fczuardi/pgsm-bones.git
 [submodule "www/wp-content/themes/pgsm-boilerplate-child"]
 	path = www/wp-content/themes/pgsm-boilerplate-child
 	url = git@github.com:fczuardi/pgsm-boilerplate-child.git
