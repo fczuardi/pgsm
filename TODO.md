@@ -1,14 +1,15 @@
 # Dev server (pgsm.nulo.com.br)
 
-* ok - script to update code
-* run this script automatically via cron or URL ping
+* OK - script to update code
+* script to sync database
+* run this scripts automatically via cron or URL ping
 
 # Home
 
-* ok - Menu: hover com borda arredondada
-* ok - Cabeçalho: título e descrição posicionados
-* Sidebar: mudar título para "últimas notícias"
-* Sidebar: Horario e título na posição / formato corretos, separadores entre as noticias
+* OK - Menu: hover com borda arredondada
+* OK - Cabeçalho: título e descrição posicionados
+* OK - Sidebar: mudar título para \"últimas notícias\"
+* OK - Sidebar: Horario e título na posição / formato corretos, separadores entre as noticias
 * Sidebar: ícone RSS linkando p/ o feed
 * Sidebar: link "ler todas as notícias"
 * Sidebar: widget Entidades Relacionadas
