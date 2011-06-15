@@ -10,7 +10,7 @@
 * OK - Cabeçalho: título e descrição posicionados
 * OK - Sidebar: mudar título para \"últimas notícias\"
 * OK - Sidebar: Horario e título na posição / formato corretos, separadores entre as noticias
-* Sidebar: ícone RSS linkando p/ o feed
+* OK - Sidebar: ícone RSS linkando p/ o feed
 * Sidebar: link "ler todas as notícias"
 * Sidebar: widget Entidades Relacionadas
 * Conteudo: css dos títulos Video institucional e fotos
@@ -18,6 +18,10 @@
 * Conteúdo: html da home, grid de fotos
 * Header: seletor de línguas, posição
 * Header: seletor de línguas, funcionalidade
+
+# Página de notícia individual
+
+* TBD
 
 # Sites de interesse
 
