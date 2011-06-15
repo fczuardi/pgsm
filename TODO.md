@@ -2,7 +2,7 @@
 # Home
 
 * ok - Menu: hover com borda arredondada
-* Cabeçalho: título e descrição posicionados
+* ok - Cabeçalho: título e descrição posicionados
 * Sidebar: mudar título para "últimas notícias"
 * Sidebar: Horario e título na posição / formato corretos, separadores entre as noticias
 * Sidebar: ícone RSS linkando p/ o feed
