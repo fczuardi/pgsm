@@ -1,3 +1,7 @@
+# Dev server (pgsm.nulo.com.br)
+
+* ok - script to update code
+* run this script automatically via cron or URL ping
 
 # Home
 
