@@ -36,12 +36,15 @@ Contém os documentos produzidos durante a etapa de levantamento de requisitos e
 
 Por se tratar de um download grande é mantido separado e não faz partes dos submódulos do repositório principal.
 
-# Plugins
+# Plugins (and plugin customizations)
 
 Lista parcial dos plugins de Wordpress usados neste site:
 
 * [iframe](http://wordpress.org/extend/plugins/iframe/) versão 1.2.0.
   * [site do autor](http://web-profile.com.ua/wordpress/plugins/iframe/)
+* [qTranslate](http://wordpress.org/extend/plugins/qtranslate/)
+  * [site do autor](http://www.qianqin.de/qtranslate/)
+  * [customização 1](https://github.com/fczuardi/pgsm/commit/2111ad0d057a3dd5d2248f037efefffda2190508) - Remove o ítem com a língua ativa do html ao invés de só mudar a classe.
 
 ## Copyright / Licença
 

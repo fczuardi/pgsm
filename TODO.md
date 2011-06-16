@@ -15,12 +15,12 @@
 * OK - Sidebar: mudar título para \"últimas notícias\"
 * OK - Sidebar: Horario e título na posição / formato corretos, separadores entre as noticias
 * OK - Sidebar: ícone RSS linkando p/ o feed
-* Header: seletor de línguas, funcionalidade
+* OK - Header: seletor de línguas, funcionalidade
+* OK - Header: seletor de línguas, posição / tamanho
 * Sidebar: widget Entidades Relacionadas
-* Conteudo: css dos títulos Video institucional e fotos
+* Conteúdo: css dos títulos Video institucional e fotos
 * Conteúdo: html da home, video embed
 * Conteúdo: html da home, grid de fotos
-* Header: seletor de línguas, posição
 * Sidebar: link "ler todas as notícias"
 
 # Página de "todas as notícias"
