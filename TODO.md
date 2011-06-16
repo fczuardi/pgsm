@@ -4,6 +4,10 @@
 * script to sync database
 * run this scripts automatically via cron or URL ping
 
+# Template functions
+
+* rewrite function ````boilerplate_posted_on````
+
 # Home
 
 * OK - Menu: hover com borda arredondada
@@ -11,13 +15,17 @@
 * OK - Sidebar: mudar título para \"últimas notícias\"
 * OK - Sidebar: Horario e título na posição / formato corretos, separadores entre as noticias
 * OK - Sidebar: ícone RSS linkando p/ o feed
-* Sidebar: link "ler todas as notícias"
+* Header: seletor de línguas, funcionalidade
 * Sidebar: widget Entidades Relacionadas
 * Conteudo: css dos títulos Video institucional e fotos
 * Conteúdo: html da home, video embed
 * Conteúdo: html da home, grid de fotos
 * Header: seletor de línguas, posição
-* Header: seletor de línguas, funcionalidade
+* Sidebar: link "ler todas as notícias"
+
+# Página de "todas as notícias"
+
+* TBD
 
 # Página de notícia individual
 
