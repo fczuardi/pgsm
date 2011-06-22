@@ -6,7 +6,12 @@
 
 # Template functions
 
-* rewrite function ````boilerplate_posted_on````
+* create and pre-fill default pages with the content of pages\_content folder, update if pages_content is newer
+* rewrite function boilerplate\_posted\_on
+
+#CSS geral
+
+* links undeline no hover (para padronizar com os de baixo)
 
 # Home
 
@@ -17,11 +22,11 @@
 * OK - Sidebar: ícone RSS linkando p/ o feed
 * OK - Header: seletor de línguas, funcionalidade
 * OK - Header: seletor de línguas, posição / tamanho
+* Sidebar: link "ler todas as notícias"
 * Sidebar: widget Entidades Relacionadas
-* Conteúdo: css dos títulos Video institucional e fotos
 * Conteúdo: html da home, video embed
 * Conteúdo: html da home, grid de fotos
-* Sidebar: link "ler todas as notícias"
+* Conteúdo: css dos títulos Video institucional e fotos
 
 # Página de "todas as notícias"
 
