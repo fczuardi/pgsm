@@ -22,11 +22,11 @@
 * OK - Sidebar: ícone RSS linkando p/ o feed
 * OK - Header: seletor de línguas, funcionalidade
 * OK - Header: seletor de línguas, posição / tamanho
+* OK - Conteúdo: html da home, video embed
+* OK - Conteúdo: html da home, grid de fotos
+* OK - Conteúdo: css dos títulos Video institucional e fotos
 * Sidebar: link "ler todas as notícias"
 * Sidebar: widget Entidades Relacionadas
-* Conteúdo: html da home, video embed
-* Conteúdo: html da home, grid de fotos
-* Conteúdo: css dos títulos Video institucional e fotos
 
 # Página de "todas as notícias"
 
