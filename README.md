@@ -40,11 +40,13 @@ Por se tratar de um download grande é mantido separado e não faz partes dos su
 
 Lista parcial dos plugins de Wordpress usados neste site:
 
-* [iframe](http://wordpress.org/extend/plugins/iframe/) versão 1.2.0.
+* [iframe](http://wordpress.org/extend/plugins/iframe/) versão 1.4.0.
   * [site do autor](http://web-profile.com.ua/wordpress/plugins/iframe/)
-* [qTranslate](http://wordpress.org/extend/plugins/qtranslate/)
+* [qTranslate](http://wordpress.org/extend/plugins/qtranslate/) versão 2.5.21
   * [site do autor](http://www.qianqin.de/qtranslate/)
   * [customização 1](https://github.com/fczuardi/pgsm/commit/2111ad0d057a3dd5d2248f037efefffda2190508) - Remove o ítem com a língua ativa do html ao invés de só mudar a classe.
+* [unattach](http://wordpress.org/extend/plugins/unattach/) versão 1.0.1
+  * [site do autor](http://outlandishideas.co.uk/blog/2011/03/unattach/)
 
 ## Copyright / Licença
 
