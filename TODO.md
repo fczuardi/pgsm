@@ -25,6 +25,7 @@
 * OK - Conteúdo: html da home, video embed
 * OK - Conteúdo: html da home, grid de fotos
 * OK - Conteúdo: css dos títulos Video institucional e fotos
+* Bug: remover bool(false) da nav bar
 * Sidebar: link "ler todas as notícias"
 * Sidebar: widget Entidades Relacionadas
 
@@ -74,3 +75,11 @@
 * Endereço profissional e biografia retiradas do Lattes
 
 ## Ex-Orientadores
+
+
+# FUTURE
+
+* trocar URL dos videos para uma versão no archive.org ou no servidor da USP (p/ sair da conta do GStorage do fabricio)
+
+
+
