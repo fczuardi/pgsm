@@ -2,6 +2,8 @@
 /**
  * These functions are needed to load WordPress.
  *
+ * @internal This file must be parsable by PHP4.
+ *
  * @package WordPress
  */
 
@@ -17,7 +19,7 @@ function wp_unregister_GLOBALS() {
 		return;
 
 	if ( isset( $_REQUEST['GLOBALS'] ) )
-		die( /*WP_I18N_GLOBALS_OVERWRITE*/'Detectada a tentativa de sobrescrever GLOBALS'/*/WP_I18N_GLOBALS_OVERWRITE*/ );
+		die( /*WP_I18N_GLOBALS_OVERWRITE*/'GLOBALS overwrite attempt detected'/*/WP_I18N_GLOBALS_OVERWRITE*/ );
 
 	// Variables that shouldn't be unset
 	$no_unset = array( 'GLOBALS', '_GET', '_POST', '_COOKIE', '_REQUEST', '_SERVER', '_ENV', '_FILES', 'table_prefix' );
@@ -95,6 +97,9 @@ function wp_fix_server_vars() {
  *
  * Dies if requirements are not met.
  *
+ * This function must be able to work without a complete environment set up. In wp-load.php, for
+ * example, WP_CONTENT_DIR is defined and version.php is included before this function is called.
+ *
  * @access private
  * @since 3.0.0
  */
@@ -104,10 +109,10 @@ function wp_check_php_mysql_versions() {
 	global $required_php_version, $wp_version;
 	$php_version = phpversion();
 	if ( version_compare( $required_php_version, $php_version, '>' ) )
-		die( sprintf( /*WP_I18N_OLD_PHP*/'O seu servidor funciona com a versão %1$s do PHP, mas o WordPress %2$s necessita pelo menos da versão %3$s.'/*/WP_I18N_OLD_PHP*/, $php_version, $wp_version, $required_php_version ) );
+		die( sprintf( /*WP_I18N_OLD_PHP*/'Your server is running PHP version %1$s but WordPress %2$s requires at least %3$s.'/*/WP_I18N_OLD_PHP*/, $php_version, $wp_version, $required_php_version ) );
 
 	if ( !extension_loaded( 'mysql' ) && !file_exists( WP_CONTENT_DIR . '/db.php' ) )
-		die( /*WP_I18N_OLD_MYSQL*/'Parece que em sua instalação do PHP está faltando a extensão MySQL, que é requesitada pelo WordPress.'/*/WP_I18N_OLD_MYSQL*/ );
+		die( /*WP_I18N_OLD_MYSQL*/'Your PHP installation appears to be missing the MySQL extension which is required by WordPress.'/*/WP_I18N_OLD_MYSQL*/ );
 }
 
 /**
@@ -165,11 +170,11 @@ function wp_maintenance() {
 	<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title><?php echo /*WP_I18N_MAINTENANCE*/'Manutenção'/*/WP_I18N_MAINTENANCE*/; ?></title>
+		<title><?php echo /*WP_I18N_MAINTENANCE*/'Maintenance'/*/WP_I18N_MAINTENANCE*/; ?></title>
 
 	</head>
 	<body>
-		<h1><?php echo /*WP_I18N_MAINT_MSG*/'Momentaneamente indisponível para manutenção programada. Verifique novamente em um minuto.'/*/WP_I18N_MAINT_MSG*/; ?></h1>
+		<h1><?php echo /*WP_I18N_MAINT_MSG*/'Briefly unavailable for scheduled maintenance. Check back in a minute.'/*/WP_I18N_MAINT_MSG*/; ?></h1>
 	</body>
 	</html>
 <?php
@@ -271,10 +276,7 @@ function wp_debug_mode() {
 			ini_set( 'error_log', WP_CONTENT_DIR . '/debug.log' );
 		}
 	} else {
-		if ( defined( 'E_RECOVERABLE_ERROR' ) )
-			error_reporting( E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_ERROR | E_WARNING | E_PARSE | E_USER_ERROR | E_USER_WARNING | E_RECOVERABLE_ERROR );
-		else
-			error_reporting( E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_ERROR | E_WARNING | E_PARSE | E_USER_ERROR | E_USER_WARNING );
+		error_reporting( E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_ERROR | E_WARNING | E_PARSE | E_USER_ERROR | E_USER_WARNING | E_RECOVERABLE_ERROR );
 	}
 }
 
@@ -283,8 +285,10 @@ function wp_debug_mode() {
  *
  * To set directory manually, define <code>WP_LANG_DIR</code> in wp-config.php.
  *
- * First looks for language folder in WP_CONTENT_DIR and uses that folder if it
- * exists. Or it uses the "languages" folder in WPINC.
+ * If the language directory exists within WP_CONTENT_DIR that is used
+ * Otherwise if the language directory exists within WPINC, that's used
+ * Finally, If neither of the preceeding directories is found,
+ * WP_CONTENT_DIR/languages is used.
  *
  * The WP_LANG_DIR constant was introduced in 2.1.0.
  *
@@ -293,7 +297,7 @@ function wp_debug_mode() {
  */
 function wp_set_lang_dir() {
 	if ( !defined( 'WP_LANG_DIR' ) ) {
-		if ( file_exists( WP_CONTENT_DIR . '/languages' ) && @is_dir( WP_CONTENT_DIR . '/languages' ) ) {
+		if ( file_exists( WP_CONTENT_DIR . '/languages' ) && @is_dir( WP_CONTENT_DIR . '/languages' ) || !@is_dir(ABSPATH . WPINC . '/languages') ) {
 			define( 'WP_LANG_DIR', WP_CONTENT_DIR . '/languages' ); // no leading slash, no trailing slash, full path, not relative to ABSPATH
 			if ( !defined( 'LANGDIR' ) ) {
 				// Old static relative path maintained for limited backwards compatibility - won't work in some cases
@@ -362,7 +366,7 @@ function wp_set_wpdb_vars() {
 	$prefix = $wpdb->set_prefix( $table_prefix );
 
 	if ( is_wp_error( $prefix ) )
-		wp_die( /*WP_I18N_BAD_PREFIX*/'<strong>ERRO</strong>: <code>$table_prefix</code> no arquivo <code>wp-config.php</code> só pode conter números, letras e sublinhados.'/*/WP_I18N_BAD_PREFIX*/ );
+		wp_die( /*WP_I18N_BAD_PREFIX*/'<strong>ERROR</strong>: <code>$table_prefix</code> in <code>wp-config.php</code> can only contain numbers, letters, and underscores.'/*/WP_I18N_BAD_PREFIX*/ );
 }
 
 /**
@@ -554,19 +558,16 @@ function shutdown_action_hook() {
 /**
  * Copy an object.
  *
- * Returns a cloned copy of an object.
- *
  * @since 2.7.0
+ * @deprecated 3.2
  *
  * @param object $object The object to clone
  * @return object The cloned object
  */
-function wp_clone( $object ) {
-	static $can_clone;
-	if ( !isset( $can_clone ) )
-		$can_clone = version_compare( phpversion(), '5.0', '>=' );
 
-	return $can_clone ? clone( $object ) : $object;
+function wp_clone( $object ) {
+	// Use parens for clone to accommodate PHP 4.  See #17880
+	return clone( $object );
 }
 
 /**

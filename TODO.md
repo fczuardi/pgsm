@@ -83,3 +83,11 @@
 
 
 
+http://commondatastorage.googleapis.com/pgsm/pgsm1080.mp4
+http://commondatastorage.googleapis.com/pgsm/pgsm360.mp4
+http://commondatastorage.googleapis.com/pgsm/pgsm360.webm
+http://commondatastorage.googleapis.com/pgsm/pgsm480.flv
+http://commondatastorage.googleapis.com/pgsm/pgsm480.webm
+http://commondatastorage.googleapis.com/pgsm/pgsm720.mp4
+http://commondatastorage.googleapis.com/pgsm/pgsm720.webm
+
