@@ -9,6 +9,10 @@
 * create and pre-fill default pages with the content of pages\_content folder, update if pages_content is newer
 * rewrite function boilerplate\_posted\_on
 
+# Template localization
+
+* translate to english and spanish all __() and _e() strings of pgsm-boilerplate-child
+
 #CSS geral
 
 * links undeline no hover (para padronizar com os de baixo)
@@ -26,7 +30,7 @@
 * OK - Conteúdo: html da home, grid de fotos
 * OK - Conteúdo: css dos títulos Video institucional e fotos
 * OK - Bug: remover bool(false) da nav bar
-* Sidebar: link "ler todas as notícias"
+* OK - Sidebar: link \"ler todas as notícias\"
 * Sidebar: widget Entidades Relacionadas
 
 # Página de "todas as notícias"
@@ -90,4 +94,8 @@ http://commondatastorage.googleapis.com/pgsm/pgsm480.flv
 http://commondatastorage.googleapis.com/pgsm/pgsm480.webm
 http://commondatastorage.googleapis.com/pgsm/pgsm720.mp4
 http://commondatastorage.googleapis.com/pgsm/pgsm720.webm
+
+# Lembretes
+
+* Quando instalar setar a página de notícia como posts page e a home como home estática
 
