@@ -21,7 +21,7 @@
 
 # Template functions
 
-* create and pre-fill default pages with the content of pages\_content folder, update if pages_content is newer
+* OK - create and pre-fill default pages with the content of pages\_content folder, update if pages_content is newer
 * rewrite function boilerplate\_posted\_on
 
 # Dev server (pgsm.nulo.com.br)
