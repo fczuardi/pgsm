@@ -1,22 +1,3 @@
-# Dev server (pgsm.nulo.com.br)
-
-* OK - script to update code
-* script to sync database
-* run this scripts automatically via cron or URL ping
-
-# Template functions
-
-* create and pre-fill default pages with the content of pages\_content folder, update if pages_content is newer
-* rewrite function boilerplate\_posted\_on
-
-# Template localization
-
-* translate to english and spanish all __() and _e() strings of pgsm-boilerplate-child
-
-#CSS geral
-
-* links undeline no hover (para padronizar com os de baixo)
-
 # Home
 
 * OK - Menu: hover com borda arredondada
@@ -32,6 +13,26 @@
 * OK - Bug: remover bool(false) da nav bar
 * OK - Sidebar: link \"ler todas as notícias\"
 * Sidebar: widget Entidades Relacionadas
+* Testar video fallback para flash em browsers sem html5 video
+
+#CSS geral
+
+* links undeline no hover (para padronizar com os de baixo)
+
+# Template functions
+
+* create and pre-fill default pages with the content of pages\_content folder, update if pages_content is newer
+* rewrite function boilerplate\_posted\_on
+
+# Dev server (pgsm.nulo.com.br)
+
+* OK - script to update code
+* script to sync database
+* run this scripts automatically via cron or URL ping
+
+# Template localization
+
+* translate to english and spanish all __() and _e() strings of pgsm-boilerplate-child
 
 # Página de "todas as notícias"
 
