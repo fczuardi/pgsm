@@ -17,7 +17,7 @@
 
 #CSS geral
 
-* links undeline no hover (para padronizar com os de baixo)
+* OK - links undeline no hover (para padronizar com os de baixo)
 
 # Template functions
 
@@ -49,8 +49,8 @@
 # Localização
 
 * Botão de imprimir
-* Google maps embed
-* Botão "Abrir no Google Mapas"
+* OK - Google maps embed
+* OK - Botão \"Abrir no Google Mapas\"
 
 # Ingresso
 
