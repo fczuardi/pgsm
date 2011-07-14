@@ -15,6 +15,13 @@
 * Sidebar: widget Entidades Relacionadas
 * Testar video fallback para flash em browsers sem html5 video
 
+# Localização
+
+* OK - Botão de imprimir
+* OK - Google maps embed
+* OK - Botão \"Abrir no Google Mapas\"
+
+
 #CSS geral
 
 * OK - links undeline no hover (para padronizar com os de baixo)
@@ -45,12 +52,6 @@
 # Sites de interesse
 
 * html e css dos logos (página estática)
-
-# Localização
-
-* Botão de imprimir
-* OK - Google maps embed
-* OK - Botão \"Abrir no Google Mapas\"
 
 # Ingresso
 
