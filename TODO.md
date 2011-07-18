@@ -1,6 +1,10 @@
+# Bugs
+
+* quando muda para ingles ou espanhol, o separador | está aparecendo
+
 # Sites de interesse
 
-* gerar todos os pngs dos logos
+* OK - gerar todos os pngs dos logos
 * decidir se eles vao como gallery ou parte do template
 
 # Ingresso
