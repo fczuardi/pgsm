@@ -1,6 +1,7 @@
 # Sites de interesse
 
-* html e css dos logos (página estática)
+* gerar todos os pngs dos logos
+* decidir se eles vao como gallery ou parte do template
 
 # Ingresso
 
@@ -65,6 +66,7 @@
 
 #CSS geral
 
+* - tirar seleção rosa
 * OK - links undeline no hover (para padronizar com os de baixo)
 
 # Template functions
