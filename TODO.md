@@ -11,6 +11,7 @@
 * URLs das imagens quebram quando online (www) e nas paginas de impressao
 * quando muda para ingles ou espanhol, o separador | está aparecendo
 * ver como tirar atributo title dos itens do menu
+* entidades relacionadas está hardcoded no template, isto é feio/errado
 
 # Pagina de Impressão
 
