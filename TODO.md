@@ -1,17 +1,26 @@
 # Página de "todas as notícias"
 
+* incluir "publicado por PGSM"
+* Expand / Colapse das noticias individuais
+* Css da dobra/resquicio de divisor depois do titulo da noticia
+* Botao mais noticias no mesmo estilo css do "abrir no google mapas"
 * Botao Mais Noticias carregar ajax
-
 
 # Bugs
 
+* URLs das imagens quebram quando online (www) e nas paginas de impressao
 * quando muda para ingles ou espanhol, o separador | está aparecendo
 * ver como tirar atributo title dos itens do menu
 
-# Sites de interesse
+# Pagina de Impressão
 
-* OK - gerar todos os pngs dos logos
-* decidir se eles vao como gallery ou parte do template
+* Mudar a fonte para a mesma da página
+* Caixa alta nos títulos
+* sumir com o "No Comments"
+* sumir com o horario apos a @
+* tentar localizar os textos \"posted by\", \"article printed from\", \"url to article\", \"urls in this post\"
+* tentar pular a pagina de print
+* usar o papel timbrado?
 
 # Ingresso
 
@@ -43,6 +52,17 @@
 ## Ex-Orientadores
 
 
+# Geral
+
+* favicon
+* home screen icon para iDevices
+
+#CSS geral
+
+* - tirar seleção rosa
+* OK - links undeline no hover (para padronizar com os de baixo)
+
+
 # Home
 
 * OK - Menu: hover com borda arredondada
@@ -60,6 +80,11 @@
 * OK - Sidebar: widget Entidades Relacionadas
 * Testar video fallback para flash em browsers sem html5 video
 
+# Sites de interesse
+
+* OK - gerar todos os pngs dos logos
+* OK - decidir se eles vao como gallery ou parte do template
+
 # Localização
 
 * OK - Botão de imprimir
@@ -70,10 +95,10 @@
 
 * TBD
 
-#CSS geral
+#Páginas de impressão
 
-* - tirar seleção rosa
-* OK - links undeline no hover (para padronizar com os de baixo)
+* adaptar o CSS
+* ver como imprimir apenas um pedaço em páginas que tem expand/colapse (ex professores)
 
 # Template functions
 
@@ -106,4 +131,3 @@ http://commondatastorage.googleapis.com/pgsm/pgsm720.webm
 # Lembretes
 
 * Quando instalar setar a página de notícia como posts page e a home como home estática
-* Mexer na opcao de permalink para que ele regere as URLs
