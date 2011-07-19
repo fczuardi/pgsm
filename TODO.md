@@ -1,6 +1,12 @@
+# Página de "todas as notícias"
+
+* Botao Mais Noticias carregar ajax
+
+
 # Bugs
 
 * quando muda para ingles ou espanhol, o separador | está aparecendo
+* ver como tirar atributo title dos itens do menu
 
 # Sites de interesse
 
@@ -51,7 +57,7 @@
 * OK - Conteúdo: css dos títulos Video institucional e fotos
 * OK - Bug: remover bool(false) da nav bar
 * OK - Sidebar: link \"ler todas as notícias\"
-* Sidebar: widget Entidades Relacionadas
+* OK - Sidebar: widget Entidades Relacionadas
 * Testar video fallback para flash em browsers sem html5 video
 
 # Localização
@@ -59,10 +65,6 @@
 * OK - Botão de imprimir
 * OK - Google maps embed
 * OK - Botão \"Abrir no Google Mapas\"
-
-# Página de "todas as notícias"
-
-* TBD
 
 # Página de notícia individual
 
@@ -87,6 +89,7 @@
 # Template localization
 
 * translate to english and spanish all __() and _e() strings of pgsm-boilerplate-child
+* translate "Mais Notícias" button
 
 # FUTURE
 
