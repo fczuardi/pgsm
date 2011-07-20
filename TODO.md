@@ -1,11 +1,12 @@
 # Página de "todas as notícias"
 
 * OK - incluir "publicado por PGSM"
-* Expand / Colapse das noticias individuais
-* Css da dobra/resquicio de divisor depois do titulo da noticia
-* Botao mais noticias no mesmo estilo css do "abrir no google mapas"
+* OK - Expand / Colapse das noticias individuais
+* OK - Css da dobra/resquicio de divisor depois do titulo da noticia
+* OK - Botao mais noticias no mesmo estilo css do "abrir no google mapas"
 * Botao Mais Noticias carregar ajax
 * Pagina de noticia individual deve ter o menuitem "noticias" como o selecionado
+* Expand / Colapse animado
 
 
 # Documentos

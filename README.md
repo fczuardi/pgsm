@@ -47,6 +47,14 @@ Lista parcial dos plugins de Wordpress usados neste site:
   * [customização 1](https://github.com/fczuardi/pgsm/commit/2111ad0d057a3dd5d2248f037efefffda2190508) - Remove o ítem com a língua ativa do html ao invés de só mudar a classe.
 * [unattach](http://wordpress.org/extend/plugins/unattach/) versão 1.0.1
   * [site do autor](http://outlandishideas.co.uk/blog/2011/03/unattach/)
+  
+# Fallback font (Francophil Sans)
+
+* http://www.dafont.com/font.php?file=francophil_sans by Manfred Klein
+  * License: http://manfred-klein.ina-mar.com/ 
+  
+    ````Manfred’s fonts are free for private and charity use. They are even free for commercial use – but if there’s any profit, pls make a donation to organizations like Doctors Without Borders.````
+    ````These fonts can NOT be included in any compilation CDs, disks or products, either commercial or shareware unless prior permission granted.````
 
 ## Copyright / Licença
 
