@@ -1,3 +1,16 @@
+# Disciplinas
+
+* OK - Post type disciplina
+* pagina disciplinas lista todos os posts de tipo disciplina
+
+# custom post types
+
+* Disciplina
+* Professor
+* Aluno
+* Post de Professor
+* para customizar a listagem de posts customizados http://yoast.com/custom-post-type-snippets/
+
 # Página de "todas as notícias"
 
 * OK - incluir "publicado por PGSM"
@@ -11,16 +24,16 @@
 
 # Documentos
 
-* Post type documentos
+* Uma página cheia de attachments
 
 
-# Disciplinas
+# Resultado de buscas de notícias
 
-* Post type disciplina
-* pagina disciplinas lista todos os posts de tipo disciplina
+* TBD
 
 # Bugs
 
+* Search results está vindo com a caixa de entidades relacionadas
 * Editor visual do wordpress arranca paragrafos
 * URLs das imagens quebram quando online (www) e nas paginas de impressao
 * quando muda para ingles ou espanhol, o separador | está aparecendo
@@ -150,4 +163,11 @@ http://commondatastorage.googleapis.com/pgsm/pgsm720.webm
 
 * Quando instalar ativar os plugins 
 * Quando instalar selecionar a opção de usar home e posts page estaticas
+
+# Blog de professores (MULTISITE)?
+
+* reinstalar wordpress com multisite abilitado
+* testar para ver se/quais plugins quebram
+* decidir se quer subdominio ou subdiretorio
+
 
