@@ -1,17 +1,31 @@
 # Página de "todas as notícias"
 
-* incluir "publicado por PGSM"
+* OK - incluir "publicado por PGSM"
 * Expand / Colapse das noticias individuais
 * Css da dobra/resquicio de divisor depois do titulo da noticia
 * Botao mais noticias no mesmo estilo css do "abrir no google mapas"
 * Botao Mais Noticias carregar ajax
+* Pagina de noticia individual deve ter o menuitem "noticias" como o selecionado
+
+
+# Documentos
+
+* Post type documentos
+
+
+# Disciplinas
+
+* Post type disciplina
+* pagina disciplinas lista todos os posts de tipo disciplina
 
 # Bugs
 
+* Editor visual do wordpress arranca paragrafos
 * URLs das imagens quebram quando online (www) e nas paginas de impressao
 * quando muda para ingles ou espanhol, o separador | está aparecendo
 * ver como tirar atributo title dos itens do menu
 * entidades relacionadas está hardcoded no template, isto é feio/errado
+* footer.php está com endereços e telefones hardcoded, isto é feio/errado
 
 # Pagina de Impressão
 
@@ -55,7 +69,8 @@
 
 # Geral
 
-* favicon
+* favicon, ipod icon, etc
+* startup images? https://gist.github.com/472519
 * home screen icon para iDevices
 
 #CSS geral
@@ -66,6 +81,8 @@
 
 # Home
 
+* Colocar placeholder de foto estatica
+* Testar video fallback para flash em browsers sem html5 video
 * OK - Menu: hover com borda arredondada
 * OK - Cabeçalho: título e descrição posicionados
 * OK - Sidebar: mudar título para \"últimas notícias\"
@@ -79,7 +96,6 @@
 * OK - Bug: remover bool(false) da nav bar
 * OK - Sidebar: link \"ler todas as notícias\"
 * OK - Sidebar: widget Entidades Relacionadas
-* Testar video fallback para flash em browsers sem html5 video
 
 # Sites de interesse
 
@@ -131,4 +147,6 @@ http://commondatastorage.googleapis.com/pgsm/pgsm720.webm
 
 # Lembretes
 
-* Quando instalar setar a página de notícia como posts page e a home como home estática
+* Quando instalar ativar os plugins 
+* Quando instalar selecionar a opção de usar home e posts page estaticas
+
