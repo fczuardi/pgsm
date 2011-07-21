@@ -1,15 +1,11 @@
 # Disciplinas
 
 * OK - Post type disciplina
-* pagina disciplinas lista todos os posts de tipo disciplina
-
-# custom post types
-
-* Disciplina
-* Professor
-* Aluno
-* Post de Professor
-* para customizar a listagem de posts customizados http://yoast.com/custom-post-type-snippets/
+* OK - pagina disciplinas lista todos os posts de tipo disciplina
+* Botao Mais Disciplinas carregar ajax
+* Pagina de disciplina individual deve ter o menuitem "disciplinas" como o selecionado
+* Expand / Colapse animado
+* trocar de volta o limite de numero de disciplinas por pagina para o default escolhido
 
 # Página de "todas as notícias"
 
@@ -20,12 +16,19 @@
 * Botao Mais Noticias carregar ajax
 * Pagina de noticia individual deve ter o menuitem "noticias" como o selecionado
 * Expand / Colapse animado
+* trocar de volta o limite de numero de noticias por pagina para o default escolhido
 
+# custom post types
+
+* Disciplina
+* Professor
+* Aluno
+* Post de Professor
+* para customizar a listagem de posts customizados http://yoast.com/custom-post-type-snippets/
 
 # Documentos
 
 * Uma página cheia de attachments
-
 
 # Resultado de buscas de notícias
 

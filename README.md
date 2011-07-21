@@ -42,11 +42,13 @@ Lista parcial dos plugins de Wordpress usados neste site:
 
 * [iframe](http://wordpress.org/extend/plugins/iframe/) versão 1.4.0.
   * [site do autor](http://web-profile.com.ua/wordpress/plugins/iframe/)
-* [qTranslate](http://wordpress.org/extend/plugins/qtranslate/) versão 2.5.21
+* [qTranslate](http://wordpress.org/extend/plugins/qtranslate/) versão 2.5.24
   * [site do autor](http://www.qianqin.de/qtranslate/)
   * [customização 1](https://github.com/fczuardi/pgsm/commit/2111ad0d057a3dd5d2248f037efefffda2190508) - Remove o ítem com a língua ativa do html ao invés de só mudar a classe.
 * [unattach](http://wordpress.org/extend/plugins/unattach/) versão 1.0.1
   * [site do autor](http://outlandishideas.co.uk/blog/2011/03/unattach/)
+* [ps-disable-auto-formatting](http://wordpress.org/extend/plugins/ps-disable-auto-formatting/) versão 1.0.6
+  * http://www.web-strategy.jp/wp_plugin/ps_disable_auto_formatting/
   
 # Fallback font (Francophil Sans)
 
