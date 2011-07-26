@@ -1,58 +1,18 @@
-# Disciplinas
-
-* OK - Post type disciplina
-* OK - pagina disciplinas lista todos os posts de tipo disciplina
-* Botao Mais Disciplinas carregar ajax
-* Pagina de disciplina individual deve ter o menuitem "disciplinas" como o selecionado
-* Expand / Colapse animado
-* trocar de volta o limite de numero de disciplinas por pagina para o default escolhido
-
-# Página de "todas as notícias"
-
-* OK - incluir "publicado por PGSM"
-* OK - Expand / Colapse das noticias individuais
-* OK - Css da dobra/resquicio de divisor depois do titulo da noticia
-* OK - Botao mais noticias no mesmo estilo css do "abrir no google mapas"
-* Botao Mais Noticias carregar ajax
-* Pagina de noticia individual deve ter o menuitem "noticias" como o selecionado
-* Expand / Colapse animado
-* trocar de volta o limite de numero de noticias por pagina para o default escolhido
+# CSS
+* h2 das listas de post (ex noticias nao tem margin-bottom), os de subtitulo tipo Ingresso/introducao tem (30px)
 
 # custom post types
 
-* Disciplina
-* Professor
+* OK - Disciplina
+* Orientador
 * Aluno
 * Post de Professor
 * para customizar a listagem de posts customizados http://yoast.com/custom-post-type-snippets/
 
+
 # Documentos
 
 * Uma página cheia de attachments
-
-# Resultado de buscas de notícias
-
-* TBD
-
-# Bugs
-
-* Search results está vindo com a caixa de entidades relacionadas
-* Editor visual do wordpress arranca paragrafos
-* URLs das imagens quebram quando online (www) e nas paginas de impressao
-* quando muda para ingles ou espanhol, o separador | está aparecendo
-* ver como tirar atributo title dos itens do menu
-* entidades relacionadas está hardcoded no template, isto é feio/errado
-* footer.php está com endereços e telefones hardcoded, isto é feio/errado
-
-# Pagina de Impressão
-
-* Mudar a fonte para a mesma da página
-* Caixa alta nos títulos
-* sumir com o "No Comments"
-* sumir com o horario apos a @
-* tentar localizar os textos \"posted by\", \"article printed from\", \"url to article\", \"urls in this post\"
-* tentar pular a pagina de print
-* usar o papel timbrado?
 
 # Ingresso
 
@@ -84,6 +44,26 @@
 ## Ex-Orientadores
 
 
+# Resultado de buscas de notícias
+
+* TBD
+
+# Resultado de buscas de disciplinas
+
+* TBD
+
+# Pagina de Impressão
+
+* Mudar a fonte para a mesma da página
+* Caixa alta nos títulos
+* sumir com o "No Comments"
+* sumir com o horario apos a @
+* tentar localizar os textos \"posted by\", \"article printed from\", \"url to article\", \"urls in this post\"
+* ver como imprimir apenas um pedaço em páginas que tem expand/colapse (ex professores)
+* tentar pular a pagina de print
+* usar o papel timbrado?
+
+
 # Geral
 
 * favicon, ipod icon, etc
@@ -94,6 +74,56 @@
 
 * - tirar seleção rosa
 * OK - links undeline no hover (para padronizar com os de baixo)
+
+# Bugs
+
+* Search results está vindo com a caixa de entidades relacionadas
+* Editor visual do wordpress arranca paragrafos
+* URLs das imagens quebram quando online (www) e nas paginas de impressao
+* quando muda para ingles ou espanhol, o separador | está aparecendo
+* ver como tirar atributo title dos itens do menu
+* entidades relacionadas está hardcoded no template, isto é feio/errado
+* footer.php está com endereços e telefones hardcoded, isto é feio/errado
+
+# Página de notícia individual
+
+* TBD
+
+# Template functions
+
+* OK - create and pre-fill default pages with the content of pages\_content folder, update if pages_content is newer
+* rewrite function boilerplate\_posted\_on
+
+# Dev server (pgsm.nulo.com.br)
+
+* OK - script to update code
+* script to sync database
+* run this scripts automatically via cron or URL ping
+
+# Template localization
+
+* translate to english and spanish all __() and _e() strings of pgsm-boilerplate-child
+* translate "Mais Notícias" button
+
+# Disciplinas
+
+* OK - Post type disciplina
+* OK - pagina disciplinas lista todos os posts de tipo disciplina
+* Botao Mais Disciplinas carregar ajax
+* Pagina de disciplina individual deve ter o menuitem "disciplinas" como o selecionado
+* Expand / Colapse animado
+* trocar de volta o limite de numero de disciplinas por pagina para o default escolhido
+
+# Página de "todas as notícias"
+
+* OK - incluir "publicado por PGSM"
+* OK - Expand / Colapse das noticias individuais
+* OK - Css da dobra/resquicio de divisor depois do titulo da noticia
+* OK - Botao mais noticias no mesmo estilo css do "abrir no google mapas"
+* Botao Mais Noticias carregar ajax
+* Pagina de noticia individual deve ter o menuitem "noticias" como o selecionado
+* Expand / Colapse animado
+* trocar de volta o limite de numero de noticias por pagina para o default escolhido
 
 
 # Home
@@ -114,6 +144,7 @@
 * OK - Sidebar: link \"ler todas as notícias\"
 * OK - Sidebar: widget Entidades Relacionadas
 
+
 # Sites de interesse
 
 * OK - gerar todos os pngs dos logos
@@ -125,30 +156,17 @@
 * OK - Google maps embed
 * OK - Botão \"Abrir no Google Mapas\"
 
-# Página de notícia individual
 
-* TBD
+# Lembretes
 
-#Páginas de impressão
+* Quando instalar ativar os plugins 
+* Quando instalar selecionar a opção de usar home e posts page estaticas
 
-* adaptar o CSS
-* ver como imprimir apenas um pedaço em páginas que tem expand/colapse (ex professores)
 
-# Template functions
 
-* OK - create and pre-fill default pages with the content of pages\_content folder, update if pages_content is newer
-* rewrite function boilerplate\_posted\_on
 
-# Dev server (pgsm.nulo.com.br)
 
-* OK - script to update code
-* script to sync database
-* run this scripts automatically via cron or URL ping
 
-# Template localization
-
-* translate to english and spanish all __() and _e() strings of pgsm-boilerplate-child
-* translate "Mais Notícias" button
 
 # FUTURE
 
@@ -162,15 +180,8 @@ http://commondatastorage.googleapis.com/pgsm/pgsm480.webm
 http://commondatastorage.googleapis.com/pgsm/pgsm720.mp4
 http://commondatastorage.googleapis.com/pgsm/pgsm720.webm
 
-# Lembretes
-
-* Quando instalar ativar os plugins 
-* Quando instalar selecionar a opção de usar home e posts page estaticas
-
-# Blog de professores (MULTISITE)?
+## Blog de professores (MULTISITE)?
 
 * reinstalar wordpress com multisite abilitado
 * testar para ver se/quais plugins quebram
 * decidir se quer subdominio ou subdiretorio
-
-
