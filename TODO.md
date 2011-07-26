@@ -2,7 +2,9 @@
 * OK - fazer o orientadores no menu ter hover também
 * OK - remover selecao pink
 * OK - h2 das listas de post (ex noticias nao tem margin-bottom), os de subtitulo tipo Ingresso/introducao tem (30px)
-* tamanho do "Download video: WebM format | MP4 format" tem que ser igual ao do "ler todas as noticias"
+* OK - na home ultimas noticias e entidades relacionadas precisam ser do mesmo tamanho de video institucional e fotos
+* OK - arrumar broken images da sidebar no nulo.com.br
+* OK - tamanho do "Download video: WebM format | MP4 format" tem que ser igual ao do "ler todas as noticias"
 * colocar a setinha no submenu (exemplo: depois de orientadores e alunos)
 
 # custom post types
