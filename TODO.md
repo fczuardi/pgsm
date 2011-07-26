@@ -1,10 +1,14 @@
 # CSS
+* OK - fazer o orientadores no menu ter hover também
+* OK - remover selecao pink
 * h2 das listas de post (ex noticias nao tem margin-bottom), os de subtitulo tipo Ingresso/introducao tem (30px)
+* tamanho do "Download video: WebM format | MP4 format" tem que ser igual ao do "ler todas as noticias"
+* colocar a setinha no submenu (exemplo: depois de orientadores e alunos)
 
 # custom post types
 
 * OK - Disciplina
-* Orientador
+* OK - Orientador
 * Aluno
 * Post de Professor
 * para customizar a listagem de posts customizados http://yoast.com/custom-post-type-snippets/
