@@ -1,3 +1,16 @@
+# Orientadores
+
+* OK - Listagem por categoria credenciados
+* OK - Listagem por categoria ex-orientadores
+* criar as duas categorias (credenciados e ex\_orientadores) programaticamente
+* Template html e css para pagina de um orientador
+* Sidebar esquerda (RSS)
+  * Links relacionados
+* Endereço profissional e biografia retiradas do Lattes
+* Pagina individual de orientador
+* carregar mais(paginacao) com ajax
+* Botão de imprimir
+
 # CSS
 * OK - fazer o orientadores no menu ter hover também
 * OK - remover selecao pink
@@ -6,6 +19,7 @@
 * OK - arrumar broken images da sidebar no nulo.com.br
 * OK - tamanho do "Download video: WebM format | MP4 format" tem que ser igual ao do "ler todas as noticias"
 * colocar a setinha no submenu (exemplo: depois de orientadores e alunos)
+* colocar sombra no topo do submenu
 
 # custom post types
 
@@ -14,7 +28,6 @@
 * Aluno
 * Post de Professor
 * para customizar a listagem de posts customizados http://yoast.com/custom-post-type-snippets/
-
 
 # Documentos
 
@@ -31,24 +44,10 @@
 ## Doutorado
 
 
-# Orientadores
-
-* Botão de imprimir
-
 ## Credenciados
 
 * Adicionar Professor
 * Lista colapsável
-
-### Professor
-
-* Sidebar esquerda (RSS)
-  * Links relacionados
-* Botão imprimir
-* Endereço profissional e biografia retiradas do Lattes
-
-## Ex-Orientadores
-
 
 # Resultado de buscas de notícias
 
@@ -78,7 +77,7 @@
 
 #CSS geral
 
-* - tirar seleção rosa
+* OK - tirar seleção rosa
 * OK - links undeline no hover (para padronizar com os de baixo)
 
 # Bugs
