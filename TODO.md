@@ -2,8 +2,18 @@
 
 * OK - Listagem por categoria credenciados
 * OK - Listagem por categoria ex-orientadores
-* criar as duas categorias (credenciados e ex\_orientadores) programaticamente
+* OK - ordenar alfabeticamente por nome
+* OK - custom fields add to meta box: ```http://codex.wordpress.org/Function_Reference/add_meta_box```
+* orientador tem que ter metadado com o username para listar os posts
+* categorias credenciados e exorientador nao deveriam aparecer na tela de post comum
+  * trocar por custom field
 * Template html e css para pagina de um orientador
+* Aside
+  * Profile picture
+  * Últimos Posts
+  * Links relacionados
+* criar as duas categorias (credenciados e ex\_orientadores) programaticamente
+* como colocar o titulo na frente do nome (Prof. Dr. e Prof. Dra. por exemplo)
 * Sidebar esquerda (RSS)
   * Links relacionados
 * Endereço profissional e biografia retiradas do Lattes
@@ -82,6 +92,7 @@
 
 # Bugs
 
+* IE6/7 support ou redirect p/ instalacao do chrome frame ou update
 * Search results está vindo com a caixa de entidades relacionadas
 * Editor visual do wordpress arranca paragrafos
 * URLs das imagens quebram quando online (www) e nas paginas de impressao
