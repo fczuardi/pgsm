@@ -2,7 +2,7 @@
 /*
 Plugin Name: File Gallery
 Plugin URI: http://skyphe.org/code/wordpress/file-gallery/
-Version: 1.6.5.4
+Version: 1.6.5.5
 Description: "File Gallery" extends WordPress' media (attachments) capabilities by adding a new gallery shortcode handler with templating support, a new interface for attachment handling when editing posts, and much more.
 Author: Bruno "Aesqe" Babic
 Author URI: http://skyphe.org
@@ -749,7 +749,7 @@ class File_Gallery
 	var $gallery_id;
 	var $overrides;
 	var $acf = false;
-	var $version = '1.6.5.3';
+	var $version = '1.6.5.5';
 
 
 	function __construct()

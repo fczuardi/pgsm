@@ -4,8 +4,27 @@ var file_gallery =
 	options : file_gallery_options
 };
 
-jQuery(document).ready(function()
+jQuery(document).ready(function($)
 {
+	// for older versions of jQuery
+	if( typeof($.fn.prop) !== 'function' )
+	{
+		$.fn.extend({
+			prop: function( name, value ) {
+				
+				if( 'checked' === name || 'selected' === name || 'disabled' === name || 'readonly' === name )
+				{
+					if( true === value )
+						value = name;
+					else if( false === value )
+						value = "";
+				}
+				
+				return $.access( this, name, value, true, $.attr );
+			}
+		});
+	}
+	
 	jQuery.extend(file_gallery,
 	{
 		gallery_image_clicked : false,
@@ -54,6 +73,16 @@ jQuery(document).ready(function()
 				}
 			});
 		},
+		
+		
+		tinymce_set_ie_bookmark : function()
+		{
+			if( typeof tinyMCE != 'undefined' && tinymce.isIE && ! tinyMCE.activeEditor.isHidden() )
+			{
+				tinyMCE.activeEditor.focus();
+				tinyMCE.activeEditor.windowManager.insertimagebookmark = tinyMCE.activeEditor.selection.getBookmark();
+			}
+		},
 
 
 		/**
@@ -70,6 +99,7 @@ jQuery(document).ready(function()
 						return "<img src='" + tinymce.baseURL + "/plugins/wpgallery/img/t.gif' class='wpGallery mceItem' title='gallery" + tinymce.DOM.encode(b) + "' id='file_gallery_tmp_" + file_gallery.tmp + "' />";
 					});
 				
+				ed.focus();
 				ed.selection.setContent(new_content);
 				
 				ed.selection.select(ed.getDoc().getElementById('file_gallery_tmp_' + file_gallery.tmp));
@@ -139,9 +169,9 @@ jQuery(document).ready(function()
 				file_gallery.files_or_tags( false );
 				
 				if( tags_from )
-					jQuery("#fg_gallery_tags_from").attr("checked", false);
+					$("#fg_gallery_tags_from").prop("checked", false);
 				else
-					jQuery("#fg_gallery_tags_from").attr("checked", true);
+					$("#fg_gallery_tags_from").prop("checked", true);
 				
 				jQuery("#file_gallery_toggler").show();
 			}
@@ -220,7 +250,7 @@ jQuery(document).ready(function()
 		 */
 		init : function( response_message )
 		{
-			var tags_from = jQuery("#fg_gallery_tags_from").attr("checked"), 
+			var tags_from = jQuery("#fg_gallery_tags_from").prop("checked"), 
 				container = jQuery("#fg_container"), 
 				fieldsets = jQuery("#file_gallery_fieldsets").val(),
 				data = null;	
@@ -316,9 +346,9 @@ jQuery(document).ready(function()
 			
 			// tags from current post only checkbox
 			if( "false" == file_gallery.options.tags_from )
-				jQuery("#fg_gallery_tags_from").attr("checked", false);
+				jQuery("#fg_gallery_tags_from").prop("checked", false);
 			else
-				jQuery("#fg_gallery_tags_from").attr("checked", true);
+				jQuery("#fg_gallery_tags_from").prop("checked", true);
 			
 			// clickable tags
 			jQuery(".fg_insert_tag").each( function()
@@ -395,7 +425,7 @@ jQuery(document).ready(function()
 					jQuery("#fg_gallery_tags").val("");
 				
 				tags      = jQuery("#fg_gallery_tags").val();
-				tags_from = jQuery("#fg_gallery_tags_from").attr("checked");
+				tags_from = jQuery("#fg_gallery_tags_from").prop("checked");
 				
 				tags = tags.replace(/\s+/g, " ").replace(/\s+,/g, ",").replace(/,+\s*/g, ",");
 			
@@ -827,7 +857,7 @@ jQuery(document).ready(function()
 			{
 				while( 0 < dl )
 				{
-					if( false === jQuery("#att-chk-" + data[dl-1]).attr('checked') )
+					if( false === jQuery("#att-chk-" + data[dl-1]).prop('checked') )
 						delete data[dl-1];
 					
 					dl--;
@@ -1624,7 +1654,7 @@ jQuery(document).ready(function()
 	{
 		var c = "#att-chk-" + jQuery(this).parent("li:first").attr("id").replace("image-", "");
 		
-		jQuery(c).attr("checked", jQuery(c).attr("checked") ? false : true).change();
+		jQuery(c).prop("checked", jQuery(c).prop("checked") ? false : true).change();
 	});
 	
 	// attachment thumbnail double click
@@ -1733,6 +1763,13 @@ jQuery(document).ready(function()
 	jQuery("#file_gallery_send_single_legend").live("click", function()
 	{
 		 file_gallery.send_single();
+	});
+	
+	
+	// set editor bookmark in inetrnet explorer
+	$("#file_gallery_send_gallery_legend, #file_gallery_send_single_legend").live("mouseover", function(e)
+	{
+		file_gallery.tinymce_set_ie_bookmark();
 	});
 
 
