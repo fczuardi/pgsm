@@ -4,27 +4,59 @@ var file_gallery =
 	options : file_gallery_options
 };
 
-jQuery(document).ready(function($)
+// add access and prop for older versions of jQuery
+if( typeof(jQuery.access) !== 'function' )
 {
-	// for older versions of jQuery
-	if( typeof($.fn.prop) !== 'function' )
-	{
-		$.fn.extend({
-			prop: function( name, value ) {
-				
-				if( 'checked' === name || 'selected' === name || 'disabled' === name || 'readonly' === name )
-				{
-					if( true === value )
-						value = name;
-					else if( false === value )
-						value = "";
-				}
-				
-				return $.access( this, name, value, true, $.attr );
-			}
-		});
-	}
+	jQuery.extend({
+		access: function( elems, key, value, exec, fn, pass ) {
+			var length = elems.length;
 	
+			// Setting many attributes
+			if ( typeof key === "object" ) {
+				for ( var k in key ) {
+					jQuery.access( elems, k, key[k], exec, fn, value );
+				}
+				return elems;
+			}
+	
+			// Setting one attribute
+			if ( value !== undefined ) {
+				// Optionally, function values get executed if exec is true
+				exec = !pass && exec && jQuery.isFunction(value);
+	
+				for ( var i = 0; i < length; i++ ) {
+					fn( elems[i], key, exec ? value.call( elems[i], i, fn( elems[i], key ) ) : value, pass );
+				}
+	
+				return elems;
+			}
+	
+			// Getting an attribute
+			return length ? fn( elems[0], key ) : undefined;
+		},
+	});
+}
+	
+if( typeof(jQuery.fn.prop) !== 'function' )
+{
+	jQuery.fn.extend({
+		prop: function( name, value ) {
+			
+			if( 'checked' === name || 'selected' === name || 'disabled' === name || 'readonly' === name )
+			{
+				if( true === value )
+					value = name;
+				else if( false === value )
+					value = "";
+			}
+			
+			return jQuery.access( this, name, value, true, jQuery.attr );
+		}
+	});
+}
+
+jQuery(document).ready(function()
+{
 	jQuery.extend(file_gallery,
 	{
 		gallery_image_clicked : false,
@@ -77,7 +109,7 @@ jQuery(document).ready(function($)
 		
 		tinymce_set_ie_bookmark : function()
 		{
-			if( typeof tinyMCE != 'undefined' && tinymce.isIE && ! tinyMCE.activeEditor.isHidden() )
+			if( typeof tinyMCE != 'undefined' && tinymce.isIE && tinyMCE.activeEditor && ! tinyMCE.activeEditor.isHidden() )
 			{
 				tinyMCE.activeEditor.focus();
 				tinyMCE.activeEditor.windowManager.insertimagebookmark = tinyMCE.activeEditor.selection.getBookmark();
@@ -169,9 +201,9 @@ jQuery(document).ready(function($)
 				file_gallery.files_or_tags( false );
 				
 				if( tags_from )
-					$("#fg_gallery_tags_from").prop("checked", false);
+					jQuery("#fg_gallery_tags_from").prop("checked", false);
 				else
-					$("#fg_gallery_tags_from").prop("checked", true);
+					jQuery("#fg_gallery_tags_from").prop("checked", true);
 				
 				jQuery("#file_gallery_toggler").show();
 			}
@@ -1767,7 +1799,7 @@ jQuery(document).ready(function($)
 	
 	
 	// set editor bookmark in inetrnet explorer
-	$("#file_gallery_send_gallery_legend, #file_gallery_send_single_legend").live("mouseover", function(e)
+	jQuery("#file_gallery_send_gallery_legend, #file_gallery_send_single_legend").live("mouseover", function(e)
 	{
 		file_gallery.tinymce_set_ie_bookmark();
 	});

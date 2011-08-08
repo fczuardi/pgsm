@@ -79,6 +79,10 @@ more... Here's the full list of features:
 
 == Changelog ==
 
+= 1.6.5.6 =
+* August 4th, 2011
+* fixed jQuery compatibility with WP < 3.2, sorry about that :|
+
 = 1.6.5.5 = 
 * August 1st, 2011
 * WP 3.2 (jQuery) compatibility

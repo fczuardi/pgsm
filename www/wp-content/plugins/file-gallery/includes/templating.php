@@ -89,7 +89,7 @@ function file_gallery_mobile_css( $stylesheet_url )
  */
 function file_gallery_css_front( $mobile = false )
 {
-	global $wp_query;
+	global $wp_query, $file_gallery;
 	
 	$options = get_option("file_gallery");
 	
@@ -181,7 +181,7 @@ function file_gallery_css_front( $mobile = false )
 	{
 		// enqueue only the default stylesheet if no template names are found
 		if( ! $mobile )
-			wp_enqueue_style( "file_gallery_default", FILE_GALLERY_DEFAULT_TEMPLATE_URL . "/gallery.css" );
+			wp_enqueue_style( "file_gallery_default", FILE_GALLERY_DEFAULT_TEMPLATE_URL . "/gallery.css", false, $file_gallery->version );
 		else
 			$mobiles[] = FILE_GALLERY_DEFAULT_TEMPLATE_URL . "/gallery.css";
 	}
@@ -208,7 +208,7 @@ function file_gallery_css_front( $mobile = false )
 			if( is_readable(FILE_GALLERY_THEME_TEMPLATES_ABSPATH . "/" . $template . "/gallery.css") )
 			{
 				if( ! $mobile )
-					wp_enqueue_style( "file_gallery_" . str_replace(" ", "-", $template), FILE_GALLERY_THEME_TEMPLATES_URL . "/" . str_replace(" ", "%20", $template) . "/gallery.css" );
+					wp_enqueue_style( "file_gallery_" . str_replace(" ", "-", $template), FILE_GALLERY_THEME_TEMPLATES_URL . "/" . str_replace(" ", "%20", $template) . "/gallery.css", false, $file_gallery->version );
 				else
 					$mobiles[] = FILE_GALLERY_THEME_TEMPLATES_URL . "/" . str_replace(" ", "%20", $template) . "/gallery.css";
 				
@@ -218,14 +218,14 @@ function file_gallery_css_front( $mobile = false )
 						include(FILE_GALLERY_THEME_TEMPLATES_ABSPATH . "/" . $template . "/gallery.php");					
 					ob_end_clean();
 
-					wp_enqueue_script( "file_gallery_" . str_replace(" ", "-", $template), FILE_GALLERY_THEME_TEMPLATES_URL . "/" . str_replace(" ", "%20", $template) . "/gallery.js", $js_dependencies, '', true );	
+					wp_enqueue_script( "file_gallery_" . str_replace(" ", "-", $template), FILE_GALLERY_THEME_TEMPLATES_URL . "/" . str_replace(" ", "%20", $template) . "/gallery.js", $js_dependencies, $file_gallery->version, true );	
 				}
 			}
 			// if it does not exist in theme folder, check default plugin templates
 			elseif( is_readable(FILE_GALLERY_ABSPATH . "/templates/" . $template . "/gallery.css") )
 			{
 				if( ! $mobile )
-					wp_enqueue_style( "file_gallery_" . $template, FILE_GALLERY_URL . "/templates/" . $template . "/gallery.css" );
+					wp_enqueue_style( "file_gallery_" . $template, FILE_GALLERY_URL . "/templates/" . $template . "/gallery.css", false, $file_gallery->version );
 				else
 					$mobiles[] = FILE_GALLERY_URL . "/templates/" . $template . "/gallery.css";
 				
@@ -235,14 +235,14 @@ function file_gallery_css_front( $mobile = false )
 						include(FILE_GALLERY_ABSPATH . "/templates/" . $template . "/gallery.php");
 					ob_end_clean();
 
-					wp_enqueue_script( "file_gallery_" . str_replace(" ", "-", $template), FILE_GALLERY_URL . "/templates/" . str_replace(" ", "%20", $template) . "/gallery.js", $js_dependencies, '', true );
+					wp_enqueue_script( "file_gallery_" . str_replace(" ", "-", $template), FILE_GALLERY_URL . "/templates/" . str_replace(" ", "%20", $template) . "/gallery.js", $js_dependencies, $file_gallery->version, true );
 				}
 			}
 			// template sdoes not exist, enqueue default one
 			else
 			{
 				$missing[] = $template;
-				wp_enqueue_style( "file_gallery_default", FILE_GALLERY_URL . "/templates/default/gallery.css" );
+				wp_enqueue_style( "file_gallery_default", FILE_GALLERY_URL . "/templates/default/gallery.css", false, $file_gallery->version );
 				echo "<!-- " . __("file does not exist:", "file-gallery") . " " . $template . "/gallery.css - " . __("using default style", "file-gallery")  . "-->\n";
 			}
 		}
@@ -251,7 +251,7 @@ function file_gallery_css_front( $mobile = false )
 	if( $columns_required )
 	{
 		if( ! $mobile )
-			wp_enqueue_style( "file_gallery_columns", FILE_GALLERY_URL . "/templates/columns.css" );
+			wp_enqueue_style( "file_gallery_columns", FILE_GALLERY_URL . "/templates/columns.css", false, $file_gallery->version );
 		else
 			$mobiles[] = FILE_GALLERY_URL . "/templates/columns.css";
 	}
