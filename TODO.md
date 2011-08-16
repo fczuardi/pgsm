@@ -4,22 +4,59 @@
 * OK - Listagem por categoria ex-orientadores
 * OK - ordenar alfabeticamente por nome
 * OK - custom fields add to meta box: ```http://codex.wordpress.org/Function_Reference/add_meta_box```
-* orientador tem que ter metadado com o username para listar os posts
-* categorias credenciados e exorientador nao deveriam aparecer na tela de post comum
-  * trocar por custom field
-* Template html e css para pagina de um orientador
-* Aside
-  * Profile picture
-  * Últimos Posts
-  * Links relacionados
-* criar as duas categorias (credenciados e ex\_orientadores) programaticamente
-* como colocar o titulo na frente do nome (Prof. Dr. e Prof. Dra. por exemplo)
-* Sidebar esquerda (RSS)
-  * Links relacionados
-* Endereço profissional e biografia retiradas do Lattes
-* Pagina individual de orientador
-* carregar mais(paginacao) com ajax
-* Botão de imprimir
+* OK - como colocar o titulo na frente do nome (Prof. Dr. e Prof. Dra. por exemplo)
+* OK - categorias credenciados e exorientador nao deveriam aparecer na tela de post comum
+  * OK - trocar por custom field
+* OK - orientador tem que ter metadado com o username para listar os posts
+* OK - lattes, twitter, wikipedia, lattes, etc: http://justintadlock.com/archives/2009/09/10/adding-and-using-custom-user-profile-fields ou http://thomasgriffinmedia.com/blog/2010/09/how-to-add-custom-user-contact-info-in-wordpress/
+* OK - Template html e css para pagina de um orientador
+* OK - Aside
+  * OK - Profile picture
+  * TBD - se for customizar o plugin user photo para atualizar programaticamente procure por nop codigo update_usermeta
+  * OK - Últimos Posts
+    * OK - Preencher link com RSS dos ultimos posts
+    * OK - Link para ler todos os posts
+    * OK - Pagina com todos os posts
+  * OK - Links relacionados
+* (17/08) carregar mais(paginacao) com ajax
+* (18/08) Pagina individual de orientador
+* (19/08) mudar comportamento do Botão de imprimir
+* (later) Endereço profissional e biografia retiradas do Lattes
+
+# custom post types
+
+* OK - Disciplina
+* OK - Orientador
+* OK - Post de Professor (nao é mais custom type)
+* OK - para customizar a listagem de posts customizados http://yoast.com/custom-post-type-snippets/
+* (4/08) Aluno
+
+# Documentos
+
+* (5/08 - 8/08) Uma página cheia de attachments
+
+# Ingresso
+
+* OK - menu funcionando com sub-páginas
+* (8/08) sub-sessoes colapsaveis
+* (8/08) mestrado e doutorado como sub-paginas
+
+## Mestrado
+
+* (8/08) pagina de mestrado
+
+## Doutorado
+
+* (8/08) pagina de doutorado
+
+# Regulamento
+
+* (9/08) até 2008
+* (9/08) a partir de 2009
+
+#Dissertações e Teses
+
+* (10/08 - 15/08) TBD
 
 # CSS
 * OK - fazer o orientadores no menu ter hover também
@@ -28,107 +65,22 @@
 * OK - na home ultimas noticias e entidades relacionadas precisam ser do mesmo tamanho de video institucional e fotos
 * OK - arrumar broken images da sidebar no nulo.com.br
 * OK - tamanho do "Download video: WebM format | MP4 format" tem que ser igual ao do "ler todas as noticias"
-* colocar a setinha no submenu (exemplo: depois de orientadores e alunos)
-* colocar sombra no topo do submenu
-
-# custom post types
-
-* OK - Disciplina
-* OK - Orientador
-* Aluno
-* Post de Professor
-* para customizar a listagem de posts customizados http://yoast.com/custom-post-type-snippets/
-
-# Documentos
-
-* Uma página cheia de attachments
-
-# Ingresso
-
-* sub-sessoes colapsaveis
-* mestrado e doutorado como sub-paginas
-* menu funcionando com sub-páginas
-
-## Mestrado
-
-## Doutorado
-
-
-## Credenciados
-
-* Adicionar Professor
-* Lista colapsável
-
-# Resultado de buscas de notícias
-
-* TBD
-
-# Resultado de buscas de disciplinas
-
-* TBD
-
-# Pagina de Impressão
-
-* Mudar a fonte para a mesma da página
-* Caixa alta nos títulos
-* sumir com o "No Comments"
-* sumir com o horario apos a @
-* tentar localizar os textos \"posted by\", \"article printed from\", \"url to article\", \"urls in this post\"
-* ver como imprimir apenas um pedaço em páginas que tem expand/colapse (ex professores)
-* tentar pular a pagina de print
-* usar o papel timbrado?
-
+* (16/08) colocar a setinha no submenu (exemplo: depois de orientadores e alunos)
+* (16/08) colocar sombra no topo do submenu
 
 # Geral
 
-* favicon, ipod icon, etc
-* startup images? https://gist.github.com/472519
-* home screen icon para iDevices
-
-#CSS geral
-
-* OK - tirar seleção rosa
-* OK - links undeline no hover (para padronizar com os de baixo)
-
-# Bugs
-
-* IE6/7 support ou redirect p/ instalacao do chrome frame ou update
-* Search results está vindo com a caixa de entidades relacionadas
-* Editor visual do wordpress arranca paragrafos
-* URLs das imagens quebram quando online (www) e nas paginas de impressao
-* quando muda para ingles ou espanhol, o separador | está aparecendo
-* ver como tirar atributo title dos itens do menu
-* entidades relacionadas está hardcoded no template, isto é feio/errado
-* footer.php está com endereços e telefones hardcoded, isto é feio/errado
-
-# Página de notícia individual
-
-* TBD
-
-# Template functions
-
-* OK - create and pre-fill default pages with the content of pages\_content folder, update if pages_content is newer
-* rewrite function boilerplate\_posted\_on
-
-# Dev server (pgsm.nulo.com.br)
-
-* OK - script to update code
-* script to sync database
-* run this scripts automatically via cron or URL ping
-
-# Template localization
-
-* translate to english and spanish all __() and _e() strings of pgsm-boilerplate-child
-* translate "Mais Notícias" button
+* (16/08) favicon, ipod icon, etc
+* (16/08) startup images? https://gist.github.com/472519
+* (16/08) home screen icon para iDevices
 
 # Disciplinas
 
 * OK - Post type disciplina
 * OK - pagina disciplinas lista todos os posts de tipo disciplina
-* Botao Mais Disciplinas carregar ajax
-* Pagina de disciplina individual deve ter o menuitem "disciplinas" como o selecionado
-* Expand / Colapse animado
-* trocar de volta o limite de numero de disciplinas por pagina para o default escolhido
+* (16/08) Botao Mais Disciplinas carregar ajax
+* (16/08) Expand / Colapse animado
+* (deploy-day) trocar de volta o limite de numero de disciplinas por pagina para o default escolhido
 
 # Página de "todas as notícias"
 
@@ -136,16 +88,25 @@
 * OK - Expand / Colapse das noticias individuais
 * OK - Css da dobra/resquicio de divisor depois do titulo da noticia
 * OK - Botao mais noticias no mesmo estilo css do "abrir no google mapas"
-* Botao Mais Noticias carregar ajax
-* Pagina de noticia individual deve ter o menuitem "noticias" como o selecionado
-* Expand / Colapse animado
-* trocar de volta o limite de numero de noticias por pagina para o default escolhido
+* (16/08) Botao Mais Noticias carregar ajax
+* (16/08) Expand / Colapse animado
+* (deploy-day) trocar de volta o limite de numero de noticias por pagina para o default escolhido
 
+# Pagina de Impressão
+
+* (17/08) Mudar a fonte para a mesma da página
+* (17/08) Caixa alta nos títulos
+* (17/08) sumir com o "No Comments"
+* (17/08) sumir com o horario apos a @
+* (17/08) tentar localizar os textos \"posted by\", \"article printed from\", \"url to article\", \"urls in this post\"
+* (17/08) ver como imprimir apenas um pedaço em páginas que tem expand/colapse (ex professores)
+* (17/08) tentar pular a pagina de print
+* (17/08) usar o papel timbrado?
 
 # Home
 
-* Colocar placeholder de foto estatica
-* Testar video fallback para flash em browsers sem html5 video
+* (17/08) Colocar placeholder de foto estatica no vídeo
+* (deploy-day) Testar video fallback para flash em browsers sem html5 video
 * OK - Menu: hover com borda arredondada
 * OK - Cabeçalho: título e descrição posicionados
 * OK - Sidebar: mudar título para \"últimas notícias\"
@@ -160,6 +121,68 @@
 * OK - Sidebar: link \"ler todas as notícias\"
 * OK - Sidebar: widget Entidades Relacionadas
 
+# Histórico
+
+* (18/08) TBD
+
+# Resultado de buscas de disciplinas
+
+* (18/08) TBD
+* layout igual a lista de disciplinas
+* layout da pagina de nothing found
+  * Nenhuma disciplina encontrada é o título
+  * campo para pequisar de novo
+* titulo DISCIPLINAS QUE CONTÉM: <termo de busca>
+
+# Resultado de buscas de notícias
+
+* (18/08) TBD
+* termo de busca highlited?
+
+
+# Página de notícia individual
+
+* (18/08) TBD
+
+# Página de disciplina individual
+
+* (18/08) TBD
+
+# Página de orientador individual
+
+* (18/08) TBD
+
+# Página de aluno individual?
+
+* (18/08) TBD?
+
+# Bugs
+
+* titulos dos posts vem com (Português) quando outra lingua está selecionada
+* imagens das entidades relacionadas somem quando muda de lingua
+* clicar em qqer regiao de um orientador aberto da colapse no post
+* busca da tela de nothing found nao pode buscar em tudo se veio da pagina de disciplinas, orientadores, etc
+* (10/08) IE6/7 support ou redirect p/ instalacao do chrome frame ou update
+* (18/08) Search results está vindo com a caixa de entidades relacionadas
+* (16/08) quando muda para ingles ou espanhol, o separador | está aparecendo
+* (16/08) ver como tirar atributo title dos itens do menu
+* (18/08) Pagina de disciplina individual deve ter o menuitem "disciplinas" como o selecionado
+* (18/08) Pagina de noticia individual deve ter o menuitem "noticias" como o selecionado
+* (deploy-day) URLs das imagens quebram quando online (www) e nas paginas de impressao
+* (later) entidades relacionadas está hardcoded no template, isto é feio/errado
+* (later) footer.php está com endereços e telefones hardcoded, isto é feio/errado
+* (never) Editor visual do wordpress arranca paragrafos
+
+
+#CSS geral
+
+* OK - tirar seleção rosa
+* OK - links undeline no hover (para padronizar com os de baixo)
+
+## Credenciados
+
+* OK - Adicionar Professor
+* OK - Lista colapsável
 
 # Sites de interesse
 
@@ -175,8 +198,42 @@
 
 # Lembretes
 
-* Quando instalar ativar os plugins 
-* Quando instalar selecionar a opção de usar home e posts page estaticas
+* (deploy-day) Quando instalar ativar os plugins 
+* (deploy-day) Quando instalar selecionar a opção de usar home e posts page estaticas
+
+
+
+
+
+
+
+# Documentacoes
+
+## Simples
+* Como adicionar um professor?
+  * adicionar wordpress user com role de Author.
+  * criar nova pagina de Orientador credenciado
+* Como adicionar um ex-Orientador?
+* Como adicionar uma notícia?
+* Como adicionar um post na pagina de um professor?
+* Como adicionar uma disciplina?
+* Como mudar as fotos da galeria da home page?
+* Como cadastrar novos alunos?
+* Como traduzir uma página.
+* Como um professor pode mudar sua foto, links e website.
+
+## Perigosas
+* Atualizar o wordpress.
+* Instalar ou atualizar plugin de wordpress.
+* Mudar rodapé, localização ou sites de interesse.
+
+
+
+
+
+
+
+
 
 
 
@@ -186,15 +243,25 @@
 
 # FUTURE
 
-* trocar URL dos videos para uma versão no archive.org ou no servidor da USP (p/ sair da conta do GStorage do fabricio)
+* (future) trocar URL dos videos para uma versão no archive.org ou no servidor da USP (p/ sair da conta do GStorage do fabricio)
 
-http://commondatastorage.googleapis.com/pgsm/pgsm1080.mp4
-http://commondatastorage.googleapis.com/pgsm/pgsm360.mp4
-http://commondatastorage.googleapis.com/pgsm/pgsm360.webm
-http://commondatastorage.googleapis.com/pgsm/pgsm480.flv
-http://commondatastorage.googleapis.com/pgsm/pgsm480.webm
-http://commondatastorage.googleapis.com/pgsm/pgsm720.mp4
-http://commondatastorage.googleapis.com/pgsm/pgsm720.webm
+## Template functions
+
+* OK - create and pre-fill default pages with the content of pages\_content folder, update if pages_content is newer
+* (future) rewrite function boilerplate\_posted\_on
+
+
+## Template localization
+
+* (future) translate to english and spanish all __() and _e() strings of pgsm-boilerplate-child
+* (future) translate "Mais Notícias" button
+
+## Dev server (pgsm.nulo.com.br)
+
+* OK - script to update code
+* (never) script to sync database
+* (never) run this scripts automatically via cron or URL ping
+
 
 ## Blog de professores (MULTISITE)?
 

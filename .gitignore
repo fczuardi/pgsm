@@ -1,3 +1,4 @@
 www/wp-config.php
 www/wp-content/uploads/2011/*
+www/wp-content/uploads/userphoto/*
 .DS_Store

@@ -49,6 +49,8 @@ Lista parcial dos plugins de Wordpress usados neste site:
   * [site do autor](http://outlandishideas.co.uk/blog/2011/03/unattach/)
 * [ps-disable-auto-formatting](http://wordpress.org/extend/plugins/ps-disable-auto-formatting/) versão 1.0.6
   * http://www.web-strategy.jp/wp_plugin/ps_disable_auto_formatting/
+* [User Photo](http://wordpress.org/extend/plugins/user-photo/) versão 0.9.5.1
+  * [site do autor](http://weston.ruter.net/)
   
 # Fallback font (Francophil Sans)
 
