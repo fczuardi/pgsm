@@ -1,36 +1,3 @@
-# Orientadores
-
-* OK - Listagem por categoria credenciados
-* OK - Listagem por categoria ex-orientadores
-* OK - ordenar alfabeticamente por nome
-* OK - custom fields add to meta box: ```http://codex.wordpress.org/Function_Reference/add_meta_box```
-* OK - como colocar o titulo na frente do nome (Prof. Dr. e Prof. Dra. por exemplo)
-* OK - categorias credenciados e exorientador nao deveriam aparecer na tela de post comum
-  * OK - trocar por custom field
-* OK - orientador tem que ter metadado com o username para listar os posts
-* OK - lattes, twitter, wikipedia, lattes, etc: http://justintadlock.com/archives/2009/09/10/adding-and-using-custom-user-profile-fields ou http://thomasgriffinmedia.com/blog/2010/09/how-to-add-custom-user-contact-info-in-wordpress/
-* OK - Template html e css para pagina de um orientador
-* OK - Aside
-  * OK - Profile picture
-  * TBD - se for customizar o plugin user photo para atualizar programaticamente procure por nop codigo update_usermeta
-  * OK - Últimos Posts
-    * OK - Preencher link com RSS dos ultimos posts
-    * OK - Link para ler todos os posts
-    * OK - Pagina com todos os posts
-  * OK - Links relacionados
-* (17/08) carregar mais(paginacao) com ajax
-* (18/08) Pagina individual de orientador
-* (19/08) mudar comportamento do Botão de imprimir
-* (later) Endereço profissional e biografia retiradas do Lattes
-
-# custom post types
-
-* OK - Disciplina
-* OK - Orientador
-* OK - Post de Professor (nao é mais custom type)
-* OK - para customizar a listagem de posts customizados http://yoast.com/custom-post-type-snippets/
-* (4/08) Aluno
-
 # Documentos
 
 * (5/08 - 8/08) Uma página cheia de attachments
@@ -57,6 +24,40 @@
 #Dissertações e Teses
 
 * (10/08 - 15/08) TBD
+
+# custom post types
+
+* OK - Disciplina
+* OK - Orientador
+* OK - Post de Professor (nao é mais custom type)
+* OK - para customizar a listagem de posts customizados http://yoast.com/custom-post-type-snippets/
+* OK - Aluno
+
+# Orientadores
+
+* OK - Listagem por categoria credenciados
+* OK - Listagem por categoria ex-orientadores
+* OK - ordenar alfabeticamente por nome
+* OK - custom fields add to meta box: ```http://codex.wordpress.org/Function_Reference/add_meta_box```
+* OK - como colocar o titulo na frente do nome (Prof. Dr. e Prof. Dra. por exemplo)
+* OK - categorias credenciados e exorientador nao deveriam aparecer na tela de post comum
+  * OK - trocar por custom field
+* OK - orientador tem que ter metadado com o username para listar os posts
+* OK - lattes, twitter, wikipedia, lattes, etc: http://justintadlock.com/archives/2009/09/10/adding-and-using-custom-user-profile-fields ou http://thomasgriffinmedia.com/blog/2010/09/how-to-add-custom-user-contact-info-in-wordpress/
+* OK - Template html e css para pagina de um orientador
+* OK - Aside
+  * OK - Profile picture
+  * TBD - se for customizar o plugin user photo para atualizar programaticamente procure por nop codigo update_usermeta
+  * OK - Últimos Posts
+    * OK - Preencher link com RSS dos ultimos posts
+    * OK - Link para ler todos os posts
+    * OK - Pagina com todos os posts
+  * OK - Links relacionados
+* Prefill de conteudo na pagina de "adicionar novo orientador"
+* (17/08) carregar mais(paginacao) com ajax
+* (18/08) Pagina individual de orientador
+* (19/08) mudar comportamento do Botão de imprimir
+* (later) Endereço profissional e biografia retiradas do Lattes
 
 # CSS
 * OK - fazer o orientadores no menu ter hover também
@@ -158,6 +159,7 @@
 
 # Bugs
 
+* listagem de noticias tem que ser collapsible
 * titulos dos posts vem com (Português) quando outra lingua está selecionada
 * imagens das entidades relacionadas somem quando muda de lingua
 * clicar em qqer regiao de um orientador aberto da colapse no post
