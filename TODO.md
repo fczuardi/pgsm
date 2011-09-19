@@ -19,6 +19,7 @@
 * OK - Lightbox para a galeria de fotos (cor 05212a (5,33,42) com 90% de opacidade)
 * OK - Colocar videos novos
 * OK - Popular com as fotos enviadas
+* TBD - Lightbox gallery trocar fonte do texto para a que a gente usa e colocar tudo caixa alta
 * TBD - Colocar placeholder de foto estatica no vídeo
 * DEPLOY_DAY - Testar video fallback para flash em browsers sem html5 video
 
