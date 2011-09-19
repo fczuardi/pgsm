@@ -51,6 +51,8 @@ Lista parcial dos plugins de Wordpress usados neste site:
   * http://www.web-strategy.jp/wp_plugin/ps_disable_auto_formatting/
 * [User Photo](http://wordpress.org/extend/plugins/user-photo/) versão 0.9.5.1
   * [site do autor](http://weston.ruter.net/)
+* [Shortcode Exec PHP](http://wordpress.org/extend/plugins/shortcode-exec-php/) versão 1.33
+  * [site do autor](http://blog.bokhorst.biz/about/)
   
 # Fallback font (Francophil Sans)
 

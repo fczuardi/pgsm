@@ -1,10 +1,22 @@
 # Dissertações e Teses
-
-* TBD
+* OK - Modificar o upload form para conter campos extras:
+  * OK - Ano de publicação
+  * OK - Autor
+  * OK - Orientador
+  * OK - Co-orientadores
+  * OK - Tipo (Tese/Dissertacao/Dissertação de Mestrado/Dissertacao Doutorado)
+* TBD - Search funcionando
+* TBD - Search highlight nos resultados
+* - lista das ultimas teses do site (?page=2)
+  * TBD - pagination nesta lista
+  * TBD - Ajax carregar mais itens
+* TBD - retirar select hardcoded 1997/2011 fazer ficar dinamico somehow
+* TBD - colocar a sombra separadora
 
 
 # Home
 
+* TBD - Lightbox para a galeria de fotos (cor 05212a (5,33,42) com 90% de opacidade)
 * TBD - Colocar videos novos
 * TBD - Popular com as fotos enviadas
 * TBD - Colocar placeholder de foto estatica no vídeo
