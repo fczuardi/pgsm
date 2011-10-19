@@ -1,0 +1,14 @@
+- Aumentar Contraste Header
+- Retirar fotos (6,7,8,13,14,15,22,23)
+- Fazer grid 4x4
+- Retirar "introdução" de todos
+- Objetivo (reescrever)
+- Histórico (cadastrar)
+- Linhas de pesquisa: "mais destaque", azul, caixa alta?
+- Ex-Orientadores (incluir o hifen)
+- Alunos: Tirar Biografia e Endereço Profissional - Trocar ordem email depois do orientador
+- Informações Gerais (dentro do ingresso) - 13 items (abre e fecha)
+- Cadastrar quase tudo
+- Infra-estrutura (repetir umas fotos)
+- Localização (maps em português - ou espanhol, ou inglês)
+- Ajustar nomenclatura: Mestrado - Thiago Bourduqui Ferrari (dissertações = mestrado e teses = doutorado)
