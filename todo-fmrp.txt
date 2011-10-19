@@ -1,6 +1,8 @@
 OK - Fazer grid 4x4
 OK - Retirar fotos (6,7,8,13,14,15,22,23)
 
+- modificar pages_content para usar o page_generator plugin
+
 - Aumentar Contraste Header
 - Retirar "introdução" de todos
 - Objetivo (reescrever)
