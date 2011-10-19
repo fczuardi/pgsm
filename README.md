@@ -55,6 +55,8 @@ Lista parcial dos plugins de Wordpress usados neste site:
   * [site do autor](http://blog.bokhorst.biz/about/)
 * [jQuery Colorbox](http://wordpress.org/extend/plugins/jquery-colorbox/) versão 4.2
   * [site do autor](http://www.techotronic.de/)
+* [Regenerate Thumbnails](http://wordpress.org/extend/plugins/regenerate-thumbnails/) versão 2.2.0
+  * [site do autor](http://www.viper007bond.com/)
   
 # Fallback font (Francophil Sans)
 
