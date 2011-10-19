@@ -3,14 +3,17 @@ OK - Retirar fotos (6,7,8,13,14,15,22,23)
 OK - modificar pages_content para usar o page_generator plugin
 OK - Retirar "introdução" de todos
 
-- Aumentar Contraste Header
+- Ex-Orientadores (incluir o hifen)
+- Localização (maps em português - ou espanhol, ou inglês)
 - Objetivo (reescrever)
 - Histórico (cadastrar)
-- Linhas de pesquisa: "mais destaque", azul, caixa alta?
-- Ex-Orientadores (incluir o hifen)
-- Alunos: Tirar Biografia e Endereço Profissional - Trocar ordem email depois do orientador
 - Informações Gerais (dentro do ingresso) - 13 items (abre e fecha)
-- Cadastrar quase tudo
 - Infra-estrutura (repetir umas fotos)
-- Localização (maps em português - ou espanhol, ou inglês)
+
+- Aumentar Contraste Header
+- Linhas de pesquisa: "mais destaque", azul, caixa alta?
+
+- Alunos: Tirar Biografia e Endereço Profissional - Trocar ordem email depois do orientador
 - Ajustar nomenclatura: Mestrado - Thiago Bourduqui Ferrari (dissertações = mestrado e teses = doutorado)
+- Cadastrar quase tudo
+
