@@ -6,7 +6,7 @@
  * Plugin Name: jQuery Colorbox
  * Plugin URI: http://www.techotronic.de/plugins/jquery-colorbox/
  * Description: Used to overlay images on the current page. Images in one post are grouped automatically.
- * Version: 4.1
+ * Version: 4.2
  * Author: Arne Franken
  * Author URI: http://www.techotronic.de/
  * License: GPL
@@ -19,8 +19,8 @@
 ?>
 <?php
 //define constants
-define('JQUERYCOLORBOX_VERSION', '4.1');
-define('COLORBOXLIBRARY_VERSION', '1.3.17');
+define('JQUERYCOLORBOX_VERSION', '4.2');
+define('COLORBOXLIBRARY_VERSION', '1.3.18');
 
 if (!defined('JQUERYCOLORBOX_PLUGIN_BASENAME')) {
   //jquery-colorbox/jquery-colorbox.php
@@ -83,7 +83,7 @@ class JQueryColorbox {
     //check whether stored settings are compatible with current plugin version.
     //if not: overwrite stored settings
     $validSettings = $this->validateSettingsInDatabase($usersettings);
-    if(!$validSettings) {
+    if (!$validSettings) {
       $this->colorboxSettings = $defaultArray;
       update_option(JQUERYCOLORBOX_SETTINGSNAME, $defaultArray);
     } else {
@@ -143,6 +143,35 @@ class JQueryColorbox {
 
   // JQueryColorbox()
 
+
+  /**
+   * Checks wheter the settings stored in the database are compatible with current version.
+   *
+   * @since 2.0
+   * @access public
+   * @author Arne Franken
+   * @param $colorboxSettings current colorboxSettings.
+   *
+   * @return bool true if settings work with this plugin version
+   */
+  //public function validateSettingsInDatabase() {
+  function validateSettingsInDatabase($colorboxSettings) {
+    if ($colorboxSettings) {
+      //if jQueryColorboxVersion does not exist, the plugin is a version prior to 2.0
+      //settings are incompatible with 2.0, restore default settings.
+      if (!array_key_exists('jQueryColorboxVersion', $colorboxSettings)) {
+        //in case future versions require resetting the settings
+        //if($jquery_colorbox_settings['jQueryColorboxVersion'] < JQUERYCOLORBOX_VERSION)
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // validateSettingsInDatabase()
+
+  //=====================================================================================================
+
   /**
    * This is what an example jQuery Colorbox configuration looks like in the wp_options-table of the database:
    *
@@ -180,7 +209,6 @@ class JQueryColorbox {
    * s:21:"jQueryColorboxVersion";s:5:"4.1";
    * }
    */
-
 
   /**
    * Default array of plugin settings
@@ -239,37 +267,12 @@ class JQueryColorbox {
       'javascriptInFooter' => false,
       'debugMode' => false,
       'autoColorboxJavaScript' => false,
-      'removeLinkFromMetaBox' => false
+      'colorboxAddClassToLinks' => false,
+      'removeLinkFromMetaBox' => true
     );
   }
 
   // jQueryColorboxDefaultSettings()
-
-  /**
-   * Checks wheter the settings stored in the database are compatible with current version.
-   *
-   * @since 2.0
-   * @access public
-   * @author Arne Franken
-   * @param $colorboxSettings current colorboxSettings.
-   *
-   * @return bool true if settings work with this plugin version
-   */
-  //public function validateSettingsInDatabase() {
-  function validateSettingsInDatabase($colorboxSettings) {
-    if ($colorboxSettings) {
-      //if jQueryColorboxVersion does not exist, the plugin is a version prior to 2.0
-      //settings are incompatible with 2.0, restore default settings.
-      if (!array_key_exists('jQueryColorboxVersion', $colorboxSettings)) {
-        //in case future versions require resetting the settings
-        //if($jquery_colorbox_settings['jQueryColorboxVersion'] < JQUERYCOLORBOX_VERSION)
-        return false;
-      }
-    }
-    return true;
-  }
-
-  // validateSettingsInDatabase()
 
   /**
    * Delete plugin settings

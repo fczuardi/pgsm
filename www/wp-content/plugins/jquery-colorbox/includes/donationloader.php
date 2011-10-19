@@ -9,8 +9,7 @@
  * Object that handles Ajax to Xml RPC calls
  */
 if (!defined('DONATIONLOADER_XMLRPC_URL')) {
-  //define('DONATIONLOADER_XMLRPC_URL', 'http://xmlrpc.techotronic.de/');
-  define('DONATIONLOADER_XMLRPC_URL', 'http://www.wpthemetest.de/wordpress/xmlrpc.php');
+  define('DONATIONLOADER_XMLRPC_URL', 'http://xmlrpc.techotronic.de/');
 }
 if (!defined('DONATIONLOADER_CACHETIME')) {
   //cachetime in seconds
@@ -37,8 +36,8 @@ class JQueryColorboxDonationLoader {
     //add_action( 'wp_ajax_nopriv_action', 'methodName' );
     //only logged in users can trigger the action
     //add_action( 'wp_ajax_action', array($this, 'methodName') );
-    add_action( 'wp_ajax_load-topDonations', array($this, 'getTopDonations') );
-    add_action( 'wp_ajax_load-latestDonations', array($this, 'getLatestDonations') );
+    add_action( 'wp_ajax_load-JQueryColorboxTopDonations', array($this, 'getJQueryColorboxTopDonations') );
+    add_action( 'wp_ajax_load-JQueryColorboxLatestDonations', array($this, 'getJQueryColorboxLatestDonations') );
   }
 
   // DonationLoader()
@@ -52,6 +51,7 @@ class JQueryColorboxDonationLoader {
    *
    * @return void
    */
+  //public function getTest() {
 //  function getTest() {
 //    $this->doGetDonations(xmlrpc_encode_request('demo.sayHello','doesntMatter'));
 //  }
@@ -67,8 +67,8 @@ class JQueryColorboxDonationLoader {
    *
    * @return void
    */
-  //private function getTopDonations() {
-  function getTopDonations() {
+  //public function getJQueryColorboxTopDonations() {
+  function getJQueryColorboxTopDonations() {
     $this->getAndReturnDonations('manageDonations.getTopDonations','top');
   }
 
@@ -83,57 +83,12 @@ class JQueryColorboxDonationLoader {
    *
    * @return void
    */
-  //private function getLatestDonations() {
-  function getLatestDonations() {
+  //public function getJQueryColorboxLatestDonations() {
+  function getJQueryColorboxLatestDonations() {
     $this->getAndReturnDonations('manageDonations.getLatestDonations','latest');
   }
 
   // getLatestDonations()
-
-  /**
-   * Generic donation getter.
-   * Wrap the XML RPC call and return the value to the Ajax call
-   * Caches the serialized response for $cacheTime seconds.
-   *
-   * @since 1.0
-   * @access private
-   * @author Arne Franken
-   *
-   * @param String $remoteProcedureCall RPC method name
-   * @param String $identifier cache-identifier for the request
-   * 
-   * @return void
-   */
-  function getAndReturnDonations($remoteProcedureCall,$identifier) {
-    // get the submitted parameters
-    $pluginName = $_POST['pluginName'];
-
-    $key = $identifier . '-' . $pluginName;
-
-    //try to get response from DB cache
-    $response = get_transient($key);
-    if ( false == $response ) {
-      // response not found in DB cache, generate response
-      $xmlRpcRequest = xmlrpc_encode_request($remoteProcedureCall,$pluginName);
-    
-      $response = $this->getRemoteXmlRpcContent(DONATIONLOADER_XMLRPC_URL,$this->donationLoaderUserAgent,$xmlRpcRequest);
-
-      set_transient($key, serialize($response), DONATIONLOADER_CACHETIME);
-    } else {
-      $response = unserialize($response);
-    }
-
-    // header content-type must match the one used in the jQuery.post call.
-    //header( "content-type: application/json" );
-    header( "content-type: text/html" );
-
-    // echo instead of return, $response is given back to the Ajax call.
-    echo $response;
-    // IMPORTANT: don't forget to "exit"
-    exit;
-  }
-
-  // getDonations()
 
   /**
    * Build JavaScript array for loading donations.
@@ -150,45 +105,63 @@ class JQueryColorboxDonationLoader {
     $javaScriptArray = array('ajaxurl' => admin_url( 'admin-ajax.php' ),
     'pluginName' => $this->donationLoaderPluginName);
 
-    wp_register_script('donation', $this->donationLoaderPluginUrl . '/js/donation-min.js', array('jquery'));
+    wp_register_script('donation', $this->donationLoaderPluginUrl . '/js/donation.js', array('jquery'));
     wp_enqueue_script('donation');
     wp_localize_script('donation', 'Donation', $javaScriptArray);
   }
 
   // registerDonationJavaScript()
 
+  //=====================================================================================================
+
   /**
-   * Read XML from a remote url
-   * 
+   * Generic donation getter.
+   * Wrap the XML RPC call and return the value to the Ajax call
+   * Caches the serialized response for $cacheTime seconds.
+   *
    * @since 1.0
    * @access private
    * @author Arne Franken
    *
-   * @param string $url
-   * @param string $userAgent
-   * @param string $xmlRpcRequest
-   *
-   * @return the response or FALSE if there was an error
+   * @param String $remoteProcedureCall RPC method name
+   * @param String $identifier cache-identifier for the request
+   * 
+   * @return void
    */
-  //private function getRemoteXmlRpcContent($url) {
-  function getRemoteXmlRpcContent($url,$userAgent,$xmlRpcRequest) {
-    $returnValue = false;
-    if (function_exists('wp_remote_post')) {
-      $options = array('user-agent' => $userAgent,
-      'body' => $xmlRpcRequest);
-      
-      $response = wp_remote_post($url, $options);
-      if (!is_wp_error($response) && 200 == wp_remote_retrieve_response_code($response)) {
-        $decodedResponse = xmlrpc_decode($response['body'],'utf-8');
-        if(!xmlrpc_is_fault($decodedResponse)) {
-          $returnValue = $decodedResponse;
-        }
+  //private function getAndReturnDonations($remoteProcedureCall,$identifier) {
+  function getAndReturnDonations($remoteProcedureCall,$identifier) {
+
+    // get the submitted parameters
+    $pluginName = $_POST['pluginName'];
+
+    $key = $identifier . '-' . $pluginName;
+
+    //try to get response from DB cache
+    $response = get_transient($key);
+    if ( false == $response ) {
+      // response not found in DB cache, generate response
+      if(class_exists('IXR_Client')) {
+        $ixrClient = new IXR_Client(DONATIONLOADER_XMLRPC_URL);
+        $ixrClient->query($remoteProcedureCall,$pluginName);
+
+        $response = $ixrClient->getResponse();
       }
+      set_transient($key, serialize($response), DONATIONLOADER_CACHETIME);
+    } else {
+      $response = unserialize($response);
     }
-    return $returnValue;
+
+    // header content-type must match the one used in the jQuery.post call.
+    //header( "content-type: application/json" );
+    header( "content-type: text/html" );
+
+    // echo instead of return, $response is given back to the Ajax call.
+    echo $response;
+    // IMPORTANT: don't forget to "exit"
+    exit;
   }
 
-  // getRemoteXmlRpcContent()
+  // getDonations()
 }
 
 // DonationLoader()

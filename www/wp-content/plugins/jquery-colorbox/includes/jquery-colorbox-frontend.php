@@ -216,6 +216,8 @@ class JQueryColorboxFrontend {
       'colorboxInitialWidth' => $this->colorboxSettings['initialWidth'],
       'autoColorboxJavaScript' => $this->colorboxSettings['autoColorboxJavaScript'],
       'autoHideFlash' => $this->colorboxSettings['autoHideFlash'],
+      'autoColorbox' => $this->colorboxSettings['autoColorbox'],
+      'autoColorboxGalleries' => $this->colorboxSettings['autoColorboxGalleries'],
       'colorboxAddClassToLinks' => $this->colorboxSettings['colorboxAddClassToLinks']
     );
     wp_localize_script('colorbox', 'Colorbox', $colorboxPropertyArray);

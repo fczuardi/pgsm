@@ -21,7 +21,7 @@ jQuery(document).ready(function() {
  */
 (function(jQuery) {
     loadTopDonations = function() {
-      loadDonations('top');
+      loadDonations('Top');
     }
 })(jQuery);
 
@@ -32,7 +32,7 @@ jQuery(document).ready(function() {
  */
 (function(jQuery) {
     loadLatestDonations = function() {
-      loadDonations('latest');
+      loadDonations('Latest');
     }
 })(jQuery);
 
@@ -48,7 +48,7 @@ jQuery(document).ready(function() {
       var listDivId = '#' + $type + 'donationslist';
       var loaderDivId = '#' + $type +'loader';
       var errorDivId = '#' + $type + 'error';
-      var action = 'load-' + $type + 'Donations';
+      var action = 'load-JQueryColorbox' + $type + 'Donations';
       jQuery.post(
         Donation.ajaxurl,
         {

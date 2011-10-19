@@ -111,7 +111,7 @@ jQuery(document).ready(function() {
     jQuery("img").each(function(index, obj) {
       var $img = jQuery(obj);
       var $imgClass = $img.attr("class");
-      if ($imgClass !== undefined && !$imgClass.match('colorbox')) {
+      if ($imgClass == undefined || !$imgClass.match('colorbox')) {
         $img.addClass('colorbox-manual');
       }
     });

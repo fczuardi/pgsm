@@ -95,25 +95,6 @@ class JQueryColorboxBackend {
   // registerAdminMenu()
 
   /**
-   * Registers Admin Notices
-   *
-   * @since 2.0
-   * @access private
-   * @author Arne Franken
-   *
-   * @param string $notice to register notice with.
-   */
-  //private function registerAdminNotice($notice) {
-  function registerAdminNotice($notice) {
-    if ($notice != '') {
-      $message = '<div class="updated fade"><p>' . $notice . '</p></div>';
-      add_action('admin_notices', create_function('', "echo '$message';"));
-    }
-  }
-
-  // registerAdminNotice()
-
-  /**
    * Registers the warning for admins
    *
    * @since 2.5
@@ -136,23 +117,6 @@ class JQueryColorboxBackend {
   }
 
   // registerAdminWarning()
-
-  /**
-   * Register the settings page in WordPress
-   *
-   * @since 1.0
-   * @access private
-   * @author Arne Franken
-   */
-  //private function registerSettingsPage() {
-  function registerSettingsPage() {
-    if (current_user_can('manage_options')) {
-      add_filter('plugin_action_links_' . JQUERYCOLORBOX_PLUGIN_BASENAME, array(& $this, 'addPluginActionLinks'));
-      add_options_page(JQUERYCOLORBOX_NAME, JQUERYCOLORBOX_NAME, 'manage_options', JQUERYCOLORBOX_PLUGIN_BASENAME, array(& $this, 'renderSettingsPage'));
-    }
-  }
-
-  //registerSettingsPage()
 
   /**
    * Add settings link to plugin management page
@@ -204,22 +168,6 @@ class JQueryColorboxBackend {
   // jQueryColorboxUpdateSettings()
 
   /**
-   * Update plugin settings
-   *
-   * handles updating settings in the WordPress database
-   *
-   * @since 1.3.3
-   * @access private
-   * @author Arne Franken
-   */
-  //private function updateSettingsInDatabase() {
-  function updateSettingsInDatabase() {
-    update_option(JQUERYCOLORBOX_SETTINGSNAME, $this->colorboxSettings);
-  }
-
-  //updateSettings()
-
-  /**
    * Delete plugin settings wrapper
    *
    * handles checks and redirect
@@ -245,6 +193,102 @@ class JQueryColorboxBackend {
   }
 
   // jQueryColorboxDeleteSettings()
+
+  /**
+   * adds Colorbox CSS class to TinyMCE style selector dropdown box
+   *
+   * @since 3.7
+   * @access public
+   * @author Arne Franken
+   *
+   * @param  array $initialArray
+   * @return array $modifiedArray
+   */
+  //public function addColorboxLinkClass($defaultCss) {
+  function addColorboxLinkClass($initialArray) {
+    $modifiedArray = $initialArray;
+
+    $modifiedArray['theme_advanced_styles'] .= ';colorbox-link=colorbox-link;';
+    //strip first and last character if it matches ";"
+    $modifiedArray['theme_advanced_styles'] = trim($modifiedArray['theme_advanced_styles'], ';');
+    return $modifiedArray;
+  }
+
+  // addColorboxLinkClasses()
+
+  /**
+   * Adds style selector option to TinyMCE
+   *
+   * @since 4.0
+   * @access public
+   * @author Arne Franken
+   *
+   * @param array $array
+   * @return array modified array
+   */
+  //public function addStyleSelectorBox($array) {
+  function addStyleSelectorBox($array) {
+    if (!in_array('styleselect', $array)) {
+      array_push($array, 'styleselect');
+    }
+    return $array;
+  }
+
+  // addStyleSelectorBox()
+
+  //=====================================================================================================
+
+  /**
+   * Registers Admin Notices
+   *
+   * @since 2.0
+   * @access private
+   * @author Arne Franken
+   *
+   * @param string $notice to register notice with.
+   */
+  //private function registerAdminNotice($notice) {
+  function registerAdminNotice($notice) {
+    if ($notice != '') {
+      $message = '<div class="updated fade"><p>' . $notice . '</p></div>';
+      add_action('admin_notices', create_function('', "echo '$message';"));
+    }
+  }
+
+  // registerAdminNotice()
+
+  /**
+   * Register the settings page in WordPress
+   *
+   * @since 1.0
+   * @access private
+   * @author Arne Franken
+   */
+  //private function registerSettingsPage() {
+  function registerSettingsPage() {
+    if (current_user_can('manage_options')) {
+      add_filter('plugin_action_links_' . JQUERYCOLORBOX_PLUGIN_BASENAME, array(& $this, 'addPluginActionLinks'));
+      add_options_page(JQUERYCOLORBOX_NAME, JQUERYCOLORBOX_NAME, 'manage_options', JQUERYCOLORBOX_PLUGIN_BASENAME, array(& $this, 'renderSettingsPage'));
+    }
+  }
+
+  //registerSettingsPage()
+
+  /**
+   * Update plugin settings
+   *
+   * handles updating settings in the WordPress database
+   *
+   * @since 1.3.3
+   * @access private
+   * @author Arne Franken
+   */
+  //private function updateSettingsInDatabase() {
+  function updateSettingsInDatabase() {
+    update_option(JQUERYCOLORBOX_SETTINGSNAME, $this->colorboxSettings);
+  }
+
+  //updateSettings()
 
   /**
    * Delete plugin settings
@@ -325,46 +369,6 @@ class JQueryColorboxBackend {
 
   // getReturnLocation()
 
-  /**
-   * adds Colorbox CSS class to TinyMCE style selector dropdown box
-   *
-   * @since 3.7
-   * @access public
-   * @author Arne Franken
-   *
-   * @param  array $initialArray
-   * @return array $modifiedArray
-   */
-  //public function addColorboxLinkClass($defaultCss) {
-  function addColorboxLinkClass($initialArray) {
-    $modifiedArray = $initialArray;
-
-    $modifiedArray['theme_advanced_styles'] .= ';colorbox-link=colorbox-link;';
-    //strip first and last character if it matches ";"
-    $modifiedArray['theme_advanced_styles'] = trim($modifiedArray['theme_advanced_styles'], ';');
-    return $modifiedArray;
-  }
-
-  // addColorboxLinkClasses()
-
-  /**
-   * Adds style selector option to TinyMCE
-   *
-   * @since 4.0
-   * @access public
-   * @author Arne Franken
-   *
-   * @param array $array
-   * @return array modified array
-   */
-  function addStyleSelectorBox($array) {
-    if (!in_array('styleselect', $array)) {
-      array_push($array, 'styleselect');
-    }
-    return $array;
-  }
-
-  // addStyleSelectorBox()
 
 }
 

@@ -73,15 +73,15 @@
                 <br/><?php __('Add JavaScript to footer instead of the header.', JQUERYCOLORBOX_TEXTDOMAIN); ?>
             </td>
         </tr-->
-      <!--tr>
-            <th scope="row">
-                <label for="jquery-colorbox-removeLinkFromMetaBox"><?php __('Remove link from Meta-box', JQUERYCOLORBOX_TEXTDOMAIN); ?>:</label>
-            </th>
-            <td>
-                <input type="checkbox" name="<?php //echo JQUERYCOLORBOX_SETTINGSNAME ?>[removeLinkFromMetaBox]" id="jquery-colorbox-removeLinkFromMetaBox" value="true" <?php //echo ($this->colorboxSettings['removeLinkFromMetaBox']) ? 'checked="checked"' : '';?>/>
-                <br/><?php __('Remove the link to the developers site from the WordPress meta-box.', JQUERYCOLORBOX_TEXTDOMAIN); ?>
-            </td>
-        </tr-->
+      <tr>
+        <th scope="row">
+          <label for="jquery-colorbox-removeLinkFromMetaBox"><?php _e('Remove link from Meta-box', JQUERYCOLORBOX_TEXTDOMAIN); ?>:</label>
+        </th>
+        <td>
+          <input type="checkbox" name="<?php echo JQUERYCOLORBOX_SETTINGSNAME ?>[removeLinkFromMetaBox]" id="jquery-colorbox-removeLinkFromMetaBox" value="true" <?php echo ($this->colorboxSettings['removeLinkFromMetaBox']) ? 'checked="checked"' : '';?>/>
+          <br/><?php _e('Remove the link to the developers site from the WordPress meta-box.', JQUERYCOLORBOX_TEXTDOMAIN); ?>
+        </td>
+      </tr>
       <!--tr>
             <th scope="row">
                 <label for="jquery-colorbox-debugMode"><?php __('Activate debug mode', JQUERYCOLORBOX_TEXTDOMAIN); ?>:</label>

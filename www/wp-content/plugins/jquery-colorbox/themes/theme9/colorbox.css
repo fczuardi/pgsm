@@ -29,18 +29,19 @@
     #cboxMiddleLeft{width:25px; background:url(images/border2.png) repeat-y 0 0;}
     #cboxMiddleRight{width:25px; background:url(images/border2.png) repeat-y -25px 0;}
     #cboxContent{background:#fff; overflow:hidden;}
+        .cboxIframe{background:#fff;}
         #cboxError{padding:50px; border:1px solid #ccc;}
         #cboxLoadedContent{margin-bottom:20px;}
         #cboxTitle{position:absolute; bottom:0; left:0; text-align:left; width:100%; color:#999;}
         #cboxCurrent{position:absolute; bottom:0; right:120px; color:#999;}
         #cboxSlideshow, #cboxPrevious, #cboxNext, #cboxClose{text-indent:-9999px; width:20px; height:20px; position:absolute; bottom:0; background:url(images/controls.png) 0 0 no-repeat;}
         #cboxPrevious{background-position:0 0; right:44px;}
-        #cboxPrevious.hover{background-position:0 -25px;}
+        #cboxPrevious:hover{background-position:0 -25px;}
         #cboxNext{background-position:-25px 0; right:22px;}
         #cboxLoadingOverlay{background:#FFF;}
         #cboxClose{background-position:-50px 0; right:0;}
-        #cboxNext.hover{background-position:-25px -25px;}
-        #cboxClose.hover{background-position:-50px -25px;}
+        #cboxNext:hover{background-position:-25px -25px;}
+        #cboxClose:hover{background-position:-50px -25px;}
         #cboxLoadingGraphic{background:url(images/loading.gif) no-repeat center center;}
         .cboxSlideshow_on #cboxPrevious, .cboxSlideshow_off #cboxPrevious{right:66px;}
         .cboxSlideshow_on #cboxSlideshow{background-position:-75px -25px; right:44px;}
@@ -49,8 +50,9 @@
         .cboxSlideshow_off #cboxSlideshow.hover{background-position:-75px -25px;}
 
 /*
-  The following fixes a problem where IE7+ replaces a PNG's alpha transparency with a black fill
-  when an alpha filter (opacity change) is set on the element or ancestor element.
+  The following fixes a problem where IE7 and IE8 replace a PNG's alpha transparency with a black fill
+  when an alpha filter (opacity change) is set on the element or ancestor element.  This style is not applied to or needed in IE9.
+  See: http://jacklmoore.com/notes/ie-transparency-problems/
 */
 .cboxIE #cboxTopLeft,
 .cboxIE #cboxTopCenter,
@@ -65,6 +67,7 @@
 
 /*
   The following provides PNG transparency support for IE6
+  Feel free to remove this and the /ie6/ directory if you have dropped IE6 support.
 */
 .cboxIE6 #cboxTopLeft{background:url(images/ie6/borderTopLeft.png);}
 .cboxIE6 #cboxTopCenter{background:url(images/ie6/borderTopCenter.png);}

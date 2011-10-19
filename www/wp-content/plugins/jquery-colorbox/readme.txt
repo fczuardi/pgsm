@@ -4,7 +4,7 @@ Donate link: http://www.techotronic.de/donate/
 Tags: jquery, colorbox, lightbox, images, pictures, photos, gallery, javascript, overlay, nextgen gallery, nextgen-gallery, image, picture, photo, media, slideshow, ngg, mu
 Requires at least: 2.8
 Tested up to: 3.2
-Stable tag: 4.1
+Stable tag: 4.2
 
 Adds Colorbox/Lightbox functionality to images, grouped by post or page. Works for WordPress and NextGEN galleries. Comes with different themes.
 
@@ -33,6 +33,7 @@ Localization
 * Belorussian (be_BY) <a href="http://www.pc.de/">Marcis G.</a>
 * Bosnian (bs_BA) by <a href="http://www.vjucon.com/">Vedran Jurincic</a>
 * Simplified Chinese (zh_CN) by <a href="http://tech.yiandya.com/">Lucas Ho</a>
+* Danish (da_DK) by Michael Bering Petersen
 * Dutch (nl_NL) by <a href="http://nl.linkedin.com/pub/richard-laak/b/b21/672">Richard van Laak</a>
 * English (en_EN) by <a href="http://www.techotronic.de/">Arne Franken</a>
 * Finnish (fi) by <a href="http://www.merisaari.com/">Lauri Merisaari</a>
@@ -50,11 +51,12 @@ Localization
 * Swedish (sv_SE) by <a href="http://www.theindiaexperience.se/">Christian</a>
 * Turkish (tr_TR) by <a href="http://www.serhatyolacan.com/">Serhat Yolaçan</a>
 * Ukrainian (uk) by <a href="http://www.politcult.com/">Yuri Kryzhanivskyi</a>
+* Vietnamese (vn_VN) by <a href="http://www.techfacts.net">Techfacts Computer Magazin</a>
 
 Is your native language missing? Translating the plugin is easy if you understand english and are fluent in another language. Just send me an email.
 
 Credits:
-Includes <a href="http://colorpowered.com/colorbox/">ColorBox</a> 1.3.17.1 jQuery plugin from Jack Moore.
+Includes <a href="http://colorpowered.com/colorbox/">ColorBox</a> 1.3.18 jQuery plugin from Jack Moore.
 The picture I used for the screenshots was designed by <a href="http://wallpapers.vintage.it/">Davide Vicariotto</a>
 
 == Installation ==
@@ -168,6 +170,15 @@ Feel free to open a thread at <a href="http://wordpress.org/tags/jquery-colorbox
 I'll include new FAQs in newer versions.
 
 == Changelog ==
+= 4.2 (2011-10-16) =
+* NEW: Danish translation by Michael Bering Petersen
+* NEW: Vietnamese translation by Techfacts Computer Magazin
+* NEW: added option to remove the link to the developers site from the WordPress meta-box.
+* BUGFIX: "Automate Colorbox for all other images" now again works as intended. (functionality broke in 4.1)
+* BUGFIX: fixes "Undefined index: colorboxAddClassToLinks" error
+* BUGFIX: got rid of PHP's XML-RPC methods, also plugin checks now before calling XML-related methods.
+* CHANGE: Updated Colorbox version to 1.3.18
+
 = 4.1 (2011-06-25) =
 * NEW: Plugin is compatible to WordPress 3.2
 * NEW: Polish translation by <a href="http://positionmaker.pl">Kornel Łysikowski</a>

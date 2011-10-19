@@ -21,7 +21,7 @@
  * global $debugger;
  * $debugger->dieWithVariable($variable);
  */
-class Debugger {
+class JQueryColorboxDebugger {
 
   /**
    * Calls wp_die with the given variable.
@@ -55,6 +55,8 @@ class Debugger {
   }
 
   // dieWithVariable()
+
+  //=====================================================================================================
 
   /**
    * Dumps the given variable into an HTML container

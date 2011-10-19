@@ -40,7 +40,7 @@ Por se tratar de um download grande é mantido separado e não faz partes dos su
 
 Lista parcial dos plugins de Wordpress usados neste site:
 
-* [iframe](http://wordpress.org/extend/plugins/iframe/) versão 1.4.0.
+* [iframe](http://wordpress.org/extend/plugins/iframe/) versão 1.7
   * [site do autor](http://web-profile.com.ua/wordpress/plugins/iframe/)
 * [qTranslate](http://wordpress.org/extend/plugins/qtranslate/) versão 2.5.24
   * [site do autor](http://www.qianqin.de/qtranslate/)
@@ -53,6 +53,8 @@ Lista parcial dos plugins de Wordpress usados neste site:
   * [site do autor](http://weston.ruter.net/)
 * [Shortcode Exec PHP](http://wordpress.org/extend/plugins/shortcode-exec-php/) versão 1.33
   * [site do autor](http://blog.bokhorst.biz/about/)
+* [jQuery Colorbox](http://wordpress.org/extend/plugins/jquery-colorbox/) versão 4.2
+  * [site do autor](http://www.techotronic.de/)
   
 # Fallback font (Francophil Sans)
 
