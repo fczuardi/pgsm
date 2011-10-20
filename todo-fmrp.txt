@@ -4,8 +4,8 @@ OK - modificar pages_content para usar o page_generator plugin
 OK - Retirar "introdução" de todos
     - arrumar o espaço das paginas que perderam o introducao
 OK - Ex-Orientadores (incluir o hifen)
+OK - Localização em portugues por default
 
-- Localização (maps em português - ou espanhol, ou inglês)
 - Objetivo (reescrever)
 - Histórico (cadastrar)
 - Informações Gerais (dentro do ingresso) - 13 items (abre e fecha)
@@ -18,3 +18,4 @@ OK - Ex-Orientadores (incluir o hifen)
 - Ajustar nomenclatura: Mestrado - Thiago Bourduqui Ferrari (dissertações = mestrado e teses = doutorado)
 - Cadastrar quase tudo
 
+- future: maps em português - ou espanhol, ou inglês dependendo da lingua
