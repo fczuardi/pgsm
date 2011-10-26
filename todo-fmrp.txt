@@ -8,17 +8,15 @@ OK - Histórico (cadastrar)
 OK - Objetivo (reescrever)
 OK - outros ajustes de texto presentes no "correções site 5-10-11.doc"
 OK - arrumar o espaço das paginas que perderam o introducao
+OK - Linhas de pesquisa: "mais destaque", azul, caixa alta?
+OK - Aumentar Contraste Header
+OK - Infra-estrutura (repetir umas fotos)
+OK - Informações Gerais (dentro do ingresso) - 13 items (abre e fecha)
 
-
-- Informações do Prof Mario Francisco Juruena
-- Informações Gerais (dentro do ingresso) - 13 items (abre e fecha)
-- Infra-estrutura (repetir umas fotos)
-- Aumentar Contraste Header
-- Linhas de pesquisa: "mais destaque", azul, caixa alta?
 - Alunos: Tirar Biografia e Endereço Profissional - Trocar ordem email depois do orientador
 - Ajustar nomenclatura: Mestrado - Thiago Bourduqui Ferrari (dissertações = mestrado e teses = doutorado)
-
 - Cadastrar quase tudo
+- Informações do Prof Mario Francisco Juruena
 
 
 -----------------
