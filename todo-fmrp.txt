@@ -7,17 +7,19 @@ OK - Localização em portugues por default
 OK - Histórico (cadastrar)
 OK - Objetivo (reescrever)
 OK - outros ajustes de texto presentes no "correções site 5-10-11.doc"
+OK - arrumar o espaço das paginas que perderam o introducao
 
-- arrumar o espaço das paginas que perderam o introducao
 
+- Informações do Prof Mario Francisco Juruena
 - Informações Gerais (dentro do ingresso) - 13 items (abre e fecha)
 - Infra-estrutura (repetir umas fotos)
-
 - Aumentar Contraste Header
 - Linhas de pesquisa: "mais destaque", azul, caixa alta?
-
 - Alunos: Tirar Biografia e Endereço Profissional - Trocar ordem email depois do orientador
 - Ajustar nomenclatura: Mestrado - Thiago Bourduqui Ferrari (dissertações = mestrado e teses = doutorado)
+
 - Cadastrar quase tudo
 
+
+-----------------
 - future: maps em português - ou espanhol, ou inglês dependendo da lingua
