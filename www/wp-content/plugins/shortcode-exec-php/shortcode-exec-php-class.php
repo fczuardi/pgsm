@@ -59,8 +59,21 @@ define('c_scep_action_delete', 'delete');
 define('c_scep_action_new', 'new');
 define('c_scep_action_revert', 'revert');
 define('c_scep_action_tinymce', 'tinymce');
+define('c_scep_action_export', 'export');
 
 define('c_scep_nonce_ajax', 'scep-nonce-ajax');
+
+// Extend SimpleXMLElement with CData
+// http://coffeerings.posterous.com/php-simplexml-and-cdata
+if (class_exists('SimpleXMLElement')) {
+	class SimpleXMLExtended extends SimpleXMLElement {
+		public function addCData($cdata_text) {
+			$node = dom_import_simplexml($this);
+			$n = $node->ownerDocument;
+			$node->appendChild($n->createCDATASection($cdata_text));
+		}
+	}
+}
 
 // Define class
 if (!class_exists('WPShortcodeExecPHP')) {
@@ -70,6 +83,7 @@ if (!class_exists('WPShortcodeExecPHP')) {
 		var $plugin_url = null;
 		var $default_backtrack_limit = null;
 		var $default_recursion_limit = null;
+		var $imported = 0;
 
 		// Constructor
 		function WPShortcodeExecPHP() {
@@ -254,6 +268,10 @@ if (!class_exists('WPShortcodeExecPHP')) {
 
 		// Admin head
 		function Admin_head() {
+			// Import shortcodes
+			if (isset($_REQUEST['scep_action']) && $_REQUEST['scep_action'] == 'import')
+				$this->imported = $this->Import();
+
 			// Initialize EditArea
 			$name = WPShortcodeExecPHP::Get_option(c_scep_option_names);
 			$display = WPShortcodeExecPHP::Get_option(c_scep_option_editarea_later) ? 'later' : 'onload';
@@ -272,7 +290,7 @@ if (!class_exists('WPShortcodeExecPHP')) {
 		function Admin_menu() {
 			if (WPShortcodeExecPHP::Is_multisite()) {
 				if (function_exists('add_submenu_page'))
-					$plugin_page = add_submenu_page(
+					$tools_page = add_submenu_page(
 						'wpmu-admin.php',
 						__('Shortcode Exec PHP Administration', c_scep_text_domain),
 						__('Shortcode Exec PHP', c_scep_text_domain),
@@ -281,14 +299,6 @@ if (!class_exists('WPShortcodeExecPHP')) {
 						array(&$this, 'Administration'));
 			}
 			else {
-				if (function_exists('add_options_page'))
-					$plugin_page = add_options_page(
-						__('Shortcode Exec PHP Administration', c_scep_text_domain),
-						__('Shortcode Exec PHP', c_scep_text_domain),
-						'manage_options',
-						$this->main_file,
-						array(&$this, 'Administration'));
-
 				if (function_exists('add_submenu_page'))
 					$tools_page = add_submenu_page(
 						'tools.php',
@@ -300,8 +310,6 @@ if (!class_exists('WPShortcodeExecPHP')) {
 			}
 
 			// Hook admin head for option page
-			if (!empty($plugin_page))
-				add_action('admin_head-' . $plugin_page, array(&$this, 'Admin_head'));
 			if (!empty($tools_page))
 				add_action('admin_head-' . $tools_page, array(&$this, 'Admin_head'));
 		}
@@ -332,65 +340,69 @@ if (!class_exists('WPShortcodeExecPHP')) {
 				// Check security
 				check_admin_referer(c_scep_nonce_form);
 
-				if (empty($_POST[c_scep_option_global]))
-					$_POST[c_scep_option_global] = null;
-				if (empty($_POST[c_scep_option_widget]))
-					$_POST[c_scep_option_widget] = null;
-				if (empty($_POST[c_scep_option_excerpt]))
-					$_POST[c_scep_option_excerpt] = null;
-				if (empty($_POST[c_scep_option_comment]))
-					$_POST[c_scep_option_comment] = null;
-				if (empty($_POST[c_scep_option_rss]))
-					$_POST[c_scep_option_rss] = null;
-				if (empty($_POST[c_scep_option_noent]))
-					$_POST[c_scep_option_noent] = null;
-				if (empty($_POST[c_scep_option_editarea_later]))
-					$_POST[c_scep_option_editarea_later] = null;
-				if (empty($_POST[c_scep_option_tinymce]))
-					$_POST[c_scep_option_tinymce] = null;
-				if (empty($_POST[c_scep_option_cleanup]))
-					$_POST[c_scep_option_cleanup] = null;
-				if (empty($_POST[c_scep_option_donated]))
-					$_POST[c_scep_option_donated] = null;
-				if (empty($_POST[c_scep_option_nospsn]))
-					$_POST[c_scep_option_nospsn] = null;
+				if (isset($_REQUEST['scep_action']) && $_REQUEST['scep_action'] == 'import')
+					echo '<div id="message" class="updated fade"><p><strong>' .  __('Shortcodes imported:', c_scep_text_domain) . ' ' . $this->imported . '</strong></p></div>';
+				else {
+					if (empty($_POST[c_scep_option_global]))
+						$_POST[c_scep_option_global] = null;
+					if (empty($_POST[c_scep_option_widget]))
+						$_POST[c_scep_option_widget] = null;
+					if (empty($_POST[c_scep_option_excerpt]))
+						$_POST[c_scep_option_excerpt] = null;
+					if (empty($_POST[c_scep_option_comment]))
+						$_POST[c_scep_option_comment] = null;
+					if (empty($_POST[c_scep_option_rss]))
+						$_POST[c_scep_option_rss] = null;
+					if (empty($_POST[c_scep_option_noent]))
+						$_POST[c_scep_option_noent] = null;
+					if (empty($_POST[c_scep_option_editarea_later]))
+						$_POST[c_scep_option_editarea_later] = null;
+					if (empty($_POST[c_scep_option_tinymce]))
+						$_POST[c_scep_option_tinymce] = null;
+					if (empty($_POST[c_scep_option_cleanup]))
+						$_POST[c_scep_option_cleanup] = null;
+					if (empty($_POST[c_scep_option_donated]))
+						$_POST[c_scep_option_donated] = null;
+					if (empty($_POST[c_scep_option_nospsn]))
+						$_POST[c_scep_option_nospsn] = null;
 
-				// Update settings
-				if (WPShortcodeExecPHP::Is_multisite() && function_exists('update_site_option'))
-					update_site_option(c_scep_option_global, $_POST[c_scep_option_global]);
-				WPShortcodeExecPHP::Update_option(c_scep_option_widget, $_POST[c_scep_option_widget]);
-				WPShortcodeExecPHP::Update_option(c_scep_option_excerpt, $_POST[c_scep_option_excerpt]);
-				WPShortcodeExecPHP::Update_option(c_scep_option_comment, $_POST[c_scep_option_comment]);
-				WPShortcodeExecPHP::Update_option(c_scep_option_rss, $_POST[c_scep_option_rss]);
-				WPShortcodeExecPHP::Update_option(c_scep_option_noent, $_POST[c_scep_option_noent]);
-				WPShortcodeExecPHP::Update_option(c_scep_option_codewidth, trim($_POST[c_scep_option_codewidth]));
-				WPShortcodeExecPHP::Update_option(c_scep_option_codeheight, trim($_POST[c_scep_option_codeheight]));
-				WPShortcodeExecPHP::Update_option(c_scep_option_editarea_later, $_POST[c_scep_option_editarea_later]);
-				WPShortcodeExecPHP::Update_option(c_scep_option_backtrack_limit, trim($_POST[c_scep_option_backtrack_limit]));
-				WPShortcodeExecPHP::Update_option(c_scep_option_recursion_limit, trim($_POST[c_scep_option_recursion_limit]));
-				WPShortcodeExecPHP::Update_option(c_scep_option_tinymce, $_POST[c_scep_option_tinymce]);
-				WPShortcodeExecPHP::Update_option(c_scep_option_tinymce_cap, $_POST[c_scep_option_tinymce_cap]);
-				WPShortcodeExecPHP::Update_option(c_scep_option_author_cap, $_POST[c_scep_option_author_cap]);
-				WPShortcodeExecPHP::Update_option(c_scep_option_cleanup, $_POST[c_scep_option_cleanup]);
-				WPShortcodeExecPHP::Update_option(c_scep_option_donated, $_POST[c_scep_option_donated]);
-				WPShortcodeExecPHP::Update_option(c_scep_option_nospsn, $_POST[c_scep_option_nospsn]);
+					// Update settings
+					if (WPShortcodeExecPHP::Is_multisite() && function_exists('update_site_option'))
+						update_site_option(c_scep_option_global, $_POST[c_scep_option_global]);
+					WPShortcodeExecPHP::Update_option(c_scep_option_widget, $_POST[c_scep_option_widget]);
+					WPShortcodeExecPHP::Update_option(c_scep_option_excerpt, $_POST[c_scep_option_excerpt]);
+					WPShortcodeExecPHP::Update_option(c_scep_option_comment, $_POST[c_scep_option_comment]);
+					WPShortcodeExecPHP::Update_option(c_scep_option_rss, $_POST[c_scep_option_rss]);
+					WPShortcodeExecPHP::Update_option(c_scep_option_noent, $_POST[c_scep_option_noent]);
+					WPShortcodeExecPHP::Update_option(c_scep_option_codewidth, trim($_POST[c_scep_option_codewidth]));
+					WPShortcodeExecPHP::Update_option(c_scep_option_codeheight, trim($_POST[c_scep_option_codeheight]));
+					WPShortcodeExecPHP::Update_option(c_scep_option_editarea_later, $_POST[c_scep_option_editarea_later]);
+					WPShortcodeExecPHP::Update_option(c_scep_option_backtrack_limit, trim($_POST[c_scep_option_backtrack_limit]));
+					WPShortcodeExecPHP::Update_option(c_scep_option_recursion_limit, trim($_POST[c_scep_option_recursion_limit]));
+					WPShortcodeExecPHP::Update_option(c_scep_option_tinymce, $_POST[c_scep_option_tinymce]);
+					WPShortcodeExecPHP::Update_option(c_scep_option_tinymce_cap, $_POST[c_scep_option_tinymce_cap]);
+					WPShortcodeExecPHP::Update_option(c_scep_option_author_cap, $_POST[c_scep_option_author_cap]);
+					WPShortcodeExecPHP::Update_option(c_scep_option_cleanup, $_POST[c_scep_option_cleanup]);
+					WPShortcodeExecPHP::Update_option(c_scep_option_donated, $_POST[c_scep_option_donated]);
+					WPShortcodeExecPHP::Update_option(c_scep_option_nospsn, $_POST[c_scep_option_nospsn]);
 
-				$this->Configure_prce();
+					$this->Configure_prce();
 
-				// Copy options to site wide
-				if ($_POST[c_scep_option_global] && WPShortcodeExecPHP::Is_multisite() && function_exists('update_site_option')) {
-					$name = get_option(c_scep_option_names);
-					update_site_option(c_scep_option_names, $name);
-					for ($i = 0; $i < count($name); $i++) {
-						update_site_option(c_scep_option_enabled . $name[$i], get_option(c_scep_option_enabled . $name[$i]));
-						update_site_option(c_scep_option_buffer . $name[$i], get_option(c_scep_option_buffer . $name[$i]));
-						update_site_option(c_scep_option_description . $name[$i], get_option(c_scep_option_description . $name[$i]));
-						update_site_option(c_scep_option_param . $name[$i], get_option(c_scep_option_param . $name[$i]));
-						update_site_option(c_scep_option_phpcode . $name[$i], get_option(c_scep_option_phpcode . $name[$i]));
+					// Copy options to site wide
+					if ($_POST[c_scep_option_global] && WPShortcodeExecPHP::Is_multisite() && function_exists('update_site_option')) {
+						$name = get_option(c_scep_option_names);
+						update_site_option(c_scep_option_names, $name);
+						for ($i = 0; $i < count($name); $i++) {
+							update_site_option(c_scep_option_enabled . $name[$i], get_option(c_scep_option_enabled . $name[$i]));
+							update_site_option(c_scep_option_buffer . $name[$i], get_option(c_scep_option_buffer . $name[$i]));
+							update_site_option(c_scep_option_description . $name[$i], get_option(c_scep_option_description . $name[$i]));
+							update_site_option(c_scep_option_param . $name[$i], get_option(c_scep_option_param . $name[$i]));
+							update_site_option(c_scep_option_phpcode . $name[$i], get_option(c_scep_option_phpcode . $name[$i]));
+						}
 					}
-				}
 
-				echo '<div id="message" class="updated fade"><p><strong>' . __('Settings updated', c_scep_text_domain) . '</strong></p></div>';
+					echo '<div id="message" class="updated fade"><p><strong>' . __('Settings updated', c_scep_text_domain) . '</strong></p></div>';
+				}
 			}
 
 			// Sustainable Plugins Sponsorship Network
@@ -597,11 +609,49 @@ if (!class_exists('WPShortcodeExecPHP')) {
 			</table>
 
 			<p class="submit">
-			<input type="submit" class="button-primary" value="<?php _e('Save Changes', c_scep_text_domain) ?>" />
+				<input type="submit" class="button-primary" value="<?php _e('Save Changes', c_scep_text_domain); ?>" />
 			</p>
 
 			</form>
 
+			<h3><?php _e('Import/export', c_scep_text_domain); ?></h3>
+<?php
+			if (class_exists('SimpleXMLElement')) {
+?>
+				<table>
+				<tr><td>
+					<p>
+						<a href="<?php echo admin_url('admin-ajax.php') . '?action=scep_ajax&' . c_scep_param_nonce . '=' . $nonce . '&' . c_scep_action_arg . '=' . c_scep_action_export; ?>">
+							<?php _e('Export', c_scep_text_domain); ?>
+						</a>
+						<br />
+						<?php _e('Try right click if it doesn\'t work', c_scep_text_domain); ?>
+					</p>
+					<br />
+				</td></tr>
+				<tr><td>
+					<form enctype="multipart/form-data" method="post" action="">
+					<?php wp_nonce_field(c_scep_nonce_form); ?>
+					<input type="hidden" name="scep_action" value="import">
+					<input type="file" name="scep_file">
+					<br />
+					<?php _e('Existing shortcodes with the same name will be overwritten!', c_scep_text_domain); ?>
+					<br />
+					<p class="submit">
+						<input type="submit" class="button-primary" value="<?php _e('Import', c_scep_text_domain); ?>" />
+					</p>
+					</form>
+				</td></tr>
+				</table>
+<?php
+		}
+		else {
+?>
+			<p><?php _e('Only available if SimpleXML available', c_scep_text_domain); ?></p>
+			<br />
+<?php
+		}
+?>
 			<h3><?php _e('Shortcodes', c_scep_text_domain); ?></h3>
 <?php
 			// Render shortcode definitions
@@ -716,13 +766,17 @@ if (!class_exists('WPShortcodeExecPHP')) {
 					description = $('[name=<?php echo c_scep_form_description; ?>' + this.form.id + ']').val();
 					enabled = $('[name=<?php echo c_scep_form_enabled; ?>' + this.form.id + ']').attr('checked');
 					buffer = $('[name=<?php echo c_scep_form_buffer; ?>' + this.form.id + ']').attr('checked');
+					if (enabled == 'checked')
+						enabled = $('[name=<?php echo c_scep_form_enabled; ?>' + this.form.id + ']').prop('checked');
+					if (buffer == 'checked')
+						buffer = $('[name=<?php echo c_scep_form_buffer; ?>' + this.form.id + ']').prop('checked');
 					phpcode = editAreaLoader.getValue(editid);
 					msg = $('[name=scep_message]', this.form);
 					wait = $('[name=scep_wait]', this.form);
 					input = $('input,textarea', this.form);
 
 					if (action == '<?php echo c_scep_action_delete; ?>')
-						if (!confirm('<?php _e('Are you sure to delete', c_scep_text_domain) ?> [' + orgname + ']?'))
+						if (!confirm('<?php _e('Are you sure to delete', c_scep_text_domain); ?> [' + orgname + ']?'))
 							return false;
 
 					input.attr('disabled', 'true');
@@ -791,9 +845,9 @@ if (!class_exists('WPShortcodeExecPHP')) {
 			<form method="post" action="" name="<?php echo $name; ?>" id="<?php echo $i; ?>">
 			<table>
 			<tr><td>[<input class="scep_shortcode_name" name="<?php echo c_scep_form_shortcode . $i; ?>" type="text" value="<?php echo $name; ?>">]
-			<span><?php _e('Enabled', c_scep_text_domain) ?></span>
+			<span><?php _e('Enabled', c_scep_text_domain); ?></span>
 			<input name="<?php echo c_scep_form_enabled . $i; ?>" type="checkbox" <?php if ($enabled) echo 'checked="checked"'; ?>>
-			<span><?php _e('Output echoed', c_scep_text_domain) ?></span>
+			<span><?php _e('Output echoed', c_scep_text_domain); ?></span>
 			<input name="<?php echo c_scep_form_buffer . $i; ?>" type="checkbox" <?php if ($buffer) echo 'checked="checked"'; ?>></td></tr>
 			<tr><td><?php _e('Optional description:', c_scep_text_domain); ?><input class="scep_shortcode_description" name="<?php echo c_scep_form_description . $i; ?>" type="text" value="<?php echo $description ?>"></td></tr>
 <?php
@@ -810,10 +864,10 @@ if (!class_exists('WPShortcodeExecPHP')) {
 			<tr><td align="right">
 			<span name="scep_message" class="scep_message"></span>
 			<img src="<?php echo $this->plugin_url  . '/img/ajax-loader.gif'; ?>" alt="wait" name="scep_wait" style="display: none;" />
-			<input type="button" class="button-primary scep-update" name="<?php echo c_scep_action_save; ?>" value="<?php _e('Save', c_scep_text_domain) ?>" />
-			<input type="button" class="button-primary scep-update" name="<?php echo c_scep_action_test; ?>" value="<?php _e('Test', c_scep_text_domain) ?>" />
-			<input type="button" class="button-primary scep-update" name="<?php echo c_scep_action_revert; ?>" value="<?php _e('Revert', c_scep_text_domain) ?>" />
-			<input type="button" class="button-primary scep-update" name="<?php echo c_scep_action_delete; ?>" value="<?php _e('Delete', c_scep_text_domain) ?>" />
+			<input type="button" class="button-primary scep-update" name="<?php echo c_scep_action_save; ?>" value="<?php _e('Save', c_scep_text_domain); ?>" />
+			<input type="button" class="button-primary scep-update" name="<?php echo c_scep_action_test; ?>" value="<?php _e('Test', c_scep_text_domain); ?>" />
+			<input type="button" class="button-primary scep-update" name="<?php echo c_scep_action_revert; ?>" value="<?php _e('Revert', c_scep_text_domain); ?>" />
+			<input type="button" class="button-primary scep-update" name="<?php echo c_scep_action_delete; ?>" value="<?php _e('Delete', c_scep_text_domain); ?>" />
 			</td></tr>
 			</table>
 			</form>
@@ -907,6 +961,8 @@ if (!class_exists('WPShortcodeExecPHP')) {
 		// Handle ajax calls
 		function Check_ajax() {
 			if (isset($_REQUEST[c_scep_action_arg])) {
+
+				// Handle TinyMCE
 				if ($_REQUEST[c_scep_action_arg] == c_scep_action_tinymce) {
 					$this->TinyMCE_handle();
 					exit();
@@ -916,6 +972,12 @@ if (!class_exists('WPShortcodeExecPHP')) {
 				$nonce = $_REQUEST[c_scep_param_nonce];
 				if (!wp_verify_nonce($nonce, c_scep_nonce_ajax))
 					die('Unauthorized');
+
+				// Handle export
+				if ($_REQUEST[c_scep_action_arg] == c_scep_action_export) {
+					$this->Export();
+					exit();
+				}
 
 				// Send header
 				header('Content-Type: text/html; charset=' . get_option('blog_charset'));
@@ -936,16 +998,12 @@ if (!class_exists('WPShortcodeExecPHP')) {
 					$_REQUEST[c_scep_param_enabled] = false;
 				else if ($_REQUEST[c_scep_param_enabled] == 'true')
 					$_REQUEST[c_scep_param_enabled] = true;
-				else if ($_REQUEST[c_scep_param_enabled] == 'checked')
-					$_REQUEST[c_scep_param_enabled] = true;
 				else
 					$_REQUEST[c_scep_param_enabled] = false;
 
 				if (empty($_REQUEST[c_scep_param_buffer]))
 					$_REQUEST[c_scep_param_buffer] = false;
 				else if ($_REQUEST[c_scep_param_buffer] == 'true')
-					$_REQUEST[c_scep_param_buffer] = true;
-				else if ($_REQUEST[c_scep_param_buffer] == 'checked')
 					$_REQUEST[c_scep_param_buffer] = true;
 				else
 					$_REQUEST[c_scep_param_buffer] = false;
@@ -1016,7 +1074,7 @@ if (!class_exists('WPShortcodeExecPHP')) {
 					$names = WPShortcodeExecPHP::Get_option(c_scep_option_names);
 					for ($i = 0; $i < count($names); $i++)
 						if ($names[$i] == $name) {
-							remove_shortcode($name[$i]);
+							remove_shortcode($name);
 							array_splice($names, $i, 1);
 							break;
 						}
@@ -1064,6 +1122,78 @@ if (!class_exists('WPShortcodeExecPHP')) {
 				exit();
 			}
 		}
+
+		// Export shortcodes
+		function Export() {
+			// Create root element
+			$root = new SimpleXMLExtended('<shortcode-exec-php></shortcode-exec-php>');
+
+			// Add each shortcode
+			$name = WPShortcodeExecPHP::Get_option(c_scep_option_names);
+			for ($i = 0; $i < count($name); $i++) {
+				// Get attributes
+				$enabled = WPShortcodeExecPHP::Get_option(c_scep_option_enabled . $name[$i]);
+				$buffer = WPShortcodeExecPHP::Get_option(c_scep_option_buffer . $name[$i]);
+				$description = WPShortcodeExecPHP::Get_option(c_scep_option_description . $name[$i]);
+				$code = WPShortcodeExecPHP::Get_option(c_scep_option_phpcode . $name[$i]);
+
+				// Create element for shortcode
+				$element = $root->addChild('shortcode');
+				$element->addAttribute('name', $name[$i]);
+				$element->addAttribute('enabled', $enabled ? 'true' : 'false');
+				$element->addAttribute('buffer', $buffer ? 'true' : 'false');
+				$element->addAttribute('description', $description);
+				$element->addCData($code);
+			}
+
+			// Output
+			header('Content-type: text/xml');
+			header('Content-Disposition: attachment; filename="shortcode-exec-php.xml"');
+			echo $root->asXML();
+		}
+
+		// Import shortcodes
+		function Import() {
+			// Security check
+			check_admin_referer(c_scep_nonce_form);
+
+			// Check upload
+			$count = 0;
+			if (!empty($_FILES) && !empty($_FILES['scep_file']) && $_FILES['scep_file']['error'] == UPLOAD_ERR_OK) {
+				// Decode file
+				$xml = simplexml_load_file($_FILES['scep_file']['tmp_name'], NULL, LIBXML_NOCDATA);
+
+				// Get names
+				$names = WPShortcodeExecPHP::Get_option(c_scep_option_names);
+
+				// Traverse shortcodes
+				foreach ($xml->shortcode as $shortcode) {
+					// Get attributes
+					$attr = $shortcode->attributes();
+					$name = (string)$attr['name'];
+
+					// Delete existing shortcode name
+					for ($i = 0; $i < count($names); $i++)
+						if ($names[$i] == $name) {
+							array_splice($names, $i, 1);
+							break;
+						}
+
+					// Add/update shortcode
+					$names[] = $name;
+					WPShortcodeExecPHP::Update_option(c_scep_option_enabled . $name, $attr['enabled'] == 'true' ? true : false);
+					WPShortcodeExecPHP::Update_option(c_scep_option_buffer . $name, $attr['buffer'] == 'true' ? true : false);
+					WPShortcodeExecPHP::Update_option(c_scep_option_description . $name, (string)$attr['description']);
+					WPShortcodeExecPHP::Update_option(c_scep_option_phpcode . $name, (string)$shortcode);
+
+					$count++;
+				}
+
+				// Update names
+				WPShortcodeExecPHP::Update_option(c_scep_option_names, $names);
+			}
+			return $count;
+  		}
 
 		// TinyMCE integration
 

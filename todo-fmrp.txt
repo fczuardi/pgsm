@@ -1,5 +1,5 @@
 OK - aumentar o limite de professores credenciados e ex para nao ter paginacao
-
+- pubmed link para todos os credenciados
 
 
 

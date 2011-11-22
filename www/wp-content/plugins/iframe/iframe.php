@@ -3,7 +3,7 @@
 Plugin Name: Iframe
 Plugin URI: http://web-profile.com.ua/wordpress/plugins/iframe/
 Description: Plugin shows iframe with [iframe src="http://player.vimeo.com/video/3261363" width="100%" height="480"] shortcode.
-Version: 1.7
+Version: 1.8
 Author: webvitaly
 Author Email: webvitaly(at)gmail.com
 Author URI: http://web-profile.com.ua/wordpress/
@@ -28,6 +28,7 @@ if ( !function_exists( 'iframe_embed_shortcode' ) ) :
 			'allowtransparency' => 'true',
 			'id' => '',
 			'class' => 'iframe-class',
+			'style' => '',
 			'same_height_as' => ''
 		), $atts));
 		$src_cut = substr($src, 0, 35);
@@ -70,8 +71,13 @@ if ( !function_exists( 'iframe_embed_shortcode' ) ) :
 		}else{
 			$id_text = '';
 		}
+		if( $style != '' ){
+			$style_text = 'style="'.$style.'" ';
+		}else{
+			$style_text = '';
+		}
 		$return .= "\n".'<!-- powered by Iframe plugin ver. 1.7 (wordpress.org/extend/plugins/iframe/) -->'."\n";
-		$return .= '<iframe '.$id_text.'class="'.$class.'" width="'.$width.'" height="'.$height.'" src="'.$src.$google_map_fix.'" frameborder="'.$frameborder.'" scrolling="'.$scrolling.'" marginheight="'.$marginheight.'" marginwidth="'.$marginwidth.'" allowtransparency="'.$allowtransparency.'"></iframe>';
+		$return .= '<iframe '.$id_text.'class="'.$class.'" '.$style_text.'width="'.$width.'" height="'.$height.'" src="'.$src.$google_map_fix.'" frameborder="'.$frameborder.'" scrolling="'.$scrolling.'" marginheight="'.$marginheight.'" marginwidth="'.$marginwidth.'" allowtransparency="'.$allowtransparency.'"></iframe>';
 		// &amp;output=embed
 		return $return;
 	}
