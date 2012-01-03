@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Iframe
+Plugin Name: iframe
 Plugin URI: http://web-profile.com.ua/wordpress/plugins/iframe/
 Description: Plugin shows iframe with [iframe src="http://player.vimeo.com/video/3261363" width="100%" height="480"] shortcode.
-Version: 1.8
+Version: 2.1
 Author: webvitaly
 Author Email: webvitaly(at)gmail.com
 Author URI: http://web-profile.com.ua/wordpress/
@@ -17,47 +17,48 @@ if ( !function_exists( 'iframe_embed_shortcode' ) ) :
 	add_action('wp_enqueue_scripts', 'iframe_enqueue_script');
 				
 	function iframe_embed_shortcode($atts, $content = null) {
-		extract(shortcode_atts(array(
+		$defaults = array(
 			'width' => '100%',
 			'height' => '480',
-			'src' => '',
-			'frameborder' => '0',
 			'scrolling' => 'no',
-			'marginheight' => '0',
-			'marginwidth' => '0',
-			'allowtransparency' => 'true',
-			'id' => '',
 			'class' => 'iframe-class',
-			'style' => '',
-			'same_height_as' => ''
-		), $atts));
-		$src_cut = substr($src, 0, 35);
-		if(strpos($src_cut, 'maps.google' )){
-			$google_map_fix = '&output=embed';
-		}else{
-			$google_map_fix = '';
+			'frameborder' => '0'
+		);
+		// add defaults
+		foreach ($defaults as $default => $value) {
+			if (!array_key_exists($default, $atts)) {
+				$atts[$default] = $value;
+			}
 		}
-		$return = '';
+		// special case maps
+		$src_cut = substr($atts["src"], 0, 35);
+		if(strpos($src_cut, 'maps.google' )){
+			$atts["src"] .= '&output=embed';
+		}
+		$html = '';
+		$same_height_as = $atts["same_height_as"];
 		if( $same_height_as != '' ){
+			$atts["same_height_as"] = '';
 			if( $same_height_as != 'content' ){ // we are setting the height of the iframe like as target element
 				if( $same_height_as == 'document' || $same_height_as == 'window' ){ // remove quotes for window or document selectors
 					$target_selector = $same_height_as;
 				}else{
-					$target_selector = '"'.$same_height_as.'"';
+					$target_selector = '"' . $same_height_as . '"';
 				}
-				$return .= '
+				$html .= '
 					<script>
 					jQuery(document).ready(function($) {
-						var target_height = $('.$target_selector.').height();
-						$("iframe.'.$class.'").height(target_height);
+						var target_height = $(' . $target_selector . ').height();
+						$("iframe.' . $atts["class"] . '").height(target_height);
+						//alert(target_height);
 					});
 					</script>
 				';
 			}else{ // set the actual height of the iframe (show all content of the iframe without scroll)
-				$return .= '
+				$html .= '
 					<script>
 					jQuery(document).ready(function($) {
-						$("iframe.'.$class.'").bind("load", function() {
+						$("iframe.' . $atts["class"] . '").bind("load", function() {
 							var embed_height = $(this).contents().find("body").height();
 							$(this).height(embed_height);
 						});
@@ -66,20 +67,19 @@ if ( !function_exists( 'iframe_embed_shortcode' ) ) :
 				';
 			}
 		}
-		if( $id != '' ){
-			$id_text = 'id="'.$id.'" ';
-		}else{
-			$id_text = '';
+        $html .= "\n".'<!-- powered by Iframe plugin ver.2.1 (wordpress.org/extend/plugins/iframe/) -->'."\n";
+		$html .= '<iframe';
+        foreach ($atts as $attr => $value) {
+			if( $attr != 'same_height_as' ){ // remove some attributes
+				if( $value != '' ) { // adding all attributes
+					$html .= ' ' . $attr . '="' . $value . '"';
+				} else { // adding empty attributes
+					$html .= ' ' . $attr;
+				}
+			}
 		}
-		if( $style != '' ){
-			$style_text = 'style="'.$style.'" ';
-		}else{
-			$style_text = '';
-		}
-		$return .= "\n".'<!-- powered by Iframe plugin ver. 1.7 (wordpress.org/extend/plugins/iframe/) -->'."\n";
-		$return .= '<iframe '.$id_text.'class="'.$class.'" '.$style_text.'width="'.$width.'" height="'.$height.'" src="'.$src.$google_map_fix.'" frameborder="'.$frameborder.'" scrolling="'.$scrolling.'" marginheight="'.$marginheight.'" marginwidth="'.$marginwidth.'" allowtransparency="'.$allowtransparency.'"></iframe>';
-		// &amp;output=embed
-		return $return;
+		$html .= '></iframe>';
+		return $html;
 	}
 	add_shortcode('iframe', 'iframe_embed_shortcode');
 	

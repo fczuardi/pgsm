@@ -15,9 +15,9 @@ define('c_scep_option_excerpt', 'scep_excerpt');
 define('c_scep_option_comment', 'scep_comment');
 define('c_scep_option_rss', 'scep_rss');
 define('c_scep_option_noent', 'scep_noent');
+define('c_scep_option_noautop', 'scep_noautop');
 define('c_scep_option_cleanup', 'scep_cleanup');
 define('c_scep_option_donated', 'scep_donated');
-define('c_scep_option_nospsn', 'scep_nospsn');
 define('c_scep_option_codewidth', 'scep_codewidth');
 define('c_scep_option_codeheight', 'scep_codeheight');
 define('c_scep_option_backtrack_limit', 'scep_backtrack_limit');
@@ -67,7 +67,7 @@ define('c_scep_nonce_ajax', 'scep-nonce-ajax');
 // http://coffeerings.posterous.com/php-simplexml-and-cdata
 if (class_exists('SimpleXMLElement')) {
 	class SimpleXMLExtended extends SimpleXMLElement {
-		public function addCData($cdata_text) {
+		function addCData($cdata_text) {
 			$node = dom_import_simplexml($this);
 			$n = $node->ownerDocument;
 			$node->appendChild($n->createCDATASection($cdata_text));
@@ -137,6 +137,12 @@ if (!class_exists('WPShortcodeExecPHP')) {
 					add_filter('the_excerpt_rss', 'do_shortcode');
 				if (WPShortcodeExecPHP::Get_option(c_scep_option_comment))
 					add_filter('comment_text_rss', 'do_shortcode');
+			}
+
+			// wpautop handling
+			if (WPShortcodeExecPHP::Get_option(c_scep_option_noautop)) {
+				add_filter('the_content', array(&$this, 'noautop'), 1);
+				add_filter('the_excerpt', array(&$this, 'noautop'), 1);
 			}
 
 			// Wire shortcode handlers
@@ -245,6 +251,7 @@ if (!class_exists('WPShortcodeExecPHP')) {
 				WPShortcodeExecPHP::Delete_option(c_scep_option_comment);
 				WPShortcodeExecPHP::Delete_option(c_scep_option_rss);
 				WPShortcodeExecPHP::Delete_option(c_scep_option_noent);
+				WPShortcodeExecPHP::Delete_option(c_scep_option_noautop);
 				WPShortcodeExecPHP::Delete_option(c_scep_option_codewidth);
 				WPShortcodeExecPHP::Delete_option(c_scep_option_codeheight);
 				WPShortcodeExecPHP::Delete_option(c_scep_option_editarea_later);
@@ -252,7 +259,6 @@ if (!class_exists('WPShortcodeExecPHP')) {
 				WPShortcodeExecPHP::Delete_option(c_scep_option_recursion_limit);
 				WPShortcodeExecPHP::Delete_option(c_scep_option_cleanup);
 				WPShortcodeExecPHP::Delete_option(c_scep_option_donated);
-				WPShortcodeExecPHP::Delete_option(c_scep_option_nospsn);
 
 				$name = WPShortcodeExecPHP::Get_option(c_scep_option_names);
 				for ($i = 0; $i < count($name); $i++) {
@@ -355,6 +361,8 @@ if (!class_exists('WPShortcodeExecPHP')) {
 						$_POST[c_scep_option_rss] = null;
 					if (empty($_POST[c_scep_option_noent]))
 						$_POST[c_scep_option_noent] = null;
+					if (empty($_POST[c_scep_option_noautop]))
+						$_POST[c_scep_option_noautop] = null;
 					if (empty($_POST[c_scep_option_editarea_later]))
 						$_POST[c_scep_option_editarea_later] = null;
 					if (empty($_POST[c_scep_option_tinymce]))
@@ -363,8 +371,6 @@ if (!class_exists('WPShortcodeExecPHP')) {
 						$_POST[c_scep_option_cleanup] = null;
 					if (empty($_POST[c_scep_option_donated]))
 						$_POST[c_scep_option_donated] = null;
-					if (empty($_POST[c_scep_option_nospsn]))
-						$_POST[c_scep_option_nospsn] = null;
 
 					// Update settings
 					if (WPShortcodeExecPHP::Is_multisite() && function_exists('update_site_option'))
@@ -374,6 +380,7 @@ if (!class_exists('WPShortcodeExecPHP')) {
 					WPShortcodeExecPHP::Update_option(c_scep_option_comment, $_POST[c_scep_option_comment]);
 					WPShortcodeExecPHP::Update_option(c_scep_option_rss, $_POST[c_scep_option_rss]);
 					WPShortcodeExecPHP::Update_option(c_scep_option_noent, $_POST[c_scep_option_noent]);
+					WPShortcodeExecPHP::Update_option(c_scep_option_noautop, $_POST[c_scep_option_noautop]);
 					WPShortcodeExecPHP::Update_option(c_scep_option_codewidth, trim($_POST[c_scep_option_codewidth]));
 					WPShortcodeExecPHP::Update_option(c_scep_option_codeheight, trim($_POST[c_scep_option_codeheight]));
 					WPShortcodeExecPHP::Update_option(c_scep_option_editarea_later, $_POST[c_scep_option_editarea_later]);
@@ -384,7 +391,6 @@ if (!class_exists('WPShortcodeExecPHP')) {
 					WPShortcodeExecPHP::Update_option(c_scep_option_author_cap, $_POST[c_scep_option_author_cap]);
 					WPShortcodeExecPHP::Update_option(c_scep_option_cleanup, $_POST[c_scep_option_cleanup]);
 					WPShortcodeExecPHP::Update_option(c_scep_option_donated, $_POST[c_scep_option_donated]);
-					WPShortcodeExecPHP::Update_option(c_scep_option_nospsn, $_POST[c_scep_option_nospsn]);
 
 					$this->Configure_prce();
 
@@ -404,9 +410,6 @@ if (!class_exists('WPShortcodeExecPHP')) {
 					echo '<div id="message" class="updated fade"><p><strong>' . __('Settings updated', c_scep_text_domain) . '</strong></p></div>';
 				}
 			}
-
-			// Sustainable Plugins Sponsorship Network
-			$this->Render_pluginsponsor();
 
 			echo '<div class="wrap">';
 
@@ -446,7 +449,8 @@ if (!class_exists('WPShortcodeExecPHP')) {
 			$scep_excerpt = (WPShortcodeExecPHP::Get_option(c_scep_option_excerpt) ? 'checked="checked"' : '');
 			$scep_comment = (WPShortcodeExecPHP::Get_option(c_scep_option_comment) ? 'checked="checked"' : '');
 			$scep_rss = (WPShortcodeExecPHP::Get_option(c_scep_option_rss) ? 'checked="checked"' : '');
-			$scep_noent	= (WPShortcodeExecPHP::Get_option(c_scep_option_noent) ? 'checked="checked"' : '');
+			$scep_noent = (WPShortcodeExecPHP::Get_option(c_scep_option_noent) ? 'checked="checked"' : '');
+			$scep_noautop = (WPShortcodeExecPHP::Get_option(c_scep_option_noautop) ? 'checked="checked"' : '');
 			$scep_width = (WPShortcodeExecPHP::Get_option(c_scep_option_codewidth));
 			$scep_height = (WPShortcodeExecPHP::Get_option(c_scep_option_codeheight));
 			$scep_editarea_later = (WPShortcodeExecPHP::Get_option(c_scep_option_editarea_later) ? 'checked="checked"' : '');
@@ -457,7 +461,6 @@ if (!class_exists('WPShortcodeExecPHP')) {
 			$scep_option_author_cap = WPShortcodeExecPHP::Get_option(c_scep_option_author_cap);
 			$scep_cleanup = (WPShortcodeExecPHP::Get_option(c_scep_option_cleanup) ? 'checked="checked"' : '');
 			$scep_donated = (WPShortcodeExecPHP::Get_option(c_scep_option_donated) ? 'checked="checked"' : '');
-			$scep_nospsn = (WPShortcodeExecPHP::Get_option(c_scep_option_nospsn) ? 'checked="checked"' : '');
 
 			// Default size
 			if ($scep_width <= 0)
@@ -514,6 +517,12 @@ if (!class_exists('WPShortcodeExecPHP')) {
 				<label for="scep_option_noent"><?php _e('Disable html entity encoding', c_scep_text_domain); ?></label>
 			</th><td>
 				<input id="scep_option_noent" name="<?php echo c_scep_option_noent; ?>" type="checkbox"<?php echo $scep_noent; ?> />
+			</td></tr>
+
+			<tr valign="top"><th scope="row">
+				<label for="scep_option_noautop"><?php _e('Disable wpautop', c_scep_text_domain); ?></label>
+			</th><td>
+				<input id="scep_option_noautop" name="<?php echo c_scep_option_noautop; ?>" type="checkbox"<?php echo $scep_noautop; ?> />
 			</td></tr>
 
 			<tr valign="top"><th scope="row">
@@ -599,13 +608,6 @@ if (!class_exists('WPShortcodeExecPHP')) {
 			</th><td>
 				<input id="scep_option_donated" name="<?php echo c_scep_option_donated; ?>" type="checkbox"<?php echo $scep_donated; ?> />
 			</td></tr>
-
-			<tr valign="top"><th scope="row">
-				<label for="scep_option_nospsn"><?php _e('I don\'t want to support this plugin with the Sustainable Plugins Sponsorship Network', c_scep_text_domain); ?></label>
-			</th><td>
-				<input id="scep_option_nospsn" name="<?php echo c_scep_option_nospsn; ?>" type="checkbox"<?php echo $scep_nospsn; ?> />
-			</td></tr>
-
 			</table>
 
 			<p class="submit">
@@ -888,19 +890,6 @@ if (!class_exists('WPShortcodeExecPHP')) {
 <?php
 		}
 
-		function Render_pluginsponsor() {
-			if (!WPShortcodeExecPHP::Get_option(c_scep_option_nospsn)) {
-?>
-				<script type="text/javascript">
-				var psHost = (("https:" == document.location.protocol) ? "https://" : "http://");
-				document.write(unescape("%3Cscript src='" + psHost + "pluginsponsors.com/direct/spsn/display.php?client=shortcode-exec-php&spot=' type='text/javascript'%3E%3C/script%3E"));
-				</script>
-				<a id="scep_sponsorship" href="http://pluginsponsors.com/privacy.html" target=_blank">
-				<?php _e('Privacy in the Sustainable Plugins Sponsorship Network', c_scep_text_domain); ?></a>
-<?php
-			}
-		}
-
 		function Render_info_panel() {
 ?>
 			<div id="scep_resources_panel">
@@ -909,7 +898,7 @@ if (!class_exists('WPShortcodeExecPHP')) {
 			<li><a href="http://wordpress.org/extend/plugins/shortcode-exec-php/faq/" target="_blank"><?php _e('Frequently asked questions', c_scep_text_domain); ?></a></li>
 			<li><a href="http://codex.wordpress.org/Shortcode_API" target="_blank"><?php _e('Shortcode API', c_scep_text_domain); ?></a></li>
 			<li><a href="http://www.php.net/manual/" target="_blank"><?php _e('PHP manual', c_scep_text_domain); ?></a></li>
-			<li><a href="http://blog.bokhorst.biz/" target="_blank"><?php _e('Support page', c_scep_text_domain); ?></a></li>
+			<li><a href="http://forum.bokhorst.biz/shortcode-exec-php/" target="_blank"><?php _e('Support page', c_scep_text_domain); ?></a></li>
 			<li><a href="http://blog.bokhorst.biz/about/" target="_blank"><?php _e('About the author', c_scep_text_domain); ?></a></li>
 			</ul>
 <?php		if (!WPShortcodeExecPHP::Get_option(c_scep_option_donated)) { ?>
@@ -1193,7 +1182,14 @@ if (!class_exists('WPShortcodeExecPHP')) {
 				WPShortcodeExecPHP::Update_option(c_scep_option_names, $names);
 			}
 			return $count;
-  		}
+		}
+
+		// Disable wpautop
+		function noautop($content) {
+			remove_filter('the_content', 'wpautop');
+			remove_filter('the_excerpt', 'wpautop');
+			return $content;
+		}
 
 		// TinyMCE integration
 

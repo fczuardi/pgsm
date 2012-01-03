@@ -25,6 +25,8 @@
 #content .gallery.simple img
 {
 	border: 2px solid #cfcfcf;
+	margin: 0;
+	padding: 0;
 }
 
 .gallery.simple .gallery-caption,
@@ -113,7 +115,10 @@
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-
+.diff
+{
+	display: none;
+}
 
 
 

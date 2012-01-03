@@ -5,7 +5,7 @@ Tags: iframe, embed, youtube, vimeo, google-map, google-maps
 Author URI: http://web-profile.com.ua/wordpress/
 Requires at least: 3.0
 Tested up to: 3.3
-Stable tag: 1.8
+Stable tag: 2.1
 
 You can embed iframe with [iframe src="http://vimeo.com/123" width="100%" height="480"] shortcode.
 
@@ -16,24 +16,35 @@ WordPress removes iframe when you switch from "HTML" to "Visual" tab because of 
 So you can embed iframe code using this shortcode `[iframe src="http://player.vimeo.com/video/3261363" width="100%" height="480"]`.
 
 = Usage (allowed parameters) =
+* **src** - source of the iframe `[iframe src="http://player.vimeo.com/video/3261363"]` (empty by default src="");
 * **width** - width in pixels or in percents `[iframe width="100%" src="http://player.vimeo.com/video/3261363"]` or `[iframe width="640" src="http://player.vimeo.com/video/3261363"]` (by default width="100%");
 * **height** - height in pixels `[iframe height="480" src="http://player.vimeo.com/video/3261363"]` (by default height="480");
-* **src** - source of the iframe `[iframe src="http://player.vimeo.com/video/3261363"]` (by default src="");
-* **frameborder** - parameter of the iframe `[iframe frameborder="0" src="http://player.vimeo.com/video/3261363"]` (by default frameborder="0");
-* **scrolling** - parameter of the iframe `[iframe scrolling="no" src="http://player.vimeo.com/video/3261363"]` (by default scrolling="no");
-* **marginheight** - parameter of the iframe `[iframe marginheight="0" src="http://player.vimeo.com/video/3261363"]` (by default marginheight="0");
-* **marginwidth** - parameter of the iframe `[iframe marginwidth="0" src="http://player.vimeo.com/video/3261363"]` (by default marginwidth="0");
-* **allowtransparency** - allows to set transparency of the iframe `[iframe allowtransparency="true" src="http://player.vimeo.com/video/3261363"]` (by default allowtransparency="true");
-* **id** - allows to add the id of the iframe `[iframe id="my-id" src="http://player.vimeo.com/video/3261363"]` (by default id="");
-* **class** - allows to add the class of the iframe `[iframe class="my-class" src="http://player.vimeo.com/video/3261363"]` (by default class="iframe-class");
-* **style** - allows to add the css styles of the iframe `[iframe style="margin-left:-30px;" src="http://player.vimeo.com/video/3261363"]` (by default style="");
-* **same_height_as** - allows to set the height of iframe same as target element `[iframe same_height_as="body" src="http://player.vimeo.com/video/3261363"]`, `[iframe same_height_as="div.sidebar"]`, `[iframe same_height_as="div#content"]`, `[iframe same_height_as="window"]` - iframe will have the height of the viewport (visible area), `[iframe same_height_as="document"]` - iframe will have the height of the document, `[iframe same_height_as="content"]` - auto-height feature, so the height of the iframe will be the same as embedded content (works only with the same domain) (by default same_height_as="");
+* **scrolling** - parameter `[iframe scrolling="yes"]` (by default scrolling="no");
+* **frameborder** - parameter `[iframe frameborder="0"]` (by default frameborder="0");
+* **marginheight** - parameter `[iframe marginheight="0"]` (removed by default);
+* **marginwidth** - parameter `[iframe marginwidth="0"]` (removed by default);
+* **allowtransparency** - allows to set transparency of the iframe `[iframe allowtransparency="true"]` (removed by default);
+* **id** - allows to add the id of the iframe `[iframe id="my-id"]` (removed by default);
+* **class** - allows to add the class of the iframe `[iframe class="my-class"]` (by default class="iframe-class");
+* **style** - allows to add the css styles of the iframe `[iframe style="margin-left:-30px;"]` (removed by default);
+* **same_height_as** - allows to set the height of iframe same as target element `[iframe same_height_as="body"]`, `[iframe same_height_as="div.sidebar"]`, `[iframe same_height_as="div#content"]`, `[iframe same_height_as="window"]` - iframe will have the height of the viewport (visible area), `[iframe same_height_as="document"]` - iframe will have the height of the document, `[iframe same_height_as="content"]` - auto-height feature, so the height of the iframe will be the same as embedded content (works only with the same domain) (removed by default);
+* **any_other_param** - allows to add new parameter of the iframe `[iframe any_other_param="any_value"]`;
+* **any_other_empty_param** - allows to add new empty parameter of the iframe (like "allowfullscreen" on youtube) `[iframe any_other_empty_param=""]`;
 
 [Iframe plugin page](http://web-profile.com.ua/wordpress/plugins/iframe/)
 
 [CMS WordPress](http://web-profile.com.ua/wordpress/)
 
 == Changelog ==
+
+= 2.1 =
+* added (frameborder="0") by default;
+
+= 2.0 =
+* plugin core rebuild (thanks to Gregg Tavares);
+* remove not setted params except the defaults;
+* added support for all params, which user will set;
+* added support for empty params (like "allowfullscreen" on youtube);
 
 = 1.8 =
 * Added style parameter;

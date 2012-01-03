@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=AJSBB
 Tags: admin, shortcode, run, php, eval, execute, exec, code, post, posts, page, pages, comment, comments, sidebar, widget, widgets, rss, feed, feeds, AJAX, wpmu, tinymce
 Requires at least: 3.1
 Tested up to: 3.3
-Stable tag: 1.35
+Stable tag: 1.38
 
 Execute arbitrary, reusable PHP code in posts, pages, comments, widgets and RSS feeds using shortcodes in a safe and easy way
 
@@ -115,8 +115,21 @@ You can write a comment on the [support page](http://blog.bokhorst.biz/3626/comp
 == Changelog ==
 
 = Development version =
-* Bugfix: PHP 4 compatibility
+* ...
+
+= 1.38 =
+* New feature: option to disable [wpautop](http://codex.wordpress.org/Function_Reference/wpautop "wpautop")
+* Updated support page
+* Updated Chinese (zh\_CN) translation by [Jie](http://thejie.org/ "Jie")
+* Updated Dutch (nl\_NL) and Flemish (nl\_BE) translations
+* Updated Norwegian (nb\_NO) translation by [Stein Ivar Johnsen](http://www.idyrøy.no/ "Stein Ivar Johnsen")
 * You can download the development version [here](http://downloads.wordpress.org/plugin/shortcode-exec-php.zip)
+
+= 1.37 =
+* Removed [Sustainable Plugins Sponsorship Network](http://pluginsponsors.com/)
+
+= 1.36 =
+* Bugfix: PHP 4 compatibility
 
 = 1.35 =
 * Bugfix: no EditArea on network sites
@@ -307,6 +320,12 @@ You can write a comment on the [support page](http://blog.bokhorst.biz/3626/comp
 * Development version
 
 == Upgrade Notice ==
+
+= 1.38 =
+One new feature, translation updates
+
+= 1.37 =
+Compliance
 
 = 1.36 =
 Compatibility

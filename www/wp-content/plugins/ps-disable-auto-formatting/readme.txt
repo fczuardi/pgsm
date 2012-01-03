@@ -2,8 +2,8 @@
 Contributors: jim912
 Tags: auto formatting, formatting, format, paragraph, linebreak, wpautop
 Requires at least: 2.5
-Tested up to: 3.1
-Stable tag: 1.0.6
+Tested up to: 3.3
+Stable tag: 1.0.8
 
 Stops the automatic forming and the HTML tag removal in the html mode of WordPress, and generates a natural paragraph and changing line.
 
@@ -65,6 +65,10 @@ To prevent the operational error, the batch processing is not done if there is n
 Please check "Permit batch formatting" check box.
 
 == Changelog ==
+* **1.0.8**
+ * fix : bug fix : load javascript file for 3.3 in 3.2.1
+* **1.0.7**
+ * Compatible with WordPress 3.3
 * **1.0.6**
  * fix : bug fix
 * **1.0.5**

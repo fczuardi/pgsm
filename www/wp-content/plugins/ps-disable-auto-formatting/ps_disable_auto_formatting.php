@@ -3,18 +3,19 @@
 Plugin Name: PS Disable Auto Formatting
 Plugin URI: http://www.web-strategy.jp/wp_plugin/ps_disable_auto_formatting/
 Description: PS Disable Auto Formatting is able to disable function auto formatting (wpautop) and save &lt;p&gt; and &lt;br /&gt; formatted content.
-Version: 1.0.6
+Version: 1.0.8
 Author: Hitoshi Omagari
 Author URI: http://www.web-strategy.jp/
+License: GPLv2 or later
 */
 
 class ps_disable_auto_formatting {
 	
 var $setting_items = array(
-	'content formatting' => 'the_content',
-	'comment formatting' => 'comment_text',
-	'excerpt formatting' => 'the_excerpt',
-	'term description formatting' => 'term_description',
+	'content formatting'			=> 'the_content',
+	'comment formatting'			=> 'comment_text',
+	'excerpt formatting'			=> 'the_excerpt',
+	'term description formatting'	=> 'term_description',
 );
 
 var $mce_version = '20080121';
@@ -23,14 +24,14 @@ function __construct() {
 	global $wp_version;
 
 	if ( version_compare( $wp_version, '2.5', '>=' ) ) {
-		add_action( 'init', array( &$this, 'disable_auto_formatting_init' ) );
-		add_action( 'admin_menu', array( &$this, 'add_disable_formatting_setting_page') );
-		add_filter( 'print_scripts_array', array( &$this, 'rewrite_default_script' ) );
-		add_filter( 'wp_insert_post_data', array( &$this, 'formatting_quickpress_post' ) );
-		add_action( 'media_buttons', array( &$this, 'check_edit_mode_and_add_richedit_pre' ), 9 );
-		add_action( 'media_buttons', array( &$this, 'delete_filtering_wp_richedit_pre' ) );
+		add_action( 'init'					, array( &$this, 'disable_auto_formatting_init' ) );
+		add_action( 'admin_menu'			, array( &$this, 'add_disable_formatting_setting_page') );
+		add_filter( 'print_scripts_array'	, array( &$this, 'rewrite_default_script' ) );
+		add_filter( 'wp_insert_post_data'	, array( &$this, 'formatting_quickpress_post' ) );
+		add_action( 'media_buttons'			, array( &$this, 'check_edit_mode_and_add_richedit_pre' ), 9 );
+		add_action( 'media_buttons'			, array( &$this, 'delete_filtering_wp_richedit_pre' ) );
 	} else {
-		add_action('admin_notices', array( &$this, 'version_too_old' ) );
+		add_action('admin_notices'			, array( &$this, 'version_too_old' ) );
 	}
 }
 
@@ -89,8 +90,10 @@ function set_default_settings() {
 
 function rewrite_default_script( $todo ) {
 	global $wp_version, $wp_scripts;
-
-	if ( version_compare( $wp_version, '2.8', '>=' ) ) {
+	
+	if ( version_compare( $wp_version, '3.3.x', '>' ) ) {
+		$scripyt_src = get_option( 'siteurl' ) . '/' . str_replace( str_replace( '\\', '/', ABSPATH ), '', str_replace( '\\', '/', dirname( __file__ ) ) ) . '/js/330/ps_editor.js';
+	} elseif ( version_compare( $wp_version, '2.8', '>=' ) ) {
 		$scripyt_src = get_option( 'siteurl' ) . '/' . str_replace( str_replace( '\\', '/', ABSPATH ), '', str_replace( '\\', '/', dirname( __file__ ) ) ) . '/js/280/ps_editor.js';
 	} elseif ( version_compare( $wp_version, '2.7', '>=' ) ) {
 		$scripyt_src = get_option( 'siteurl' ) . '/' . str_replace( str_replace( '\\', '/', ABSPATH ), '', str_replace( '\\', '/', dirname( __file__ ) ) ) . '/js/270/ps_editor.js';
@@ -151,7 +154,7 @@ function ps_richedit_pre( $text ) {
 
 
 function add_disable_formatting_setting_page() {
-	add_options_page( 'PS Disable Auto Formatting', __( 'Auto Formatting', 'ps_disable_auto_formatting' ), 'activate_plugins', basename( __FILE__ ), array( &$this, 'output_disable_formatting_setting_page') );
+	add_options_page( 'PS Disable Auto Formatting', __( 'Auto Formatting', 'ps_disable_auto_formatting' ), 'manage_options', basename( __FILE__ ), array( &$this, 'output_disable_formatting_setting_page') );
 }
 
 

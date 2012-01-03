@@ -28,7 +28,7 @@ function file_gallery_get_mime_type( $mimes )
 				'7zip' => 'application/x-7z-compressed'
 			);
 			
-			$mime_types = apply_filters("file_gallery_mime_types", $mime_types);
+			$mime_types = apply_filters('file_gallery_mime_types', $mime_types);
 			
 			if( isset($mime_types[$mime]) )
 				$mime = $mime_types[$mime];
@@ -47,52 +47,54 @@ function file_gallery_get_mime_type( $mimes )
  *
  * needs more options and maybe a different approach...
  */
-function file_gallery_get_file_type($mime)
+function file_gallery_get_file_type( $mime )
 {
 	if( false !== strpos($mime, "text") || 
 		false !== strpos($mime, "xhtml"))
 	{
-		return "text";
+		$type = "text";
 	}
 	elseif( false !== strpos($mime, "excel") )
 	{
-		return "spreadsheet";
+		$type = "spreadsheet";
 	}
 	elseif( false !== strpos($mime, "powerpoint") )
 	{
-		return "interactive";
+		$type = "interactive";
 	}
 	elseif( false !== strpos($mime, "code") )
 	{
-		return "code";
+		$type = "code";
 	}
 	elseif( false !== strpos($mime, "octet-stream") )
 	{
-		return "interactive";
+		$type = "interactive";
 	}
 	elseif( false !== strpos($mime, "audio") )
 	{
-		return "audio";
+		$type = "audio";
 	}
 	elseif( false !== strpos($mime, "video") )
 	{
-		return "video";
+		$type = "video";
 	}
 	elseif( false !== strpos($mime, "stuffit") || 
-			 false !== strpos($mime, "compressed") || 
-			 false !== strpos($mime, "x-tar") ||
-			 false !== strpos($mime, "zip"))
+			false !== strpos($mime, "compressed") || 
+			false !== strpos($mime, "x-tar") ||
+			false !== strpos($mime, "zip"))
 	{
-		return "archive";
+		$type = "archive";
 	}
 	elseif( false !== strpos($mime, "application") )
 	{
-		return "document";
+		$type = "document";
 	}
 	else
 	{
-		return "default";
+		$type = "default";
 	}
+	
+	return apply_filters('file_gallery_get_file_type', $type, $mime);
 }
 
 ?>
