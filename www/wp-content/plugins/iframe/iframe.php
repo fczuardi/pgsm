@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: iframe
+Plugin Name: Iframe
 Plugin URI: http://web-profile.com.ua/wordpress/plugins/iframe/
-Description: Plugin shows iframe with [iframe src="http://player.vimeo.com/video/3261363" width="100%" height="480"] shortcode.
-Version: 2.1
+Description: [iframe src="http://player.vimeo.com/video/3261363" width="100%" height="480"] shortcode
+Version: 2.2
 Author: webvitaly
 Author Email: webvitaly(at)gmail.com
 Author URI: http://web-profile.com.ua/wordpress/
@@ -15,7 +15,7 @@ if ( !function_exists( 'iframe_embed_shortcode' ) ) :
 		wp_enqueue_script( 'jquery' );
 	}
 	add_action('wp_enqueue_scripts', 'iframe_enqueue_script');
-				
+	
 	function iframe_embed_shortcode($atts, $content = null) {
 		$defaults = array(
 			'width' => '100%',
@@ -36,7 +36,12 @@ if ( !function_exists( 'iframe_embed_shortcode' ) ) :
 			$atts["src"] .= '&output=embed';
 		}
 		$html = '';
-		$same_height_as = $atts["same_height_as"];
+		if( isset( $atts["same_height_as"] ) ){
+			$same_height_as = $atts["same_height_as"];
+		}else{
+			$same_height_as = '';
+		}
+		
 		if( $same_height_as != '' ){
 			$atts["same_height_as"] = '';
 			if( $same_height_as != 'content' ){ // we are setting the height of the iframe like as target element
@@ -67,7 +72,7 @@ if ( !function_exists( 'iframe_embed_shortcode' ) ) :
 				';
 			}
 		}
-        $html .= "\n".'<!-- powered by Iframe plugin ver.2.1 (wordpress.org/extend/plugins/iframe/) -->'."\n";
+        $html .= "\n".'<!-- Iframe plugin v.2.2 (wordpress.org/extend/plugins/iframe/) -->'."\n";
 		$html .= '<iframe';
         foreach ($atts as $attr => $value) {
 			if( $attr != 'same_height_as' ){ // remove some attributes

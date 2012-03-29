@@ -3,8 +3,8 @@ Contributors: Marcel Bokhorst
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=AJSBB7DGNA3MJ&lc=US&item_name=Shortcode%20Exec%20PHP%20WordPress%20Plugin&item_number=Marcel%20Bokhorst&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
 Tags: admin, shortcode, run, php, eval, execute, exec, code, post, posts, page, pages, comment, comments, sidebar, widget, widgets, rss, feed, feeds, AJAX, wpmu, tinymce
 Requires at least: 3.1
-Tested up to: 3.3
-Stable tag: 1.38
+Tested up to: 3.3.1
+Stable tag: 1.41
 
 Execute arbitrary, reusable PHP code in posts, pages, comments, widgets and RSS feeds using shortcodes in a safe and easy way
 
@@ -23,7 +23,7 @@ Advantages over other solutions:
 
 For those concerned about security (hopefully everybody): only administrators can define shortcodes and associated PHP code (see also the [FAQ](http://wordpress.org/extend/plugins/shortcode-exec-php/faq/ "FAQ")).
 
-Please report any issue you have with this plugin on the [support page](http://blog.bokhorst.biz/3626/computers-en-internet/wordpress-plugin-shortcode-exec-php/ "Marcel's weblog"), so I can at least try to fix it. If you rate this plugin low, please [let me know why](http://blog.bokhorst.biz/3626/computers-en-internet/wordpress-plugin-shortcode-exec-php/#respond "Marcel's weblog").
+Please report any issue you have with this plugin in [the forum](http://forum.bokhorst.biz/).
 
 See my [other plugins](http://wordpress.org/extend/plugins/profile/m66b "Marcel Bokhorst").
 
@@ -106,7 +106,7 @@ If I am around I am happy to help you with your code, see next question.
 
 = Where can I ask questions, report bugs and request features? =
 
-You can write a comment on the [support page](http://blog.bokhorst.biz/3626/computers-en-internet/wordpress-plugin-shortcode-exec-php/ "Marcel's weblog").
+You can write a comment in the [the forum](http://forum.bokhorst.biz/).
 
 == Screenshots ==
 
@@ -116,6 +116,13 @@ You can write a comment on the [support page](http://blog.bokhorst.biz/3626/comp
 
 = Development version =
 * ...
+
+= 1.41 =
+* Bugfix: require *manage_options* capability when site activated on a multisite network
+* Note: PHP4 support will be dropped from the next release
+
+= 1.39 =
+* Bugfix: require *manage_options* capability when site activated on a multisite network
 
 = 1.38 =
 * New feature: option to disable [wpautop](http://codex.wordpress.org/Function_Reference/wpautop "wpautop")
@@ -320,6 +327,12 @@ You can write a comment on the [support page](http://blog.bokhorst.biz/3626/comp
 * Development version
 
 == Upgrade Notice ==
+
+= 1.41 =
+One bugfix
+
+= 1.39 =
+One bugfix
 
 = 1.38 =
 One new feature, translation updates

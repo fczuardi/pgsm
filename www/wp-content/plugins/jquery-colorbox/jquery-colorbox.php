@@ -6,7 +6,7 @@
  * Plugin Name: jQuery Colorbox
  * Plugin URI: http://www.techotronic.de/plugins/jquery-colorbox/
  * Description: Used to overlay images on the current page. Images in one post are grouped automatically.
- * Version: 4.2
+ * Version: 4.3
  * Author: Arne Franken
  * Author URI: http://www.techotronic.de/
  * License: GPL
@@ -19,8 +19,8 @@
 ?>
 <?php
 //define constants
-define('JQUERYCOLORBOX_VERSION', '4.2');
-define('COLORBOXLIBRARY_VERSION', '1.3.18');
+define('JQUERYCOLORBOX_VERSION', '4.3');
+define('COLORBOXLIBRARY_VERSION', '1.3.19');
 
 if (!defined('JQUERYCOLORBOX_PLUGIN_BASENAME')) {
   //jquery-colorbox/jquery-colorbox.php
@@ -31,7 +31,7 @@ if (!defined('JQUERYCOLORBOX_PLUGIN_NAME')) {
   define('JQUERYCOLORBOX_PLUGIN_NAME', trim(dirname(JQUERYCOLORBOX_PLUGIN_BASENAME), '/'));
 }
 if (!defined('JQUERYCOLORBOX_NAME')) {
-  define('JQUERYCOLORBOX_NAME', 'jQuery Colorbox');
+  define('JQUERYCOLORBOX_NAME', __('jQuery Colorbox',JQUERYCOLORBOX_TEXTDOMAIN));
 }
 if (!defined('JQUERYCOLORBOX_TEXTDOMAIN')) {
   define('JQUERYCOLORBOX_TEXTDOMAIN', 'jquery-colorbox');
@@ -41,8 +41,8 @@ if (!defined('JQUERYCOLORBOX_PLUGIN_DIR')) {
   define('JQUERYCOLORBOX_PLUGIN_DIR', dirname(__FILE__));
 }
 if (!defined('JQUERYCOLORBOX_PLUGIN_URL')) {
-  // http://www.domain.com/wordpress/wp-content/plugins/jquery-colorbox
-  define('JQUERYCOLORBOX_PLUGIN_URL', WP_PLUGIN_URL . '/' . JQUERYCOLORBOX_PLUGIN_NAME);
+  // http(s)://www.domain.com/wordpress/wp-content/plugins/jquery-colorbox
+  define('JQUERYCOLORBOX_PLUGIN_URL', plugins_url('', __FILE__));
 }
 if (!defined('JQUERYCOLORBOX_SETTINGSNAME')) {
   define('JQUERYCOLORBOX_SETTINGSNAME', 'jquery-colorbox_settings');
@@ -83,7 +83,7 @@ class JQueryColorbox {
     //check whether stored settings are compatible with current plugin version.
     //if not: overwrite stored settings
     $validSettings = $this->validateSettingsInDatabase($usersettings);
-    if (!$validSettings) {
+    if(!$validSettings) {
       $this->colorboxSettings = $defaultArray;
       update_option(JQUERYCOLORBOX_SETTINGSNAME, $defaultArray);
     } else {

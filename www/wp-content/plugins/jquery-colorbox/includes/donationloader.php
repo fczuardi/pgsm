@@ -8,17 +8,17 @@
  *
  * Object that handles Ajax to Xml RPC calls
  */
-if (!defined('DONATIONLOADER_XMLRPC_URL')) {
-  define('DONATIONLOADER_XMLRPC_URL', 'http://xmlrpc.techotronic.de/');
+if (!defined('JQUERYCOLORBOX_DONATIONLOADER_XMLRPC_URL')) {
+  define('JQUERYCOLORBOX_DONATIONLOADER_XMLRPC_URL', 'http://www.techotronic.de/wordpress/xmlrpc.php');
 }
-if (!defined('DONATIONLOADER_CACHETIME')) {
-  //cachetime in seconds
-  define('DONATIONLOADER_CACHETIME', 600);
+if (!defined('JQUERYCOLORBOX_DONATIONLOADER_CACHETIME')) {
+  //cachetime in seconds, 60 minutes
+  define('JQUERYCOLORBOX_DONATIONLOADER_CACHETIME', 6000);
 }
 //has to have pluginname-prefix because Class names can't be used twice...
 class JQueryColorboxDonationLoader {
   var $donationLoaderUserAgent = JQUERYCOLORBOX_USERAGENT;
-  var $donationLoaderPluginName = JQUERYCOLORBOX_PLUGIN_NAME;
+  var $donationLoaderPluginName = "jq_colorbox";
   var $donationLoaderPluginUrl = JQUERYCOLORBOX_PLUGIN_URL;
 
   /**
@@ -134,19 +134,19 @@ class JQueryColorboxDonationLoader {
     // get the submitted parameters
     $pluginName = $_POST['pluginName'];
 
-    $key = $identifier . '-' . $pluginName;
+    $key = $identifier . '_' . $pluginName;
 
     //try to get response from DB cache
-    $response = get_transient($key);
-    if ( false == $response ) {
+    if ( false === ($response = get_site_transient($key) ) ) {
       // response not found in DB cache, generate response
       if(class_exists('IXR_Client')) {
-        $ixrClient = new IXR_Client(DONATIONLOADER_XMLRPC_URL);
+        $ixrClient = new IXR_Client(JQUERYCOLORBOX_DONATIONLOADER_XMLRPC_URL);
+        $ixrClient->useragent = JQUERYCOLORBOX_USERAGENT;
         $ixrClient->query($remoteProcedureCall,$pluginName);
 
         $response = $ixrClient->getResponse();
       }
-      set_transient($key, serialize($response), DONATIONLOADER_CACHETIME);
+      set_site_transient($key, serialize($response), JQUERYCOLORBOX_DONATIONLOADER_CACHETIME);
     } else {
       $response = unserialize($response);
     }

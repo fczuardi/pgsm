@@ -2,9 +2,9 @@
 Contributors: techotronic
 Donate link: http://www.techotronic.de/donate/
 Tags: jquery, colorbox, lightbox, images, pictures, photos, gallery, javascript, overlay, nextgen gallery, nextgen-gallery, image, picture, photo, media, slideshow, ngg, mu
-Requires at least: 2.8
-Tested up to: 3.2
-Stable tag: 4.2
+Requires at least: 3.1
+Tested up to: 3.3
+Stable tag: 4.3
 
 Adds Colorbox/Lightbox functionality to images, grouped by post or page. Works for WordPress and NextGEN galleries. Comes with different themes.
 
@@ -30,8 +30,8 @@ If you have questions or problems, feel free to write an entry at <a href="http:
 Localization
 
 * Arabic (ar) by <a href="http://www.photokeens.com">Modar Soos</a>
-* Belorussian (be_BY) <a href="http://www.pc.de/">Marcis G.</a>
-* Bosnian (bs_BA) by <a href="http://www.vjucon.com/">Vedran Jurincic</a>
+* Belorussian (be_BY) Marcis G.
+* Bosnian (bs_BA) by Vedran Jurincic
 * Simplified Chinese (zh_CN) by <a href="http://tech.yiandya.com/">Lucas Ho</a>
 * Danish (da_DK) by Michael Bering Petersen
 * Dutch (nl_NL) by <a href="http://nl.linkedin.com/pub/richard-laak/b/b21/672">Richard van Laak</a>
@@ -40,23 +40,26 @@ Localization
 * French (fr_FR) by <a href="http://www.monblogamoua.fr/">Pierre Sudarovich</a>
 * German (de_DE) by <a href="http://www.techotronic.de/">Arne Franken</a>
 * Hebrew (he_IL) by <a href="http://www.TommyGordon.co.il">Tommy Gordon</a>
-* Italian (it_IT) by <a href="http://erkinson.altervista.org/">Erkinson</a>
-* Latvian (lv) by <a href=\"http://lapuvieta.lv\">Uldis Jansons</a>
+* Italian (it_IT) by Erkinson
+* Latvian (lv) by Uldis Jansons
 * Malay (ms_MY) by <a href="http://www.inisahaini.com">Saha-ini Ahmad Safian</a>
-* Polish (pl_PL) by <a href="http://positionmaker.pl">Kornel Łysikowski</a>
+* Polish (pl_PL) by Kornel Łysikowski
 * Portuguese (pt_BR) by <a href="http://twitter.com/gervasioantonio">Gervásio Antônio</a>
-* Russian (ru_RU) by <a href="http://drive2life.ru">Arkadiy Florinskiy</a>
-* Slovak (sk_SK) by <a href="http://itec.sk/">Stefan Stieranka</a>
-* Spanish (es_ES) by <a href="http://www.redywebs.com/">Inma P.-Zubizarreta</a>
+* Romanian (ro_RO) by Luke Tyler
+* Russian (ru_RU) by Arkadiy Florinskiy
+* Slovak (sk_SK) by Stefan Stieranka
+* Spanish (es_ES) by Inma P.-Zubizarreta
 * Swedish (sv_SE) by <a href="http://www.theindiaexperience.se/">Christian</a>
 * Turkish (tr_TR) by <a href="http://www.serhatyolacan.com/">Serhat Yolaçan</a>
-* Ukrainian (uk) by <a href="http://www.politcult.com/">Yuri Kryzhanivskyi</a>
-* Vietnamese (vn_VN) by <a href="http://www.techfacts.net">Techfacts Computer Magazin</a>
+* Ukrainian (uk) by Jurko Chervony
+* Vietnamese (vn_VN) by Techfacts
 
-Is your native language missing? Translating the plugin is easy if you understand english and are fluent in another language. Just send me an email.
+Is your native language missing?  
+Translating the plugin is easy if you understand english and are fluent in another language.  
+I described in the [FAQ](http://wordpress.org/extend/plugins/jquery-colorbox/faq/) how the translation works.
 
 Credits:
-Includes <a href="http://colorpowered.com/colorbox/">ColorBox</a> 1.3.18 jQuery plugin from Jack Moore.
+Includes <a href="http://jacklmoore.com/colorbox/">ColorBox</a> 1.3.19 jQuery plugin from Jack Moore.
 The picture I used for the screenshots was designed by <a href="http://wallpapers.vintage.it/">Davide Vicariotto</a>
 
 == Installation ==
@@ -87,6 +90,11 @@ Make sure that your theme uses the `wp_head();` function in the HTML head-tag.
 
 I have seen problems where other plugins include their own versions of the jQuery library my plugin uses.
 Chances are that the other jQuery library is loaded after the one that I load. If that happens, the colorbox features are overwritten.
+
+* When the Colorbox opens, no picture is displayed and the frame of the Colorbox is broken
+
+With version 4.3, the included Colorbox library is no longer compatible to jQuery 1.4.2 and below.
+Please make sure that the jQuery version that is loaded on your site is at least 1.4.4 or higher. (WordPress 3.1 brings jQuery 1.4.4 along)
 
 * How does jQuery Colorbox work?
 
@@ -170,9 +178,22 @@ Feel free to open a thread at <a href="http://wordpress.org/tags/jquery-colorbox
 I'll include new FAQs in newer versions.
 
 == Changelog ==
+= 4.3 (2012-03-12) =
+* NEW: Romanian translation by Luke Tyler
+* CHANGE: Ukrainian translation updated by Jurko Chervony
+* CHANGE: update to Colorbox 1.3.19
+* CHANGE: gracefully add CSS style "colorbox-link" to TinyMCE style dropdown
+* CHANGE: use plugins_url to make links HTTPS aware
+* CHANGE: increase z-index of Colorbox and overlay to 99999 since Twentyeleven has a Header z-index of 9999
+* CHANGE: removing meta tag from header since it's not HTML5 compatible
+* CHANGE: pulled all links to company sites of translators on request by WordPress staff
+* CHANGE: successfully tested with WordPress 3.3
+* CHANGE: Plugin name now translatable
+* CHANGE: Defaults are now used if JavaScript options can't be set because of JavaScript minimizers
+
 = 4.2 (2011-10-16) =
 * NEW: Danish translation by Michael Bering Petersen
-* NEW: Vietnamese translation by Techfacts Computer Magazin
+* NEW: Vietnamese translation by Techfacts
 * NEW: added option to remove the link to the developers site from the WordPress meta-box.
 * BUGFIX: "Automate Colorbox for all other images" now again works as intended. (functionality broke in 4.1)
 * BUGFIX: fixes "Undefined index: colorboxAddClassToLinks" error
@@ -181,7 +202,7 @@ I'll include new FAQs in newer versions.
 
 = 4.1 (2011-06-25) =
 * NEW: Plugin is compatible to WordPress 3.2
-* NEW: Polish translation by <a href="http://positionmaker.pl">Kornel Łysikowski</a>
+* NEW: Polish translation by Kornel Łysikowski
 * NEW: Finnish translation by <a href="http://www.merisaari.com/">Lauri Merisaari</a>
 * NEW: Simplified Chinese translation by <a href="http://tech.yiandya.com/">Lucas Ho</a>
 * BUGFIX: Plugin will only select links with class "colorbox-link", no other HTML tags.
@@ -204,15 +225,15 @@ I'll include new FAQs in newer versions.
 * CHANGE: jQuery calls won't break other JavaScript libraries like Prototype or Scriptaculous any more
 * NEW: Set width and height for Colorbox links once separate from the Colorbox setting for images
 * NEW: Inline HTML content can now be loaded in the Colorbox.
-* NEW: Latvian translation by <a href="http://lapuvieta.lv">Uldis Jansons</a>
+* NEW: Latvian translation by Uldis Jansons
 * CHANGE: <a href="http://www.photokeens.com">Modar Soos</a> updated the Arabic translation
 * CHANGE: <a href="mailto:nettojp@gmail.com">Joao Netto</a> updated the Portuguese translation
-* CHANGE: <a href="http://drive2life.ru">Arkadiy Florinskiy</a> updated the Russian translation
+* CHANGE: Arkadiy Florinskiy updated the Russian translation
 * CHANGE: Made plugin compatible to the "smugmug" plugin.
 * CHANGE: Moved Colorbox CSS class add to style dropdown of TinyMCE
 
 = 3.8.3 (2010-12-24) =
-* NEW: Spanish translation by <a href="http://www.redywebs.com/">Inma P.-Zubizarreta</a>
+* NEW: Spanish translation by Inma P.-Zubizarreta
 * BUGFIX: re-added the option to hide flash objects behind the colorbox overlay.
 
 = 3.8.2 (2010-12-21) =
@@ -228,7 +249,7 @@ I'll include new FAQs in newer versions.
 * NEW: Experimental feature: jQuery Colorbox can now open external websites/pictures if the link has the class "colorbox-link" and a width/height for the colorbox is set.
 * BUGFIX: Plugin now works if "WP_DEBUG" is set to "true". Thx to <a href="http://iversenweb.no">Roy Iversen</a> for the bug report!
 * CHANGE: rewrote auto-add JavaScript. Thx to <a href="http://wordpress.org/support/profile/jrevillini">jrevillini</a> for the help!
-* NEW: Slovak translation by <a href="http://itec.sk/">Stefan Stieranka</a>
+* NEW: Slovak translation by Stefan Stieranka
 * NEW: Swedish translation by <a href="http://www.theindiaexperience.se/">Christian</a>
 * CHANGE: Update of Colorbox library to version 1.3.15
 * CHANGE: performance improvement: colorbox-class is only automatically added only to images that do not already have a colorbox-class.
@@ -237,7 +258,7 @@ I'll include new FAQs in newer versions.
 * CHANGE: Update of Colorbox library to version 1.3.9 which fixes lots of bugs. Most notably the "0 by 0" bug in Chrome.
 
 = 3.5 (2010-06-16) =
-* NEW: Ukrainian translation by <a href="http://www.politcult.com/">Yuri Kryzhanivskyi</a>
+* NEW: Ukrainian translation by Yuri Kryzhanivskyi
 * NEW: Italian translation by <a href="http://erkinson.altervista.org/">Erkinson</a>
 * NEW: Hebrew translation by <a href="http://www.TommyGordon.co.il">Tommy Gordon</a>
 * BUGFIX: URLs are now generated correctly for WP-MU installations
@@ -251,8 +272,8 @@ I'll include new FAQs in newer versions.
 * CHANGE: <a href="http://www.photokeens.com">Modar Soos</a> updated the Arabic translation
 
 = 3.3 (2010-05-05) =
-* NEW: Belorussian translation by <a href="http://www.pc.de/">Marcis G.</a>
-* NEW: Russian translation by <a href="http://drive2life.ru">Drive2Life.ru</a>
+* NEW: Belorussian translation by Marcis G.
+* NEW: Russian translation by Arkadiy Florinskiy
 * BUGFIX: Screenshot for Theme#10 is now displayed correctly.
 * NEW: Added Theme#11, a modified version of Theme#1.
 * BUGFIX: Theme#7,9 and 11 will work in Internet Explorer 6 now.
@@ -263,13 +284,13 @@ I'll include new FAQs in newer versions.
 * NEW: Added theme#10, thx to <a href="http://www.serhatyolacan.com/">Serhat Yolaçan</a> for all the hard work! (CSS3 rounded edges, IE does not support that)
 * CHANGE: jQuery Colorbox plugin now adds necessary CSS class to all embedded images.
 * CHANGE: jQuery Colorbox plugin is now compatible to <a href="http://wordpress.org/extend/plugins/nextgen-gallery/">NextGEN Gallery</a>
-* CHANGE: <a href="http://www.vjucon.com/">Vedran Jurincic</a> updated the bosnian translation
+* CHANGE: Vedran Jurincic updated the bosnian translation
 * NEW: Arabic translation by <a href="http://www.photokeens.com">Modar Soos</a>
 
 = 3.1 (2010-04-10) =
 * BUGFIX: Automatic hiding of embedded flash objects under Colorbox layer now works in Internet Explorer.
 * NEW: Added theme#9, a modified version of theme#4.
-* NEW: French translation by <a href="http://www.tolingo.com/">Tolingo Translations</a>
+* NEW: French translation by Tolingo Translations
 * NEW: If auto colorbox is switched on, plugin now adds Colorbox functionality to every image regardless of position
 * CHANGE: <a href="http://www.serhatyolacan.com/">Serhat Yolaçan</a> updated the turkish translation.
 
@@ -282,7 +303,7 @@ I'll include new FAQs in newer versions.
 * BUGFIX: Settings are not overridden any more every time the plugin gets activated.
 * BUGFIX: jQuery Colorbox now works again for links with uppercase suffixes (IMG,JPG etc) thx to Jason Stapels (jstapels@realmprojects.com) for the bug report and fix!
 * NEW: Added theme#6, a modified version of theme#1. (not compatible with IE6) thx to <a href="http://twitter.com/gervasioantonio">Gervásio Antônio</a> for all the hard work!
-* NEW: Added theme#7, a modified version of theme#1. thx to <a href="http://www.vjucon.com/">Vedran Jurincic</a> for the feature request!
+* NEW: Added theme#7, a modified version of theme#1. thx to Vedran Jurincic for the feature request!
 * NEW: Added theme#8, a modified version of theme#6.
 * NEW: Added screenshots of all themes, screenshot of selected theme is shown in admin menu
 * NEW: Added warning if the plugin is activated but not set to work for all images on the blog. Warning can be turned off on the settings page.
@@ -295,7 +316,7 @@ I'll include new FAQs in newer versions.
 * CHANGE: Fixed fonts in Colorbox to Arial 12px
 * NEW: Turkish translation by <a href="http://www.serhatyolacan.com/">Serhat Yolaçan</a>
 * NEW: Portuguese translation by <a href="http://twitter.com/gervasioantonio">Gervásio Antônio</a>
-* NEW: Bosnian translation by <a href="http://www.vjucon.com/">Vedran Jurincic</a>
+* NEW: Bosnian translation by Vedran Jurincic
 * NEW: Plugin should be WPMU compatible now. Haven't tested myself, though. Would appreciate any feedback.
 * NEW: Successfully tested jQuery Colorbox with jQuery 1.4.2
 * CHANGE: Fixed "slideshow" offset from right hand side in the Colorbox of theme#4

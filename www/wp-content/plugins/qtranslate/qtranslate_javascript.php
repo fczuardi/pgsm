@@ -216,7 +216,7 @@ function qtrans_initJS() {
 		
 	$q_config['js']['qtrans_disable_old_editor'] = "
 		var waitForTinyMCE = window.setInterval(function() {
-				if(typeof(tinyMCE) !== 'undefined' && tinyMCE.get2('content')!=undefined) {
+				if(typeof(tinyMCE) !== 'undefined' && typeof(tinyMCE.get2) == 'function' && tinyMCE.get2('content')!=undefined) {
 					tinyMCE.get2('content').remove();
 					window.clearInterval(waitForTinyMCE);
 				}
@@ -249,6 +249,25 @@ function qtrans_initJS() {
 				try { quicktags( tmp ); } catch(e){}
 				jQuery('#ed_toolbar').hide();
 			}
+			// remove hook so tinymce doesn't load for content
+			var hook = tinyMCEPreInit.mceInit['content']
+			hook.elements='qtrans_textarea_content';
+			delete tinyMCEPreInit.mceInit['content'];
+			tinyMCEPreInit.mceInit['qtrans_textarea_content'] = hook;
+			
+			// fix html for tinymce
+			if('html' != getUserSetting( 'editor' )) {
+				var ta = document.getElementById('content');
+				var texts = qtrans_split(ta.value);
+				var content = '';
+	";
+	foreach($q_config['enabled_languages'] as $language)
+		$q_config['js']['qtrans_wpOnload'].= "
+				content = qtrans_integrate('".$language."', switchEditors.wpautop(texts['".$language."']), content);
+			";
+	$q_config['js']['qtrans_wpOnload'].= "
+				ta.value = content;
+			}
 			if(typeof(wpOnload2)=='function') wpOnload2();
 		}
 		
@@ -265,8 +284,6 @@ function qtrans_initJS() {
 			qtrans_editorInit3();
 			
 			var h = wpCookies.getHash('TinyMCE_content_size');
-			var ta = document.getElementById('content');
-			edCanvas = document.getElementById('qtrans_textarea_content'); 
 			
 			jQuery('#content').hide();
 			if ( getUserSetting( 'editor' ) == 'html' ) {
@@ -276,8 +293,7 @@ function qtrans_initJS() {
 			} else {
 				// Activate TinyMCE if it's the user's default editor
 				jQuery('#qtrans_textarea_content').show();
-				jQuery('#qtrans_textarea_content').val(jQuery('#qtrans_textarea_content').val());
-				qtrans_hook_on_tinyMCE('content');
+				qtrans_hook_on_tinyMCE('qtrans_textarea_content');
 			}
 		}
 		";
@@ -289,8 +305,7 @@ function qtrans_initJS() {
 					qtrans_save(switchEditors.pre_wpautop(o.content));
 				});
 			};
-			tinyMCEPreInit.mceInit[id].elements = 'qtrans_textarea_'+id;
-			ed = new tinymce.Editor('qtrans_textarea_'+id, tinyMCEPreInit.mceInit[id]);
+			ed = new tinymce.Editor(id, tinyMCEPreInit.mceInit[id]);
 			ed.render();
 		}
 		";
@@ -380,12 +395,12 @@ function qtrans_initJS() {
 					return false;
 				if ( typeof(QTags) != 'undefined' )
 					QTags.closeAllTags(id);
-				if ( tinyMCEPreInit.mceInit[id] && tinyMCEPreInit.mceInit[id].wpautop )
+				if ( tinyMCEPreInit.mceInit['qtrans_textarea_'+id] && tinyMCEPreInit.mceInit['qtrans_textarea_'+id].wpautop )
 					vta.value = this.wpautop(qtrans_use(qtrans_get_active_language(),ta.value));
 				if (inst) {
 					inst.show();
 				} else {
-					qtrans_hook_on_tinyMCE(id);
+					qtrans_hook_on_tinyMCE('qtrans_textarea_'+id);
 				}
 				
 				dom.removeClass(wrap_id, 'html-active');

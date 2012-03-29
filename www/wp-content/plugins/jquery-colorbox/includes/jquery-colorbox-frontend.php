@@ -25,9 +25,6 @@ class JQueryColorboxFrontend {
 
     $this->colorboxSettings = $colorboxSettings;
 
-    // Add meta tag with version number to the header
-    add_action('wp_head', array(& $this, 'renderMetaTag'));
-
     //only add link to meta box if
     if (isset($this->colorboxSettings['removeLinkFromMetaBox']) && !$this->colorboxSettings['removeLinkFromMetaBox']) {
       add_action('wp_meta', array(& $this, 'renderMetaLink'));
@@ -54,22 +51,6 @@ class JQueryColorboxFrontend {
   }
 
   // JQueryColorboxFrontend()
-
-  /**
-   * Renders plugin Meta tag
-   *
-   * @since 4.1
-   * @access public
-   * @author Arne Franken
-   */
-  //public function renderMetaTag() {
-  function renderMetaTag() {
-    ?>
-  <meta name="<?php echo JQUERYCOLORBOX_NAME ?>" content="<?php echo JQUERYCOLORBOX_VERSION ?>"/>
-  <?php
-  }
-
-  // renderMetaTag()
 
 
   /**
@@ -220,7 +201,7 @@ class JQueryColorboxFrontend {
       'autoColorboxGalleries' => $this->colorboxSettings['autoColorboxGalleries'],
       'colorboxAddClassToLinks' => $this->colorboxSettings['colorboxAddClassToLinks']
     );
-    wp_localize_script('colorbox', 'Colorbox', $colorboxPropertyArray);
+    wp_localize_script('colorbox', 'jQueryColorboxSettingsArray', $colorboxPropertyArray);
   }
 
   // addColorboxProperties()

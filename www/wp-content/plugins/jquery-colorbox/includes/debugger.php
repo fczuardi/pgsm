@@ -15,7 +15,7 @@
  * In constructor:
  * global $debugger;
  * require_once('debugger.php');
- * $debugger = new Debugger();
+ * $debugger = new JQueryColorboxDebugger();
  *
  * In method:
  * global $debugger;

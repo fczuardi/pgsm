@@ -42,7 +42,7 @@ class JQueryColorboxBackend {
     //add style selector dropdown to TinyMCE
     add_filter('mce_buttons_2', array(& $this, 'addStyleSelectorBox'), 100);
     //add Colorbox CSS class to TinyMCE dropdown box
-    add_filter('tiny_mce_before_init', array(& $this, 'addColorboxLinkClass'), 100);
+    add_filter('mce_css', array(& $this, 'addColorboxLinkClass'), 100);
 
     require_once 'donationloader.php';
     $donationLoader = new JQueryColorboxDonationLoader();
@@ -208,9 +208,7 @@ class JQueryColorboxBackend {
   function addColorboxLinkClass($initialArray) {
     $modifiedArray = $initialArray;
 
-    $modifiedArray['theme_advanced_styles'] .= ';colorbox-link=colorbox-link;';
-    //strip first and last character if it matches ";"
-    $modifiedArray['theme_advanced_styles'] = trim($modifiedArray['theme_advanced_styles'], ';');
+    $modifiedArray .= ','.JQUERYCOLORBOX_PLUGIN_URL.'/css/jquery-colorbox.css';
     return $modifiedArray;
   }
 
@@ -307,41 +305,6 @@ class JQueryColorboxBackend {
   // deleteSettings()
 
   /**
-   * Read HTML from a remote url
-   *
-   * @since 3.5
-   * @access private
-   * @author Arne Franken
-   *
-   * @param String $url
-   * @return String|boolean the response
-   */
-  //private function getRemoteContent($url) {
-  function getRemoteContent($url) {
-    if (function_exists('wp_remote_request')) {
-
-      $options = array();
-      $options['headers'] = array(
-        'User-Agent' => JQUERYCOLORBOX_USERAGENT
-      );
-
-      $response = wp_remote_request($url, $options);
-
-      if (is_wp_error($response))
-        return false;
-
-      if (200 != wp_remote_retrieve_response_code($response))
-        return false;
-
-      return wp_remote_retrieve_body($response);
-    }
-
-    return false;
-  }
-
-  // getRemoteContent()
-
-  /**
    * gets current URL to return to after donating
    *
    * @since 3.5
@@ -368,7 +331,6 @@ class JQueryColorboxBackend {
   }
 
   // getReturnLocation()
-
 
 }
 
